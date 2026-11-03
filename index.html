@@ -60,7 +60,10 @@ button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:tra
 @keyframes flip{0%{transform:rotateX(0)}50%{transform:rotateX(90deg)}100%{transform:rotateX(0)}}
 
 /* ---------- intro board ---------- */
-.intro{background:var(--board);color:var(--board-ink);padding-block:22px 40px}
+.intro{background:var(--board);color:var(--board-ink);padding-block:22px 40px;min-height:100vh;min-height:100dvh;box-sizing:border-box;display:flex;flex-direction:column}
+.intro>.wrap{width:100%;flex:1;display:flex;flex-direction:column}
+.intro .intro-cta{margin-bottom:8px}
+html.on-intro,html.on-intro body{background:var(--board)}
 .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:12px}
 .brand img{width:40px;height:40px;border-radius:50%;background:#fff;padding:2px}
@@ -1002,7 +1005,8 @@ function show(n){
   if(n>=2&&n<=12&&!me){n=1;setTimeout(()=>note("Prima entra con il tuo nome e il PIN.",true),50);}
   cur=n;
   const intro=n===0,cos=n===13;
-  $("#intro").hidden=!intro;$("#gatebar").hidden=intro;$("#main").hidden=intro;$("#navbar").hidden=intro||cos;
+  $("#intro").hidden=!intro;document.documentElement.classList.toggle("on-intro",intro);
+  const tc=document.querySelector('meta[name="theme-color"]');if(tc)tc.content=intro?"#0b0b0c":"#0b0b0c";$("#gatebar").hidden=intro;$("#main").hidden=intro;$("#navbar").hidden=intro||cos;
   $("#track").hidden=cos;
   $$(".step").forEach(s=>s.hidden=+s.dataset.s!==n);
   if(!intro){
