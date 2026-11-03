@@ -727,7 +727,7 @@ html.on-intro,html.on-intro body{background:#d9dde2}
 <!-- INTRO -->
 <header class="intro" id="intro">
   <div class="scene" id="scene" aria-hidden="true">
-    <div class="lay lay-video"><video id="bgvid" src="terminal.mp4" poster="poster.jpg" autoplay muted loop playsinline preload="auto" disablepictureinpicture></video></div>
+    <div class="lay lay-video"><video id="bgvid" data-sd="terminal.mp4" data-hd="terminal-hd.mp4" poster="poster.jpg" autoplay muted loop playsinline preload="auto" disablepictureinpicture></video></div>
     <div class="shade"></div>
   </div>
   <div class="flash" id="flash"></div>
@@ -1545,6 +1545,9 @@ function boardWalk(done){
 /* ---------- video di sfondo: avvio robusto anche su Safari ---------- */
 (function(){const v=$("#bgvid");if(!v)return;
   v.muted=true;v.defaultMuted=true;v.playsInline=true;v.setAttribute("muted","");v.setAttribute("webkit-playsinline","");
+  /* 1080p sugli schermi grandi (Mac, PC), 720p sui telefoni per risparmiare dati */
+  const hd=innerWidth>=900&&screen.width*(window.devicePixelRatio||1)>=1600;
+  v.src=hd?v.dataset.hd:v.dataset.sd;
   const tryPlay=()=>{if(introEl.hidden||!v.paused)return;try{const p=v.play();if(p&&p.catch)p.catch(()=>{});}catch(e){}};
   ["loadedmetadata","loadeddata","canplay"].forEach(e=>v.addEventListener(e,tryPlay));
   document.addEventListener("visibilitychange",()=>{if(!document.hidden)tryPlay();});
