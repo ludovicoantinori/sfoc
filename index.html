@@ -720,6 +720,47 @@ html.on-intro,html.on-intro body{background:#d9dde2}
 .state{color:#86868b}.state.on{color:#d0132f}
 .board-foot{color:#86868b;border-top-color:#e5e5ea}.board-foot .live{color:#1d1d1f}
 .board .mini-card{box-shadow:inset 0 0 0 1px #d2d2d7}
+
+/* gate 03: la carta è il centro; sotto, un piccolo indice delle 16 carte */
+.deck1{max-width:640px}
+.deck1 .act-card{padding:32px 34px 30px}
+.meter.big button,.meter.big button:first-child,.meter.big button:last-child{height:52px;font-size:18px}
+.deck1 .deck-nav{margin-top:12px}
+.minideck-wrap{display:flex;align-items:center;gap:12px;margin-top:22px;padding-top:18px;border-top:1px solid rgba(0,0,0,.08)}
+.md-count{font:500 13px/1 var(--f-body);color:var(--soft);white-space:nowrap}
+.minideck{display:flex;flex-wrap:wrap;gap:5px}
+.md{width:30px;height:30px;border:0;padding:0;border-radius:var(--rad-s);background:var(--surface);color:var(--soft);font:600 11px/1 var(--f-body);display:grid;place-items:center;transition:background .15s,color .15s}
+.md:hover{color:var(--ink);background:#e8e8ed}
+.md.rated{background:var(--ink);color:#fff}
+.md.cur{box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--red)}
+@media (max-width:520px){.minideck-wrap{flex-direction:column;align-items:flex-start}.deck1 .act-card{padding:24px 20px}}
+/* gate 07: calendario a due mesi, giorni nei cerchi, periodi uniti da una fascia */
+.brushes{display:inline-flex;flex-wrap:wrap;background:#e8e8ed;border-radius:var(--rad);padding:3px;gap:2px;margin-bottom:30px}
+.brushes .brush{background:transparent;box-shadow:none;border-radius:calc(var(--rad) - 4px);padding:9px 16px;font-size:15px}
+.brushes .brush:hover{box-shadow:none;background:rgba(255,255,255,.55)}
+.brushes .brush[aria-pressed="true"]{background:#fff;box-shadow:0 3px 8px rgba(0,0,0,.12),0 3px 1px rgba(0,0,0,.04)}
+.dk-x{position:relative;background:var(--surface);box-shadow:inset 0 0 0 1px var(--soft)}
+.dk-x::after{content:"";position:absolute;left:1px;right:1px;top:calc(50% - .75px);height:1.5px;background:var(--soft);transform:rotate(-35deg)}
+.dk-e{box-shadow:inset 0 0 0 1px var(--soft)}
+.cal-months{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 56px;max-width:900px;touch-action:none;user-select:none;-webkit-user-select:none}
+@media (max-width:720px){.cal-months{grid-template-columns:1fr}}
+.month h4{margin:0 0 16px;text-align:center;font:600 17px/1.2 var(--f-display);letter-spacing:-.02em}
+.mgrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));row-gap:4px}
+.mgrid .dh{font:600 12px/1 var(--f-body);letter-spacing:0;color:var(--soft);text-align:center;padding:0 0 10px}
+.cal-months .day{aspect-ratio:1;max-height:52px;width:100%;display:grid;place-items:center;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;transform:none;cursor:pointer;color:var(--ink);min-width:0;font:inherit}
+.cal-months .day span{width:44px;height:44px;max-width:100%;max-height:100%;border-radius:50%;display:grid;place-items:center;font:500 15px/1 var(--f-body);letter-spacing:-.01em;background:transparent;padding:0;transition:background .12s,color .12s,box-shadow .12s}
+.cal-months .day:hover span{box-shadow:inset 0 0 0 1.5px var(--ink)}
+.cal-months .day.off{cursor:default;color:#c7c7cc}
+.cal-months .day.off:hover span{box-shadow:none}
+.cal-months .day[data-v="p"] span{background:var(--red);color:#fff;box-shadow:none}
+.cal-months .day.l{background:linear-gradient(90deg,#fbe2e6 50%,transparent 50%)}
+.cal-months .day.r{background:linear-gradient(90deg,transparent 50%,#fbe2e6 50%)}
+.cal-months .day.l.r{background:#fbe2e6}
+.cal-months .day[data-v="x"] span{color:var(--soft);background:var(--surface);text-decoration:line-through;text-decoration-thickness:1.5px}
+.cal-foot{max-width:900px;margin-top:22px;padding-top:16px;border-top:1px solid rgba(0,0,0,.08);font-size:15px}
+/* tabellone su telefono: le 11 caselle della destinazione entrano sempre nello schermo */
+@media (max-width:600px){.bgrid{--fs:min(22px,calc((100vw - 104px)/12.6))}.board-stack{--pad:16px}}
+@media (max-width:600px){.brushes{display:flex;width:100%}.brushes .brush{flex:1;justify-content:center;padding:9px 6px;font-size:14px;gap:6px}}
 </style>
 </head>
 <body>
@@ -806,24 +847,18 @@ html.on-intro,html.on-intro body{background:#d9dde2}
   <section class="step" data-s="3" hidden>
     <p class="step-k">Gate 03 di 11</p>
     <h2>Attività. <span class="g">Cosa ti va di fare?</span></h2>
-    <p class="help">Una carta alla volta. 1 è dissenso assoluto, 3 è "me l'accollo", 5 è forte desiderio. Con la tastiera puoi usare i tasti da 1 a 5.</p>
-    <div class="body deck">
-      <div>
-        <article class="act-card" id="act-card" aria-live="polite">
-          <div class="act-top"><span id="act-count">1 di 16</span><span id="act-cat"></span></div>
-          <div class="perf" aria-hidden="true"></div>
-          <div class="act-code" id="act-code"></div>
-          <div class="act-name" id="act-name"></div>
-          <p class="act-desc" id="act-desc"></p>
-          <div class="meter" id="act-meter" role="group" aria-label="Voto da 1 a 5"></div>
-          <div class="meter-lab"><span>Dissenso assoluto</span><span>Me l'accollo</span><span>Forte desiderio</span></div>
-        </article>
-        <div class="deck-nav"><button class="link" id="prev" type="button">← Precedente</button><button class="link" id="next" type="button">Salta →</button></div>
-      </div>
-      <div>
-        <div class="alist-head"><span id="acts-count">0 di 16 votate</span></div>
-        <div class="alist" id="alist"></div>
-      </div>
+    <p class="help">Una carta per volta, voto da 1 a 5.</p>
+    <div class="body deck1">
+      <article class="act-card" id="act-card" aria-live="polite">
+        <div class="act-top"><span id="act-count">1 di 16</span><span id="act-cat"></span></div>
+        <div class="act-code" id="act-code"></div>
+        <div class="act-name" id="act-name"></div>
+        <p class="act-desc" id="act-desc"></p>
+        <div class="meter big" id="act-meter" role="group" aria-label="Voto da 1 a 5"></div>
+        <div class="meter-lab"><span>Dissenso assoluto</span><span>Me l'accollo</span><span>Forte desiderio</span></div>
+      </article>
+      <div class="deck-nav"><button class="link" id="prev" type="button">← Precedente</button><button class="link" id="next" type="button">Salta →</button></div>
+      <div class="minideck-wrap"><span class="md-count" id="acts-count">0 di 16</span><div class="minideck" id="alist" aria-label="Vai a una carta"></div></div>
     </div>
   </section>
 
@@ -850,14 +885,14 @@ html.on-intro,html.on-intro body{background:#d9dde2}
   <section class="step" data-s="7" hidden>
     <p class="step-k">Gate 07 di 11</p>
     <h2>Date. <span class="g">Quando sei libero?</span></h2>
-    <p class="help">Scegli un pennello e tocca o trascina sui giorni. In rosso quando preferiresti partire, a righe quando proprio non puoi. Il resto vale come "va bene".</p>
+    <p class="help">Tocca o trascina sui giorni: in rosso quando preferiresti partire, barrati quando proprio non puoi.</p>
     <div class="body">
-      <div class="brushes" role="group" aria-label="Pennello">
+      <div class="brushes" role="group" aria-label="Cosa segni">
         <button class="brush" type="button" data-brush="p" aria-pressed="true"><i class="dotk" style="background:var(--red)"></i>Preferite</button>
-        <button class="brush" type="button" data-brush="x" aria-pressed="false"><i class="dotk" style="background:repeating-linear-gradient(-45deg,var(--surface) 0 2px,var(--ink) 2px 3.5px);box-shadow:inset 0 0 0 1.5px var(--ink)"></i>Non posso</button>
-        <button class="brush" type="button" data-brush="" aria-pressed="false"><i class="dotk" style="box-shadow:inset 0 0 0 1.5px var(--dot)"></i>Gomma</button>
+        <button class="brush" type="button" data-brush="x" aria-pressed="false"><i class="dotk dk-x"></i>Non posso</button>
+        <button class="brush" type="button" data-brush="" aria-pressed="false"><i class="dotk dk-e"></i>Cancella</button>
       </div>
-      <div class="cal" id="cal"></div>
+      <div class="cal-months" id="cal"></div>
       <div class="cal-foot"><span id="cal-sum">Nessun giorno segnato</span><button class="link" type="button" id="cal-clear">Svuota</button></div>
     </div>
   </section>
@@ -923,7 +958,7 @@ html.on-intro,html.on-intro body{background:#d9dde2}
 
   <section class="step" data-s="10" hidden>
     <p class="step-k">Gate 10 di 11</p>
-    <h2>Documenti. <span class="g">Tre domande secche.</span></h2>
+    <h2>Documenti. <span class="g">Due domande secche.</span></h2>
     <div class="body qq" id="qq"></div>
   </section>
 
@@ -1031,8 +1066,7 @@ const MOVES=[
   {k:"sedentario",c:"VOLO DIRETTO",n:"Sedentario",d:"Un'unica base, al massimo gite in giornata.",pts:[[104,38]]}];
 const QQ=[
   {k:"drive",t:"Sei disposto a guidare?",h:"Se rispondi sì il COS ti chiederà una copia della patente attraverso i canali ufficiali.",o:[["si","Sì"],["flex","Do il cambio se serve"],["no","No"]]},
-  {k:"night",t:"Ti accolleresti una nottata stile Berlino2023?",h:"Se fosse necessaria per far quadrare l'organizzazione.",o:[["si","Sì"],["no","No"]]},
-  {k:"passport",t:"Passaporto",h:"Nel caso servisse, il COS avviserà con largo anticipo.",o:[["ok","Ce l'ho già"],["si","Non ce l'ho, ma lo farei"],["no","No"]]}];
+  {k:"night",t:"Ti accolleresti una nottata stile Lisbona2026?",h:"Se fosse necessaria per far quadrare l'organizzazione.",o:[["si","Sì"],["no","No"]]}];
 const MESI=["GEN","FEB","MAR","APR","MAG","GIU","LUG","AGO","SET","OTT","NOV","DIC"];
 const mesi=["gen","feb","mar","apr","mag","giu","lug","ago","set","ott","nov","dic"];
 const GIORNI=["DOM","LUN","MAR","MER","GIO","VEN","SAB"];
@@ -1051,7 +1085,7 @@ const PER_NIGHT=40,PER_DAY=25,REF=Math.round(PP.reduce((a,b)=>a+b.v,0));
 const GATES=["PASSEGGERO","ROTTA","ATTIVITÀ","BAGAGLIO","SCALI","ALLOGGIO","DATE","NOTTI","BUDGET","DOCUMENTI","NOTE","IMBARCO","AREA COS"];
 
 /* ---------- state ---------- */
-const blank=()=>({name:"",continents:{},acts:{},top3:[],move:"",stays:{},days:{},nights:[7,10],budget:700,drive:"",night:"",passport:"",veto:"",pitch:"",more:"",touched:{}});
+const blank=()=>({name:"",continents:{},acts:{},top3:[],move:"",stays:{},days:{},nights:[7,10],budget:700,drive:"",night:"",veto:"",pitch:"",more:"",touched:{}});
 function clean(src){
   let o={};try{o=JSON.parse(JSON.stringify(src||{}));}catch(e){}
   const S=blank();
@@ -1198,9 +1232,8 @@ function renderDeck(){const a=ACTS[deckIdx],su=SUITS[a.u];
   $("#act-code").textContent=a.c;$("#act-name").textContent=a.n;$("#act-desc").textContent=a.d;
   actPaint=meter($("#act-meter"),()=>S.acts[ACTS[deckIdx].c],v=>rate(v));renderAlist();}
 function renderAlist(){const el=$("#alist");el.textContent="";
-  ACTS.forEach((a,i)=>{const v=S.acts[a.c]||0,b=document.createElement("button");b.type="button";b.className="arow"+(i===deckIdx?" cur":"");
-    b.innerHTML=`<span class="c">${a.c}</span><span class="n">${esc(a.n)}</span><span class="bars">${[1,2,3,4,5].map(n=>`<i class="${n<=v?"on":""}"></i>`).join("")}</span>`;
-    b.setAttribute("aria-label",a.n+(v?", voto "+v:", da votare"));b.addEventListener("click",()=>goTo(i,true));el.appendChild(b);});
+  ACTS.forEach((a,i)=>{const v=S.acts[a.c]||0,b=document.createElement("button");b.type="button";b.className="md"+(v?" rated":"")+(i===deckIdx?" cur":"");
+    b.textContent=v||"";b.title=a.n+(v?": "+v:"");b.setAttribute("aria-label",a.n+(v?", voto "+v:", da votare"));b.addEventListener("click",()=>goTo(i,true));el.appendChild(b);});
   const n=Object.keys(S.acts).length;$("#acts-count").textContent=n===ACTS.length?"Mazzo completo":n+" di "+ACTS.length+" votate";}
 function goTo(i,anim){if(reduce||!anim){deckIdx=i;renderDeck();return;}
   actCard.classList.add("out");setTimeout(()=>{deckIdx=i;renderDeck();actCard.classList.remove("out");actCard.classList.add("in");requestAnimationFrame(()=>requestAnimationFrame(()=>actCard.classList.remove("in")));},220);}
@@ -1243,10 +1276,23 @@ const calEl=$("#cal");let brush="p";
 $$(".brush").forEach(b=>b.addEventListener("click",()=>{brush=b.dataset.brush;$$(".brush").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));}));
 function buildGrid(el,cellFn){el.textContent="";["L","M","M","G","V","S","D"].forEach(h=>{const d=document.createElement("div");d.className="dh";d.textContent=h;el.appendChild(d);});
   for(let i=0;i<DAYS[0].w;i++)el.appendChild(document.createElement("div"));DAYS.forEach(d=>el.appendChild(cellFn(d)));}
-buildGrid(calEl,d=>{const b=document.createElement("button");b.type="button";b.className="day"+(d.w>4?" we":"");b.dataset.day=d.k;
-  b.innerHTML=`<span>${d.d}</span><small>${d.d===1||d===DAYS[0]?MESI[d.m]:"&nbsp;"}</small>`;return b;});
-function paintCell(c,val){if(val)S.days[c.dataset.day]=val;else delete S.days[c.dataset.day];c.dataset.v=val||"";}
+(function buildMonths(el){el.textContent="";
+  [[6,"Luglio"],[7,"Agosto"]].forEach(([m,name])=>{
+    const box=document.createElement("div");box.className="month";box.innerHTML=`<h4>${name} 2027</h4><div class="mgrid"></div>`;
+    const g=box.querySelector(".mgrid");["L","M","M","G","V","S","D"].forEach(h=>{const d=document.createElement("div");d.className="dh";d.textContent=h;g.appendChild(d);});
+    const off=(new Date(Date.UTC(2027,m,1)).getUTCDay()+6)%7,n=new Date(Date.UTC(2027,m+1,0)).getUTCDate();
+    for(let i=0;i<off;i++)g.appendChild(document.createElement("div"));
+    for(let d=1;d<=n;d++){const k=String(m+1).padStart(2,"0")+"-"+String(d).padStart(2,"0"),b=document.createElement("button");b.type="button";b.className="day";b.dataset.w=(off+d-1)%7;
+      if(DAYKEYS.has(k))b.dataset.day=k;else{b.disabled=true;b.classList.add("off");b.setAttribute("aria-label",d+" "+name.toLowerCase()+", fuori dalla finestra del viaggio");}
+      b.innerHTML=`<span>${d}</span>`;g.appendChild(b);}
+    el.appendChild(box);});
+})(calEl);
+const DIDX=Object.fromEntries(DAYS.map((d,i)=>[d.k,i]));
+function paintCell(c,val){if(val)S.days[c.dataset.day]=val;else delete S.days[c.dataset.day];c.dataset.v=val||"";renderCal();}
 function renderCal(){calEl.querySelectorAll("[data-day]").forEach(c=>{c.dataset.v=S.days[c.dataset.day]||"";const [m,dd]=c.dataset.day.split("-");
+  const i=DIDX[c.dataset.day],pv=DAYS[i-1],nx=DAYS[i+1],isP=c.dataset.v==="p",w=+c.dataset.w;
+  c.classList.toggle("l",isP&&w!==0&&!!pv&&pv.m===DAYS[i].m&&S.days[pv.k]==="p");
+  c.classList.toggle("r",isP&&w!==6&&!!nx&&nx.m===DAYS[i].m&&S.days[nx.k]==="p");
   c.setAttribute("aria-label",(+dd)+" "+mesi[+m-1]+", "+({p:"preferito",x:"non posso"}[c.dataset.v]||"va bene"));});
   const v=Object.values(S.days),p=v.filter(x=>x==="p").length,x=v.filter(x=>x==="x").length;
   $("#cal-sum").textContent=(p||x)?`${p} giorni preferiti, ${x} impossibili`:"Nessun giorno segnato";}
@@ -1308,7 +1354,7 @@ function renderQQ(){const el=$("#qq");el.textContent="";
 
 /* ---------- completion ---------- */
 const DONE_F=[null,s=>!!s.name,s=>Object.keys(s.continents).length>0,s=>Object.keys(s.acts).length>=ACTS.length,s=>s.top3.length===3,s=>!!s.move,
-  s=>Object.keys(s.stays).length>=STAYS.length,s=>!!s.touched.days,s=>!!s.touched.nights,s=>!!s.touched.budget,s=>!!(s.drive&&s.night&&s.passport),s=>!!(s.veto||s.pitch)];
+  s=>Object.keys(s.stays).length>=STAYS.length,s=>!!s.touched.days,s=>!!s.touched.nights,s=>!!s.touched.budget,s=>!!(s.drive&&s.night),s=>!!(s.veto||s.pitch)];
 const DONE=DONE_F.map(f=>f&&(()=>f(S)));
 const doneCount=s=>DONE_F.filter(f=>f&&f(s)).length;
 const LABELS=[null,"Nome","Rotta","Attività","Bagaglio a mano","Scali","Alloggio","Date","Notti","Budget","Documenti","Ultima chiamata"];
@@ -1386,7 +1432,7 @@ function passEl(stamped){
 }
 const dirty=()=>JSON.stringify(payloadCore())!==lastSaved;
 function payloadCore(){return{name:S.name.slice(0,16),continents:S.continents,acts:S.acts,top3:S.top3.slice(0,3),move:S.move,stays:S.stays,days:S.days,nights:S.nights,budget:S.budget,
-  drive:S.drive,night:S.night,passport:S.passport,veto:(S.veto||"").slice(0,400),pitch:(S.pitch||"").slice(0,600),more:(S.more||"").slice(0,200),touched:S.touched};}
+  drive:S.drive,night:S.night,veto:(S.veto||"").slice(0,400),pitch:(S.pitch||"").slice(0,600),more:(S.more||"").slice(0,200),touched:S.touched};}
 function renderReview(){
   const miss=[];for(let i=2;i<=11;i++)if(!DONE[i]())miss.push(i);
   const m=$("#missing");m.textContent="";
@@ -1447,7 +1493,7 @@ function detailHTML(s){
     <dt>Date preferite</dt><dd>${esc(P||"–")}</dd><dt>Non può</dt><dd>${esc(X||"–")}</dd>
     <dt>Notti</dt><dd>${s.touched.nights?s.nights[0]+"–"+s.nights[1]:"–"}</dd>
     <dt>Budget</dt><dd>${s.touched.budget?eur(s.budget):"–"}</dd>
-    <dt>Guida</dt><dd>${optName("drive",s.drive)}</dd><dt>Nottata stile Berlino2023</dt><dd>${optName("night",s.night)}</dd><dt>Passaporto</dt><dd>${optName("passport",s.passport)}</dd>
+    <dt>Guida</dt><dd>${optName("drive",s.drive)}</dd><dt>Nottata stile Lisbona2026</dt><dd>${optName("night",s.night)}</dd>
     <dt>Vincolo</dt><dd>${esc(s.veto||"–")}</dd><dt>Convincici</dt><dd>${esc(s.pitch||"–")}</dd><dt>Altre attività</dt><dd>${esc(s.more||"–")}</dd>
   </dl>`;
 }
@@ -1490,7 +1536,7 @@ function renderCos(){
       <div class="bud-strip"><div class="ln"></div><span class="ref" style="left:${bp(REF)}%"></span>${bs.map(v=>`<span class="pt" style="left:${bp(v)}%"></span>`).join("")}<span class="med" style="left:${bp(med)}%"></span></div>
       <div class="scale" style="color:var(--board-mute)"><span>€300</span><span>tratteggio: VE2026</span><span>€2.000</span></div></div>
     <div class="rb full"><h3>Date: più rosso, più preferenze; in basso quanti non possono</h3><div class="heat" id="heat"></div></div>
-    <div class="rb full"><h3>Scali e documenti</h3><div class="splits">${split("Scali",MOVES.map(m=>[m.k,m.n]),"move")}${split(QQ[0].t,QQ[0].o,"drive")}${split("Nottata stile Berlino2023",QQ[1].o,"night")}${split("Passaporto",QQ[2].o,"passport")}</div></div>
+    <div class="rb full"><h3>Scali e documenti</h3><div class="splits">${split("Scali",MOVES.map(m=>[m.k,m.n]),"move")}${split(QQ[0].t,QQ[0].o,"drive")}${split("Nottata stile Lisbona2026",QQ[1].o,"night")}</div></div>
     ${quotes?`<div class="rb full"><h3>Note per il COS</h3><div class="quotes">${quotes}</div></div>`:""}
   </div>`;
   const rg=buildMap($("#res-map"),false);
@@ -1503,13 +1549,13 @@ function renderCos(){
 function download(name,type,text){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},500);}
 $("#cos-json").addEventListener("click",()=>download("ve2027-risposte.json","application/json",JSON.stringify(people,null,2)));
 $("#cos-csv").addEventListener("click",()=>{
-  const head=["nome","registrato","ultimo_salvataggio","salvataggi","continenti_si","continenti_no",...ACTS.map(a=>"att_"+a.c),"bagaglio_a_mano","scali",...STAYS.map(s=>"alloggio_"+s.k),"date_preferite","date_no","notti_min","notti_max","budget","guida","nottata","passaporto","vincolo","convincici","altre_attivita"];
+  const head=["nome","registrato","ultimo_salvataggio","salvataggi","continenti_si","continenti_no",...ACTS.map(a=>"att_"+a.c),"bagaglio_a_mano","scali",...STAYS.map(s=>"alloggio_"+s.k),"date_preferite","date_no","notti_min","notti_max","budget","guida","nottata","vincolo","convincici","altre_attivita"];
   const q=v=>{v=v==null?"":String(v);return /[",;\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;};
   const rows=people.map(p=>{const s=clean(p.payload||{});return [p.name,p.registered_at,p.updated_at||"",(p.revisions||[]).length,
     CONTS.filter(c=>s.continents[c.k]===1).map(c=>c.n).join(" / "),CONTS.filter(c=>s.continents[c.k]===-1).map(c=>c.n).join(" / "),
     ...ACTS.map(a=>s.acts[a.c]||""),s.top3.map(c=>ACT_BY[c].n).join(" / "),s.move,...STAYS.map(x=>s.stays[x.k]||""),
     rangesOf(Object.keys(s.days).filter(k=>s.days[k]==="p")),rangesOf(Object.keys(s.days).filter(k=>s.days[k]==="x")),
-    p.payload&&s.touched.nights?s.nights[0]:"",p.payload&&s.touched.nights?s.nights[1]:"",p.payload&&s.touched.budget?s.budget:"",s.drive,s.night,s.passport,s.veto,s.pitch,s.more].map(q).join(";");});
+    p.payload&&s.touched.nights?s.nights[0]:"",p.payload&&s.touched.nights?s.nights[1]:"",p.payload&&s.touched.budget?s.budget:"",s.drive,s.night,s.veto,s.pitch,s.more].map(q).join(";");});
   download("ve2027-risposte.csv","text/csv;charset=utf-8","﻿"+[head.join(";")].concat(rows).join("\n"));
 });
 
