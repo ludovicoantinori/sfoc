@@ -654,88 +654,61 @@ main{padding-block:64px 170px}
 .tag.full{animation:none}
 .stack-bar,.split .bar,.hb .t,.hb .t i{border-radius:var(--rad-s)}
 
-/* ===== Hall dell'aeroporto in 3D (solo CSS), camera POV guidata dal puntatore ===== */
-.intro{position:relative;overflow:hidden;isolation:isolate;background:#050507}
+/* ===== Terminal di giorno: livelli piatti e leggeri, la visuale segue il puntatore ===== */
+.intro{position:relative;overflow:hidden;isolation:isolate;background:#e9edf1;color:var(--ink)}
+html.on-intro,html.on-intro body{background:#e9edf1}
 .iwrap{position:relative;z-index:2}
-.scene{position:absolute;inset:0;z-index:0;perspective:1100px;perspective-origin:50% 44%;pointer-events:none}
-.world{position:absolute;left:50%;top:44%;width:0;height:0;transform-style:preserve-3d;
-  transform:translateZ(var(--tz,0px)) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform 1.1s cubic-bezier(.65,0,.25,1)}
-.world.live{transition:none}
-.pl{position:absolute;left:0;top:0;transform-style:preserve-3d;backface-visibility:hidden}
-.backwall{width:9000px;height:4400px;transform:translate(-50%,-50%) translateZ(-2300px);background:#04050a;overflow:hidden}
-.sky{position:absolute;inset:0;background:linear-gradient(to bottom,#010207 0%,#050916 34%,#0c1224 46%,#1b1a24 49.2%,#2a1d1d 50%,#07070a 50.4%,#050506 100%)}
-.city{position:absolute;left:0;right:0;top:calc(50% - 26px);height:26px;opacity:.9;
-  background:radial-gradient(circle,rgba(255,214,160,.95) 0 1.6px,transparent 2.4px) 0 4px/23px 9px repeat-x,
-             radial-gradient(circle,rgba(255,255,255,.75) 0 1.4px,transparent 2.2px) 11px 14px/41px 12px repeat-x,
-             radial-gradient(circle,rgba(255,180,120,.7) 0 1.2px,transparent 2px) 5px 20px/17px 6px repeat-x}
-.runway{position:absolute;left:0;right:0;top:calc(50% + 40px);height:8px;
-  background:radial-gradient(circle,#fff 0 2px,transparent 3px) 0 0/70px 8px repeat-x;animation:rw 3s linear infinite;opacity:.85}
-.runway.r2{top:calc(50% + 70px);background:radial-gradient(circle,#ff2a3a 0 2.4px,transparent 3.4px) 0 0/140px 8px repeat-x;animation-duration:2.2s;opacity:.9}
-@keyframes rw{to{background-position:-140px 0}}
-.jet{position:absolute;width:520px;left:30%;top:calc(50% + 10px);opacity:0;transform-origin:50% 50%}
-.jet svg{width:100%;display:block}
-.jet .beacon{fill:#ff2a3a;animation:bl 1.1s infinite}
-.j1{animation:takeoff 19s cubic-bezier(.45,0,.35,1) 1.2s infinite}
-.j2{width:300px;animation:takeoff2 27s cubic-bezier(.45,0,.35,1) 9s infinite}
-@keyframes takeoff{0%{opacity:0;transform:translate(-1400px,0) rotate(0)}6%{opacity:1}35%{transform:translate(300px,0) rotate(0)}70%{opacity:1;transform:translate(1900px,-900px) rotate(-13deg) scale(.82)}82%,100%{opacity:0;transform:translate(2600px,-1300px) rotate(-14deg) scale(.7)}}
-@keyframes takeoff2{0%{opacity:0;transform:translate(2600px,-80px) scaleX(-1)}8%{opacity:.8}55%{opacity:.8;transform:translate(-900px,-560px) scaleX(-1) rotate(8deg)}70%,100%{opacity:0;transform:translate(-1700px,-900px) scaleX(-1) rotate(9deg)}}
-.mullions{position:absolute;inset:0;background:
-  linear-gradient(to bottom,transparent 0 21%,#0b0b0e 21% 22.2%,transparent 22.2%),
-  repeating-linear-gradient(90deg,#0b0b0e 0 26px,transparent 26px 640px)}
-.floor{width:7000px;height:7000px;transform:translate(-50%,-50%) translateY(54vh) rotateX(90deg);
-  background:radial-gradient(ellipse 14% 9% at 50% 54%,rgba(255,255,255,.13),transparent 70%),
-             radial-gradient(ellipse 30% 22% at 50% 52%,rgba(208,19,47,.08),transparent 70%),
-             repeating-linear-gradient(90deg,rgba(255,255,255,.05) 0 2px,transparent 2px 260px),
-             repeating-linear-gradient(0deg,rgba(255,255,255,.05) 0 2px,transparent 2px 260px),
-             linear-gradient(#0c0c0f,#08080a)}
-.ceiling{width:7000px;height:7000px;transform:translate(-50%,-50%) translateY(-60vh) rotateX(-90deg);
-  background:linear-gradient(90deg,transparent 0 45.8%,rgba(255,255,255,.75) 45.8% 46.05%,transparent 46.05% 53.95%,rgba(255,255,255,.75) 53.95% 54.2%,transparent 54.2%),
-             repeating-linear-gradient(0deg,#0e0e12 0 340px,#17171c 340px 352px),#0b0b0e}
-.pillar{width:150px;height:118vh;background:linear-gradient(90deg,#0a0a0d 0%,#1c1c22 42%,#26262d 50%,#121216 100%);box-shadow:0 0 80px rgba(0,0,0,.6)}
-.p1{transform:translate(-50%,-50%) translateX(-1150px) translateY(-3vh) translateZ(-380px)}
-.p2{transform:translate(-50%,-50%) translateX(1150px) translateY(-3vh) translateZ(-380px)}
-.p3{transform:translate(-50%,-50%) translateX(-1250px) translateY(-3vh) translateZ(-1500px)}
-.p4{transform:translate(-50%,-50%) translateX(1250px) translateY(-3vh) translateZ(-1500px)}
-.sign{display:flex;align-items:center;gap:22px;padding:18px 28px;background:#0b0b0d;border:2px solid #2a2a30;border-radius:var(--rad,14px);color:#f4f4f5;font:600 34px/1 var(--f-display);letter-spacing:-.01em;white-space:nowrap}
-.sign b{color:#f4f4f5;font-weight:600}
-.s1{transform:translate(-50%,-50%) translateX(980px) translateY(-36vh) translateZ(-1100px)}
-.s2{transform:translate(-50%,-50%) translateX(-980px) translateY(-36vh) translateZ(-1100px)}
-.s3{transform:translate(-50%,-50%) translateX(-560px) translateY(-41vh) translateZ(-1900px);background:#d0132f;border-color:#d0132f}
-.vignette{position:absolute;inset:0;background:radial-gradient(ellipse 75% 70% at 50% 46%,transparent 40%,rgba(0,0,0,.72) 100%),linear-gradient(to bottom,rgba(0,0,0,.55),transparent 18%,transparent 70%,rgba(0,0,0,.8))}
+.scene{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.lay{position:absolute;inset:-3%;width:106%;height:106%;will-change:transform;transform:translate3d(var(--px,0px),var(--py,0px),0) scale(var(--ps,1));transition:transform 1.1s cubic-bezier(.65,0,.25,1)}
+.intro.live .lay{transition:none}
+.takeoff{animation:takeoff 16s linear infinite;transform-box:fill-box}
+@keyframes takeoff{0%{transform:translate(-200px,622px) rotate(0)}22%{transform:translate(380px,622px) rotate(0)}30%{transform:translate(600px,600px) rotate(-10deg)}62%{transform:translate(1500px,240px) rotate(-14deg) scale(.7)}100%{transform:translate(1900px,80px) rotate(-14deg) scale(.5)}}
+.clouds{animation:clouds 80s linear infinite alternate}
+@keyframes clouds{to{transform:translateX(120px)}}
+.tug{animation:tug 22s ease-in-out infinite alternate}
+@keyframes tug{to{transform:translateX(380px)}}
+.lay-front{inset:auto -3% 0 -3%;height:100%}
+.walker{position:absolute;bottom:4%;width:auto;height:min(19vh,170px);opacity:.92}
+.w1{left:-10%;animation:walk 26s linear infinite}
+.w2{left:-10%;animation:walk 34s linear -14s infinite;height:min(16vh,140px);bottom:9%}
+.w3{left:-10%;animation:walkback 30s linear -6s infinite;height:min(17.5vh,156px);bottom:6%}
+@keyframes walk{to{transform:translateX(125vw)}}
+@keyframes walkback{from{transform:translateX(125vw) scaleX(-1)}to{transform:translateX(0) scaleX(-1)}}
 .flash{position:absolute;inset:0;z-index:5;background:#fff;opacity:0;pointer-events:none;transition:opacity .45s ease}
-/* il tabellone appeso nella hall */
-.board-zone{perspective:1600px}
-.board{position:relative;transform:rotateX(var(--brx,0deg)) rotateY(var(--bry,0deg)) translateZ(0);transition:transform 1.1s cubic-bezier(.65,0,.25,1),opacity .8s;
-  background:rgba(0,0,0,.92);box-shadow:0 50px 90px -30px rgba(0,0,0,.95),0 0 0 1px rgba(255,255,255,.04);
-  -webkit-box-reflect:below 30px linear-gradient(to bottom,rgba(0,0,0,.14),transparent 45%)}
-.board.live{transition:opacity .8s}
+/* testi in alto e in basso, scuri sul terminal chiaro */
+.intro .brand span{color:var(--ink)}.intro .brand small{color:var(--muted)}
+.intro .clock{color:var(--muted)}.intro .clock b{color:var(--ink)}
+.intro .top{position:relative}
+.ibottom{background:rgba(255,255,255,.86);border-radius:var(--rad);padding:20px 24px;box-shadow:0 10px 40px -20px rgba(0,0,0,.25)}
+.intro h1{color:var(--ink)}
+.intro .warn{color:var(--muted)}
+.intro .btn{background:var(--ink);color:#fff}
+.intro .btn:hover{background:#000}
+.cos-link{color:var(--muted)}.cos-link:hover{color:var(--ink)}
+/* tabellone appeso: nero, leggibile, con cavi */
+.board{width:100%;max-width:min(1120px,86vw);margin-inline:auto;background:#101317;border:0;box-shadow:0 30px 60px -24px rgba(16,19,23,.6);transform:translate3d(var(--bx,0px),var(--by,0px),0);transition:transform 1.1s cubic-bezier(.65,0,.25,1),opacity .8s;-webkit-box-reflect:none}
+.intro.live .board{transition:opacity .8s}
+.bgrid{--fs:clamp(15px,1.95vw,40px)}
+.flap{background:#22272e;color:#fff}
+.flap::after{background:#101317}
+.flap.y{color:#ff4d5e}
+.flaps.dim{opacity:.62}
+.bl{color:#9aa3ad;border-bottom-color:#2a3038}
+.board-title .it{color:#fff}.board-title .en{color:#9aa3ad}
+.state{color:#9aa3ad}.state.on{color:#ff4d5e}
+.board-foot{color:#9aa3ad;border-top-color:#2a3038}.board-foot .live{color:#fff}
 @media (min-width:601px){.board{overflow:visible}
-  .board::before,.board::after{content:"";position:absolute;bottom:100%;width:2px;height:60vh;background:linear-gradient(to top,#3a3a42,#1a1a1f 60%,transparent)}
-  .board::before{left:18%}.board::after{right:18%}}
-.intro.boarding .board{transform:translateZ(700px) scale(1.05);opacity:0}
+  .board::before,.board::after{content:"";position:absolute;bottom:100%;width:3px;height:60vh;background:#8e98a3}
+  .board::before{left:16%}.board::after{right:16%}}
+@media (max-width:1024px){.board{max-width:none}}
+@media (max-width:600px){.bgrid{--fs:min(26px,calc((100vw - 84px)/12.6))}.ibottom{padding:16px}.walker{height:12vh}}
+.intro.boarding .lay-out{--ps:1.25}
+.intro.boarding .lay-in{--ps:1.6}
+.intro.boarding .lay-front{--ps:2.2;opacity:0;transition:transform 1.1s,opacity .6s}
+.intro.boarding .board{transform:scale(1.9);opacity:0}
 .intro.boarding .flash{opacity:1;transition-delay:.55s}
 .intro.boarding .ibottom,.intro.boarding .top{opacity:0;transition:opacity .35s}
-@media (prefers-reduced-motion:reduce){.world,.board{transition:none!important}.jet{display:none}}
-
-/* sistemazione della hall: tabellone appeso al centro, la hall visibile ai lati */
-.board{width:100%;max-width:min(1120px,84vw);margin-inline:auto;background:#000}
-.bgrid{--fs:clamp(15px,1.95vw,40px)}
-.p1{transform:translate(-50%,-50%) translateX(-840px) translateY(-3vh) translateZ(-380px)}
-.p2{transform:translate(-50%,-50%) translateX(840px) translateY(-3vh) translateZ(-380px)}
-.p3{transform:translate(-50%,-50%) translateX(-1550px) translateY(-3vh) translateZ(-1500px)}
-.p4{transform:translate(-50%,-50%) translateX(1550px) translateY(-3vh) translateZ(-1500px)}
-.s1{transform:translate(-50%,-50%) translateX(1150px) translateY(-46vh) translateZ(-1100px)}
-.s2{transform:translate(-50%,-50%) translateX(-1150px) translateY(-46vh) translateZ(-1100px)}
-.s3{transform:translate(-50%,-50%) translateX(-700px) translateY(-52vh) translateZ(-1900px)}
-.sky::after{content:"";position:absolute;inset:0 0 52% 0;opacity:.7;background:
-  radial-gradient(circle,rgba(255,255,255,.9) 0 1.2px,transparent 2px) 0 0/97px 83px,
-  radial-gradient(circle,rgba(255,255,255,.6) 0 1px,transparent 1.8px) 40px 30px/151px 127px,
-  radial-gradient(ellipse 6% 9% at 72% 22%,rgba(235,238,255,.5),rgba(235,238,255,.06) 60%,transparent 100%)}
-.jet{top:calc(50% - 60px)}
-@media (max-width:1024px){.board{max-width:none}}
-@media (max-width:600px){.board{-webkit-box-reflect:none}.bgrid{--fs:min(26px,calc((100vw - 84px)/12.6))}}
-.s1{transform:translate(-50%,-50%) translateX(980px) translateY(-46vh) translateZ(-1100px)}
-.s2{transform:translate(-50%,-50%) translateX(-980px) translateY(-46vh) translateZ(-1100px)}
+@media (prefers-reduced-motion:reduce){.lay,.board{transition:none!important}.walker,.takeoff,.clouds,.tug{animation:none}.walker{display:none}}
 </style>
 </head>
 <body>
@@ -743,24 +716,80 @@ main{padding-block:64px 170px}
 <!-- INTRO -->
 <header class="intro" id="intro">
   <div class="scene" id="scene" aria-hidden="true">
-    <div class="world" id="world">
-      <div class="pl backwall">
-        <div class="sky"></div>
-        <div class="city"></div>
-        <div class="runway"></div>
-        <div class="runway r2"></div>
-        <div class="jet j1"><svg viewBox="0 0 120 40"><path d="M2 22 L40 20 L58 4 L66 4 L56 20 L96 19 Q114 19 118 22 Q114 25 96 25 L56 24 L66 38 L58 38 L40 24 L2 22 Z M8 22 L2 14 L8 14 L16 21 Z" fill="#cfd3dc"/><circle class="beacon" cx="60" cy="22" r="2.6"/></svg></div>
-        <div class="jet j2"><svg viewBox="0 0 120 40"><path d="M2 22 L40 20 L58 4 L66 4 L56 20 L96 19 Q114 19 118 22 Q114 25 96 25 L56 24 L66 38 L58 38 L40 24 L2 22 Z M8 22 L2 14 L8 14 L16 21 Z" fill="#9aa0ab"/><circle class="beacon" cx="60" cy="22" r="2.6"/></svg></div>
-        <div class="mullions"></div>
-      </div>
-      <div class="pl floor"></div>
-      <div class="pl ceiling"></div>
-      <div class="pl pillar p1"></div><div class="pl pillar p2"></div><div class="pl pillar p3"></div><div class="pl pillar p4"></div>
-      <div class="pl sign s1"><span>Gate A1–A12</span><b>→</b></div>
-      <div class="pl sign s2"><b>←</b><span>Arrivi</span></div>
-      <div class="pl sign s3"><span>Gate COS</span><b>↑</b></div>
+    <!-- fuori: cielo, pista, aereo al gate -->
+    <svg class="lay lay-out" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="g-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fbde6"/><stop offset=".5" stop-color="#cfe2f3"/><stop offset=".62" stop-color="#eaf2f9"/></linearGradient>
+        <linearGradient id="g-tar" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b3b8bf"/><stop offset="1" stop-color="#959ba3"/></linearGradient>
+        <linearGradient id="g-fus" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".7" stop-color="#eef0f3"/><stop offset="1" stop-color="#cfd4da"/></linearGradient>
+      </defs>
+      <rect width="1600" height="900" fill="url(#g-sky)"/>
+      <g class="clouds" fill="#fff">
+        <g opacity=".9"><ellipse cx="260" cy="250" rx="120" ry="26"/><ellipse cx="320" cy="232" rx="70" ry="30"/><ellipse cx="200" cy="240" rx="50" ry="22"/></g>
+        <g opacity=".75"><ellipse cx="1180" cy="200" rx="150" ry="24"/><ellipse cx="1240" cy="184" rx="80" ry="28"/></g>
+        <g opacity=".6"><ellipse cx="760" cy="300" rx="110" ry="18"/><ellipse cx="800" cy="290" rx="60" ry="20"/></g>
+      </g>
+      <g class="takeoff"><path d="M0 14 L30 12 L44 2 L50 2 L42 12 L74 11 Q86 11 90 14 Q86 17 74 17 L42 16 L50 26 L44 26 L30 16 L0 14Z M4 14 L0 8 L5 8 L11 13Z" fill="#56606c"/></g>
+      <path transform="translate(0 64)" d="M0 528 H70 V506 H96 V518 H140 V498 H170 V512 H230 V520 H300 V502 H318 V470 H330 V502 H352 V516 H430 V508 H520 V522 H640 V512 H700 V524 H860 V514 H940 V500 H980 V516 H1080 V508 H1160 V522 H1260 V504 H1290 V516 H1380 V510 H1470 V524 H1600 V560 H0Z" fill="#c4d0dc"/>
+      <g fill="#aebccb" transform="translate(0 64)"><rect x="1330" y="430" width="16" height="96"/><path d="M1318 430 h40 l-6 -26 h-28z"/><rect x="1324" y="398" width="28" height="8" rx="2"/></g>
+      <rect y="612" width="1600" height="288" fill="url(#g-tar)"/>
+      <rect y="632" width="1600" height="20" fill="#878d95"/>
+      <line x1="0" y1="642" x2="1600" y2="642" stroke="#fff" stroke-width="2.5" stroke-dasharray="40 30"/>
+      <path d="M0 742 C420 720 900 728 1600 700" fill="none" stroke="#e6c34a" stroke-width="4"/>
+      <!-- aereo parcheggiato al gate -->
+      <g class="parked" transform="translate(-40 34)">
+        <path d="M880 600 L838 520 L872 520 L952 598Z" fill="#d0132f"/>
+        <path d="M852 604 L812 604 L824 592 L874 594Z" fill="#c8cdd4"/>
+        <path d="M880 640 C880 616 906 600 960 598 L1430 598 C1488 598 1528 614 1548 640 C1528 664 1488 680 1430 680 L960 680 C906 680 880 664 880 640Z" fill="url(#g-fus)" stroke="#c6ccd3" stroke-width="2"/>
+        <rect x="960" y="648" width="470" height="6" fill="#d0132f"/>
+        <line x1="980" y1="626" x2="1400" y2="626" stroke="#4a545f" stroke-width="7" stroke-dasharray="7 11" stroke-linecap="round"/>
+        <path d="M1478 616 L1512 618 L1526 630 L1486 630Z" fill="#3b4550"/>
+        <rect x="1110" y="604" width="22" height="56" rx="3" fill="none" stroke="#b3bac2" stroke-width="2"/>
+        <path d="M1120 664 L1230 728 L1290 728 L1206 664Z" fill="#dde1e6" stroke="#c3c9d0" stroke-width="2"/>
+        <ellipse cx="1238" cy="712" rx="48" ry="18" fill="#cdd3da" stroke="#b8bfc7" stroke-width="2"/>
+        <g stroke="#5b636d" stroke-width="5"><line x1="1010" y1="680" x2="1010" y2="716"/><line x1="1380" y1="680" x2="1380" y2="716"/></g>
+        <g fill="#2f353c"><circle cx="1010" cy="722" r="9"/><circle cx="1380" cy="722" r="9"/></g>
+        <path d="M1560 520 L1600 520 L1600 610 L1556 616 L1550 600Z" fill="#d9dde2" stroke="#bfc5cc" stroke-width="2"/>
+      </g>
+      <g class="tug" transform="translate(0 -6)"><rect x="300" y="742" width="70" height="28" rx="5" fill="#e6c34a"/><rect x="312" y="730" width="30" height="16" rx="3" fill="#3b4550"/><circle cx="316" cy="774" r="8" fill="#2f353c"/><circle cx="356" cy="774" r="8" fill="#2f353c"/></g>
+    </svg>
+
+    <!-- dentro: soffitto, vetrata, pilastri, pavimento, cartelli -->
+    <svg class="lay lay-in" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="g-floor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dde2"/><stop offset="1" stop-color="#f4f5f7"/></linearGradient>
+        <linearGradient id="g-col" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#d8dce1"/><stop offset=".45" stop-color="#ffffff"/><stop offset="1" stop-color="#c9ced4"/></linearGradient>
+        <linearGradient id="g-refl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".75"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+        <clipPath id="c-floor"><rect y="766" width="1600" height="134"/></clipPath>
+      </defs>
+      <!-- soffitto -->
+      <path d="M0 0 H1600 V150 L1500 128 H100 L0 150Z" fill="#eceef1"/>
+      <g stroke="#d3d8de" stroke-width="3"><path d="M0 40 H1600 M0 90 H1600"/><path d="M0 0 L120 128 M260 0 L340 128 M520 0 L560 128 M800 0 V128 M1080 0 L1040 128 M1340 0 L1260 128 M1600 0 L1480 128" /></g>
+      <g fill="#ffffff"><rect x="140" y="58" width="300" height="10" rx="5"/><rect x="650" y="58" width="300" height="10" rx="5"/><rect x="1160" y="58" width="300" height="10" rx="5"/></g>
+      <rect x="0" y="128" width="1600" height="22" fill="#dfe3e8"/>
+      <!-- vetrata -->
+      <g fill="#8e98a3"><rect x="0" y="146" width="1600" height="8"/><rect x="0" y="350" width="1600" height="5"/><rect x="0" y="752" width="1600" height="14"/></g>
+      <g fill="#8e98a3"><rect x="196" y="150" width="7" height="604"/><rect x="496" y="150" width="7" height="604"/><rect x="796" y="150" width="7" height="604"/><rect x="1096" y="150" width="7" height="604"/><rect x="1396" y="150" width="7" height="604"/></g>
+      <g fill="#fff" opacity=".16"><path d="M210 150 L330 150 L230 752 L210 752Z"/><path d="M820 150 L900 150 L840 752 L812 752Z"/><path d="M1120 150 L1260 150 L1150 752 L1110 752Z"/></g>
+      <!-- pavimento lucido con riflessi della vetrata -->
+      <rect y="766" width="1600" height="134" fill="url(#g-floor)"/>
+      <g clip-path="url(#c-floor)">
+        <g fill="url(#g-refl)" opacity=".55"><rect x="0" y="766" width="196" height="120"/><rect x="203" y="766" width="293" height="120"/><rect x="503" y="766" width="293" height="120"/><rect x="803" y="766" width="293" height="120"/><rect x="1103" y="766" width="293" height="120"/><rect x="1403" y="766" width="197" height="120"/></g>
+        <g stroke="#cdd2d8" stroke-width="2"><path d="M-900 900 L800 640 M-500 900 L800 640 M-100 900 L800 640 M300 900 L800 640 M700 900 L800 640 M1100 900 L800 640 M1500 900 L800 640 M1900 900 L800 640 M2300 900 L800 640 M2700 900 L800 640"/><path d="M0 784 H1600 M0 812 H1600 M0 850 H1600"/></g>
+      </g>
+      <!-- pilastri -->
+      <rect x="92" y="120" width="74" height="780" fill="url(#g-col)"/>
+      <rect x="1434" y="120" width="74" height="780" fill="url(#g-col)"/>
+      <!-- cartelli sospesi -->
+
+    </svg>
+
+    <!-- primo piano: viaggiatori che passano -->
+    <div class="lay lay-front">
+      <svg class="walker w1" viewBox="0 0 60 150"><circle cx="26" cy="14" r="11" fill="#2f353c"/><rect x="12" y="28" width="28" height="62" rx="12" fill="#3d4450"/><path d="M18 88 L14 146 M34 88 L40 146" stroke="#2f353c" stroke-width="9" stroke-linecap="round"/><rect x="42" y="96" width="16" height="40" rx="3" fill="#d0132f"/><line x1="44" y1="96" x2="38" y2="70" stroke="#2f353c" stroke-width="3"/></svg>
+      <svg class="walker w2" viewBox="0 0 60 150"><circle cx="30" cy="14" r="11" fill="#5b636d"/><rect x="16" y="28" width="28" height="64" rx="12" fill="#e6e9ed" stroke="#c4cad1" stroke-width="2"/><path d="M22 90 L18 146 M38 90 L42 146" stroke="#5b636d" stroke-width="9" stroke-linecap="round"/><rect x="2" y="60" width="14" height="30" rx="4" fill="#3d4450"/></svg>
+      <svg class="walker w3" viewBox="0 0 60 150"><circle cx="28" cy="14" r="11" fill="#3d4450"/><rect x="14" y="28" width="28" height="62" rx="12" fill="#1f2328"/><path d="M20 88 L16 146 M36 88 L40 146" stroke="#3d4450" stroke-width="9" stroke-linecap="round"/><rect x="44" y="104" width="22" height="34" rx="4" fill="#8e98a3"/></svg>
     </div>
-    <div class="vignette"></div>
   </div>
   <div class="flash" id="flash"></div>
   <div class="wrap iwrap">
@@ -1544,33 +1573,32 @@ $("#cos-csv").addEventListener("click",()=>{
 });
 
 
-/* ---------- POV nella hall: la camera segue il puntatore ---------- */
-const world=$("#world"),boardEl=$(".board"),introEl=$("#intro");
+/* ---------- POV nel terminal: i livelli si spostano con il puntatore (parallasse leggera) ---------- */
+const boardEl=$(".board"),introEl=$("#intro"),LAYS=[[$(".lay-out"),10,6],[$(".lay-in"),26,12],[$(".lay-front"),46,8]];
 let cam={x:0,y:0,tx:0,ty:0},camRun=false,t0=performance.now();
 function setTarget(cx,cy){const r=introEl.getBoundingClientRect();cam.tx=Math.max(-1,Math.min(1,(cx-r.left)/r.width*2-1));cam.ty=Math.max(-1,Math.min(1,(cy-r.top)/r.height*2-1));}
 introEl.addEventListener("pointermove",e=>setTarget(e.clientX,e.clientY));
 introEl.addEventListener("pointerleave",()=>{cam.tx=0;cam.ty=0;});
 function camLoop(now){
   if(introEl.hidden||reduce){camRun=false;return;}
-  const t=(now-t0)/1000;
-  cam.x+=(cam.tx-cam.x)*.05;cam.y+=(cam.ty-cam.y)*.05;
-  const ry=-cam.x*9+Math.sin(t*.25)*1.2, rx=cam.y*4.5+Math.sin(t*.37)*.6;
-  world.style.setProperty("--ry",ry.toFixed(3)+"deg");world.style.setProperty("--rx",rx.toFixed(3)+"deg");
-  if(!introEl.classList.contains("boarding")){boardEl.style.setProperty("--bry",(-cam.x*5).toFixed(3)+"deg");boardEl.style.setProperty("--brx",(cam.y*3.5).toFixed(3)+"deg");}
+  if(!introEl.classList.contains("boarding")){
+    const t=(now-t0)/1000;cam.x+=(cam.tx-cam.x)*.06;cam.y+=(cam.ty-cam.y)*.06;
+    const x=cam.x+Math.sin(t*.3)*.08,y=cam.y+Math.sin(t*.45)*.05;
+    LAYS.forEach(([el,ax,ay])=>{el.style.setProperty("--px",(-x*ax).toFixed(2)+"px");el.style.setProperty("--py",(-y*ay).toFixed(2)+"px");});
+    boardEl.style.setProperty("--bx",(-x*18).toFixed(2)+"px");boardEl.style.setProperty("--by",(-y*8).toFixed(2)+"px");
+  }
   requestAnimationFrame(camLoop);
 }
-function startCam(){if(camRun||reduce)return;camRun=true;world.classList.add("live");boardEl.classList.add("live");requestAnimationFrame(camLoop);}
+function startCam(){if(camRun||reduce)return;camRun=true;introEl.classList.add("live");requestAnimationFrame(camLoop);}
 let actx=null;
 function chime(){try{actx=actx||new (window.AudioContext||window.webkitAudioContext)();const now=actx.currentTime;
   [[659.25,0],[523.25,.32],[392,.64]].forEach(([f,d])=>{const o=actx.createOscillator(),g=actx.createGain();o.type="sine";o.frequency.value=f;
     g.gain.setValueAtTime(0,now+d);g.gain.linearRampToValueAtTime(.07,now+d+.02);g.gain.exponentialRampToValueAtTime(.0001,now+d+1.1);o.connect(g).connect(actx.destination);o.start(now+d);o.stop(now+d+1.2);});}catch(e){}}
 function boardWalk(done){
   if(reduce){done();return;}
-  chime();
-  world.classList.remove("live");boardEl.classList.remove("live");
-  requestAnimationFrame(()=>{introEl.classList.add("boarding");world.style.setProperty("--tz","1500px");world.style.setProperty("--rx","0deg");world.style.setProperty("--ry","0deg");});
-  setTimeout(()=>{done();introEl.classList.remove("boarding");world.style.setProperty("--tz","0px");
-    const f=$("#flash");f.style.transition="none";},1150);
+  chime();introEl.classList.remove("live");
+  requestAnimationFrame(()=>introEl.classList.add("boarding"));
+  setTimeout(()=>{done();introEl.classList.remove("boarding");$("#flash").style.transition="none";camRun=false;},1150);
 }
 
 /* ---------- boot ---------- */
