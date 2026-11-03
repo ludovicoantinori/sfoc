@@ -708,6 +708,18 @@ html.on-intro,html.on-intro body{background:#d9dde2}
 .ibottom .cos-link{margin:0;font-size:15px;color:var(--muted);white-space:nowrap}
 @media (max-width:1024px){.board-stack{max-width:none}}
 @media (max-width:640px){.ibottom{grid-template-columns:1fr;gap:16px}.ibottom .intro-cta{justify-content:space-between}.ibottom .btn{flex:1;justify-content:center}}
+
+/* tabellone chiaro, in tono con la hall luminosa */
+.board{background:#fff;box-shadow:0 30px 60px -24px rgba(16,19,23,.45)}
+.flap{background:#eef0f3;color:#1d1d1f}
+.flap::after{background:#fff;height:1.5px}
+.flap.y{color:#d0132f}
+.flaps.dim{opacity:.55}
+.bl{color:#86868b;border-bottom-color:#e5e5ea}
+.board-title .it{color:#1d1d1f}.board-title .en{color:#86868b}
+.state{color:#86868b}.state.on{color:#d0132f}
+.board-foot{color:#86868b;border-top-color:#e5e5ea}.board-foot .live{color:#1d1d1f}
+.board .mini-card{box-shadow:inset 0 0 0 1px #d2d2d7}
 </style>
 </head>
 <body>
@@ -1529,6 +1541,19 @@ function boardWalk(done){
   requestAnimationFrame(()=>introEl.classList.add("boarding"));
   setTimeout(()=>{done();introEl.classList.remove("boarding");$("#flash").style.transition="none";camRun=false;},1150);
 }
+
+/* ---------- video di sfondo: avvio robusto anche su Safari ---------- */
+(function(){const v=$("#bgvid");if(!v)return;
+  v.muted=true;v.defaultMuted=true;v.playsInline=true;v.setAttribute("muted","");v.setAttribute("webkit-playsinline","");
+  const tryPlay=()=>{if(introEl.hidden||!v.paused)return;try{const p=v.play();if(p&&p.catch)p.catch(()=>{});}catch(e){}};
+  ["loadedmetadata","loadeddata","canplay"].forEach(e=>v.addEventListener(e,tryPlay));
+  document.addEventListener("visibilitychange",()=>{if(!document.hidden)tryPlay();});
+  window.addEventListener("pageshow",tryPlay);
+  const evs=["pointerdown","touchstart","keydown","wheel","scroll"],kick=()=>{tryPlay();if(!v.paused)evs.forEach(e=>document.removeEventListener(e,kick));};
+  evs.forEach(e=>document.addEventListener(e,kick,{passive:true}));
+  if(v.readyState===0)v.load();
+  tryPlay();setTimeout(tryPlay,800);setTimeout(tryPlay,2500);
+})();
 
 /* ---------- boot ---------- */
 renderAll();renderLogin();show(0);refreshCount();
