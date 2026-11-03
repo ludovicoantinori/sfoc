@@ -60,36 +60,48 @@ button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:tra
 @keyframes flip{0%{transform:rotateX(0)}50%{transform:rotateX(90deg)}100%{transform:rotateX(0)}}
 
 /* ---------- intro board ---------- */
-.intro{background:var(--board);color:var(--board-ink);padding-block:22px 40px;min-height:100vh;min-height:100dvh;box-sizing:border-box;display:flex;flex-direction:column}
+.intro{background:var(--board);color:var(--board-ink);padding-block:22px 28px;min-height:100vh;min-height:100dvh;box-sizing:border-box;display:flex;flex-direction:column}
 .intro>.wrap{width:100%;flex:1;display:flex;flex-direction:column}
-.intro .intro-cta{margin-bottom:8px}
+.wrap.iwrap{max-width:none;padding-left:max(20px,3.2vw,env(safe-area-inset-left,0px));padding-right:max(20px,3.2vw,env(safe-area-inset-right,0px))}
 html.on-intro,html.on-intro body{background:var(--board)}
 .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:12px}
 .brand img{width:40px;height:40px;border-radius:50%;background:#fff;padding:2px}
-.brand span{font:600 13px/1.3 var(--f-body)}
+.brand span{font:500 13.5px/1.3 var(--f-body)}
 .brand small{display:block;font-weight:400;color:var(--board-mute)}
-.clock{font:600 12px/1 var(--f-mono);color:var(--board-mute);letter-spacing:.08em;display:flex;gap:12px}
+.clock{font:500 13px/1 var(--f-mono);color:var(--board-mute);letter-spacing:.08em;display:flex;gap:12px}
 .clock b{color:var(--board-ink);font-weight:600}
-.board{margin-top:30px;background:#000;border:1px solid var(--board-line);border-radius:12px;padding:18px 18px 14px;overflow-x:auto}
+.board-zone{flex:1;display:flex;flex-direction:column;justify-content:center;padding-block:clamp(18px,4vh,48px)}
+.board{background:#000;border:1px solid var(--board-line);border-radius:18px;padding:clamp(16px,2.2vw,34px) clamp(16px,2.2vw,34px) clamp(14px,1.6vw,24px);overflow-x:auto;box-shadow:0 40px 80px -40px rgba(0,0,0,.9)}
 .flap{flex:none}
-.bgrid{display:grid;grid-template-columns:auto auto 1fr auto;gap:12px 20px;align-items:center;--fs:clamp(15px,2.6vw,24px)}
-.bl{font:600 10px/1 var(--f-mono);letter-spacing:.14em;color:var(--board-mute);text-transform:uppercase;padding-bottom:10px;border-bottom:1px solid var(--board-line)}
-.flaps.dim{--fs:clamp(11px,1.8vw,16px);opacity:.5}
-.board-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px;padding-top:12px;border-top:1px solid var(--board-line);font:600 11px/1.3 var(--f-mono);letter-spacing:.08em;color:var(--board-mute)}
-@media (max-width:600px){.board{padding:14px}.bgrid{grid-template-columns:auto minmax(0,1fr) auto;gap:10px 10px;--fs:11.5px}.c-t{display:none!important}.flaps.dim{--fs:9.5px}}
+.board-title{display:flex;align-items:baseline;gap:14px;margin-bottom:clamp(14px,2.4vh,28px)}
+.board-title .it{font:600 clamp(22px,2.4vw,42px)/1 var(--f-display);color:var(--board-ink)}
+.board-title .en{font:500 clamp(14px,1.3vw,22px)/1 var(--f-display);color:var(--board-mute)}
+.board-title .plane{margin-left:auto;font-size:clamp(20px,2vw,34px);color:var(--red);transform:rotate(-30deg)}
+.bgrid{display:grid;grid-template-columns:auto auto minmax(0,1fr) auto auto;gap:clamp(9px,1.4vh,16px) clamp(14px,1.8vw,30px);align-items:center;--fs:clamp(15px,2.3vw,48px)}
+.bl{font:600 clamp(10px,.8vw,13px)/1 var(--f-mono);letter-spacing:.14em;color:var(--board-mute);text-transform:uppercase;padding-bottom:clamp(8px,1vh,12px);border-bottom:1px solid var(--board-line)}
+.flaps.dim{opacity:.4}
+.state{font:600 calc(var(--fs)*.42)/1 var(--f-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--board-mute);display:flex;align-items:center;gap:.7em;white-space:nowrap}
+.state.dim{opacity:.55}
+.state.on{color:var(--red)}
+.state .blink{width:.7em;height:.7em}
+.board-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-top:clamp(14px,2.2vh,26px);padding-top:clamp(12px,1.6vh,18px);border-top:1px solid var(--board-line);font:600 clamp(11px,.85vw,14px)/1.3 var(--f-mono);letter-spacing:.08em;color:var(--board-mute)}
+@media (max-width:820px){.c-s{display:none!important}.bgrid{grid-template-columns:auto auto minmax(0,1fr) auto}}
+@media (max-width:600px){.board{padding:16px}.bgrid{grid-template-columns:auto minmax(0,1fr) auto;gap:12px 10px;--fs:min(26px,calc((100vw - 84px)/12.6))}
+  .c-t,.bl,.flaps.dim{display:none!important}
+  #b-flight{grid-column:1;grid-row:1}#b-gate{grid-column:3;grid-row:1;justify-self:end}#b-dest{grid-column:1/-1;grid-row:2}}
 .board-foot .live{display:flex;align-items:center;gap:8px;color:var(--board-ink)}
-.blink{width:8px;height:8px;border-radius:50%;background:var(--red);animation:bl 1.4s infinite}
+.blink{width:8px;height:8px;border-radius:50%;background:var(--red);animation:bl 1.4s infinite;flex:none}
 @keyframes bl{50%{opacity:.25}}
 .crew{display:flex;align-items:center;gap:6px}
 .mini-card{width:22px;height:30px;border-radius:3px;background:var(--c-face);color:var(--c-ink);display:inline-grid;place-items:center;font:700 10px/.9 var(--f-mono);text-align:center;padding-top:1px;transition:transform .2s}
 .mini-card.rd{color:var(--c-red)}
 .mini-card:hover{transform:translateY(-3px) rotate(-6deg)}
-.intro h1{font:600 clamp(40px,8vw,80px)/.98 var(--f-display);letter-spacing:-.015em;margin-top:40px;max-width:15ch}
+.ibottom{display:flex;justify-content:space-between;align-items:flex-end;gap:18px 40px;flex-wrap:wrap}
+.intro h1{font:600 clamp(24px,2.5vw,40px)/1.08 var(--f-display);letter-spacing:-.01em;margin:0}
 .intro h1 em{font-style:normal;color:var(--red)}
-.intro .lede{color:#b9b9c1;max-width:58ch;margin-top:18px;font-size:17px}
-.intro .warn{margin-top:14px;font-size:14px;color:var(--board-mute);font-style:italic}
-.intro-cta{display:flex;align-items:center;gap:16px 22px;flex-wrap:wrap;margin-top:30px}
+.intro .warn{margin-top:8px;font-size:13.5px;color:var(--board-mute);font-style:italic}
+.intro-cta{display:flex;align-items:center;gap:12px 20px;flex-wrap:wrap}
 .intro-cta .meta{font-size:14px;color:var(--board-mute)}
 .cos-link{color:var(--board-mute);margin-left:auto;text-decoration:underline;text-underline-offset:3px}
 .cos-link:hover{color:var(--board-ink)}
@@ -107,6 +119,8 @@ html.on-intro,html.on-intro body{background:var(--board)}
 .gatebar .gname{--fs:15px;flex:1;min-width:0}
 .gatebar .clock{margin-left:auto}
 @media (max-width:520px){.gatebar .clock span{display:none}.gatebar .gname{--fs:13px}.gatebar .gnum{--fs:13px}}
+main.wrap{max-width:1040px}
+.gatebar .wrap{max-width:none;padding-left:max(18px,3.2vw,env(safe-area-inset-left,0px));padding-right:max(18px,3.2vw,env(safe-area-inset-right,0px))}
 .track{display:grid;grid-template-columns:repeat(11,1fr);gap:3px;height:4px;background:var(--board)}
 .track button{border:0;padding:0;background:#2e2e34;transition:background .3s}
 .track button.done{background:#77777f}
@@ -460,26 +474,31 @@ footer .sig span{margin-left:6px;font-style:italic}
 
 <!-- INTRO -->
 <header class="intro" id="intro">
-  <div class="wrap">
+  <div class="wrap iwrap">
     <div class="top">
       <div class="brand"><img src="logo.png" alt="Logo del COS"><span>Comitato Organizzativo dello Sfo®<small>Sondaggio conoscitivo VE2027</small></span></div>
       <div class="clock"><span class="clk-date">MAR 03 NOV 2026</span><b class="clk-time">15:50</b></div>
     </div>
-    <div class="board" role="img" aria-label="Tabellone partenze: volo VE2027, destinazione segreta, gate COS">
-      <div class="bgrid">
-        <span class="bl c-t">Ora</span><span class="bl">Volo</span><span class="bl">Destinazione</span><span class="bl">Gate</span>
-        <div class="flaps c-t" id="b-time"></div><div class="flaps" id="b-flight"></div><div class="flaps" id="b-dest"></div><div class="flaps" id="b-gate"></div>
-        <div class="flaps dim c-t" id="b2-time"></div><div class="flaps dim" id="b2-flight"></div><div class="flaps dim" id="b2-dest"></div><div class="flaps dim" id="b2-gate"></div>
+    <div class="board-zone">
+      <div class="board" role="img" aria-label="Tabellone partenze: volo VE2027, destinazione segreta, gate COS, check-in aperto">
+        <div class="board-title"><span class="it">Partenze</span><span class="en">Departures</span><span class="plane" aria-hidden="true">✈</span></div>
+        <div class="bgrid" id="bgrid">
+          <span class="bl c-t">Ora</span><span class="bl">Volo</span><span class="bl">Destinazione</span><span class="bl">Gate</span><span class="bl c-s">Stato</span>
+          <div class="flaps c-t" id="b-time"></div><div class="flaps" id="b-flight"></div><div class="flaps" id="b-dest"></div><div class="flaps" id="b-gate"></div><span class="state on c-s"><i class="blink"></i>Check-in</span>
+        </div>
+        <div class="board-foot"><span class="live"><span class="blink" aria-hidden="true"></span><span id="b-status">CHECK-IN APERTO</span></span><span class="crew" id="crew">EQUIPAGGIO&nbsp;</span></div>
       </div>
-      <div class="board-foot"><span class="live"><span class="blink" aria-hidden="true"></span><span id="b-status">CHECK-IN APERTO</span></span><span class="crew" id="crew">EQUIPAGGIO&nbsp;</span></div>
     </div>
-    <h1>Dicci che viaggio vuoi. <em>Dove</em> lo scopri al gate.</h1>
-    <p class="lede">Il COS propone il presente sondaggio per raccogliere le preferenze di ognuno e soprattutto le esigenze del gruppo. Si invita a compilare con spirito di collaborazione e flessibilità: siamo in quindici e undici di noi non sanno dove stanno andando.</p>
-    <p class="warn">Ogni tentativo di corruzione sarà punito con disagi durante VE2027.</p>
-    <div class="intro-cta">
-      <button class="btn-red" id="start" type="button"><span id="start-txt">Inizia il check-in</span> <span aria-hidden="true">→</span></button>
-            <span class="meta" id="start-meta">11 gate, circa 5 minuti</span>
-      <button class="link cos-link" id="cos-open" type="button">Area COS</button>
+    <div class="ibottom">
+      <div>
+        <h1>Dicci che viaggio vuoi. <em>Dove</em> lo scopri al gate.</h1>
+        <p class="warn">Ogni tentativo di corruzione sarà punito con disagi durante VE2027.</p>
+      </div>
+      <div class="intro-cta">
+        <button class="btn-red" id="start" type="button"><span id="start-txt">Inizia il check-in</span> <span aria-hidden="true">→</span></button>
+        <span class="meta" id="start-meta">11 gate, circa 5 minuti</span>
+        <button class="link cos-link" id="cos-open" type="button">Area COS</button>
+      </div>
     </div>
   </div>
 </header>
@@ -786,7 +805,10 @@ function flaps(el,str,len,cls){
 }
 const DLEN=11;
 flaps($("#b-flight"),"VE2027",6);flaps($("#b-gate"),"COS",3,"y");flaps($("#b-dest"),"???????????",DLEN,"y");
-flaps($("#b2-flight"),"VE2026",6);flaps($("#b2-dest"),"MAROCCO",DLEN);flaps($("#b2-gate"),"",3);flaps($("#b2-time"),"21/08",5);
+[["21/08","VE2026","MAROCCO"],["--:--","VE2025","BALCANI"],["--:--","VE2024","CROAZIA"]].forEach(([t,f,d])=>{
+  const g=$("#bgrid"),mk=(cls)=>{const e=document.createElement("div");e.className="flaps dim"+(cls?" "+cls:"");g.appendChild(e);return e;};
+  flaps(mk("c-t"),t,5);flaps(mk(),f,6);flaps(mk(),d,DLEN);flaps(mk(),"COS",3);
+  const st=document.createElement("span");st.className="state dim c-s";st.textContent="Atterrato";g.appendChild(st);});
 const CITIES=["LISBONA","TOKYO","ZANZIBAR","REYKJAVIK","BALI","L'AVANA","ATENE","OAXACA","SRI LANKA","CAPO VERDE","LOFOTEN","HANOI","SANTORINI","CARTAGENA","TBILISI","MAURITIUS"];
 if(!reduce){let ci=Math.floor(Math.random()*CITIES.length);
   const cycle=()=>{const seq=[0,1,2].map(()=>CITIES[(ci++)%CITIES.length]);let i=0;
