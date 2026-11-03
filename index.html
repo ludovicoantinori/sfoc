@@ -16,7 +16,7 @@
 <link rel="apple-touch-icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..800&family=Funnel+Sans:ital,wght@0,300..800;1,300..800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&display=swap">
 <style>
 /* VE2027 su sfoc.it. Layout: un gate per schermata. Il tabellone a palette resta in alto e cambia nome a ogni gate; la barra d'imbarco in basso porta avanti. Mono solo per tabellone e codici, il resto in grotesk. */
 :root{
@@ -24,9 +24,10 @@
   --red:#d0132f; --red-ink:#ffffff; --red-wash:#fbe7ea;
   --board:#0b0b0c; --board-cell:#1a1a1d; --board-ink:#f4f4f5; --board-mute:#8c8c95; --board-line:#29292e;
   --c-face:#ffffff; --c-ink:#111113; --c-red:#d0132f;
-  --f-display:"Funnel Display","Funnel Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  /* un solo carattere per tutto il sito, anche per il tabellone a palette */
+  --f-display:"Funnel Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --f-body:"Funnel Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --f-mono:"Funnel Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --r:10px;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
@@ -36,7 +37,7 @@
   --bg:#0f0f11; --surface:#19191c; --ink:#ededf0; --muted:#a0a1a9; --soft:#7b7c84; --line:#2d2d33; --dot:#3a3a41;
   --red:#f0384f; --red-wash:#3a1a20; --board:#060607; --board-cell:#151518; --board-line:#232327; color-scheme:dark}
 
-html{-webkit-text-size-adjust:100%;color-scheme:light}
+html{-webkit-text-size-adjust:100%;color-scheme:light;font-variant-numeric:tabular-nums}
 *{box-sizing:border-box}
 img{max-width:100%}
 [hidden]{display:none!important}
