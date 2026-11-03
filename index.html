@@ -641,6 +641,18 @@ main{padding-block:64px 170px}
 .rb h3{font:600 14px/1.3 var(--f-body);letter-spacing:-.01em}
 .hb .v,.cols .col b,.cols .col span,.hc,.who span,.quotes p small,.prog-pill,.pp summary .nm,.revs button,.acts-mini span b{font-family:var(--f-body);letter-spacing:0}
 .tab{font-weight:400;font-size:17px}
+
+/* ===== Una sola forma: tutti i riquadri e i controlli hanno lo stesso raggio (14px), le etichette piccole 8px. Niente pillole, niente angoli tagliati ===== */
+:root{--rad:14px;--rad-s:8px}
+.btn,.btn.xl,.btn-line,.missing button,.cchip,.choice,.brush,.pk,.mv,.tag,.tag.full,
+.map-box,.act-card,.ve26,.bud-card,.pay,.pass,.results,.board,.pp,.res-map-box,
+.name-in,.pin-in,.txt,.day,.meter,.arow,.offline,.ledger,.legend-list li,.alist .arow{border-radius:var(--rad)}
+.meter button,.meter button:first-child,.meter button:last-child{border-radius:calc(var(--rad) - 4px)}
+.rates span,.coh b,.ref-pin span,.prog-pill,.revs button,.who span,.acts-mini span,.tab{border-radius:var(--rad-s)}
+.tag{clip-path:none;padding-left:18px}
+.tag::before{display:none}
+.tag.full{animation:none}
+.stack-bar,.split .bar,.hb .t,.hb .t i{border-radius:var(--rad-s)}
 </style>
 </head>
 <body>
