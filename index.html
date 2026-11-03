@@ -105,11 +105,23 @@ html.on-intro,html.on-intro body{background:var(--board)}
 .intro-cta .meta{font-size:14px;color:var(--board-mute)}
 .cos-link{color:var(--board-mute);margin-left:auto;text-decoration:underline;text-underline-offset:3px}
 .cos-link:hover{color:var(--board-ink)}
-.btn-red{display:inline-flex;align-items:center;gap:12px;background:var(--red);color:var(--red-ink);border:0;border-radius:999px;padding:16px 26px;font:700 17px/1 var(--f-body);transition:transform .12s,box-shadow .12s;box-shadow:0 6px 18px -8px var(--red)}
-.btn-red:hover{transform:translateY(-1px)}
-.btn-red:active{transform:translateY(1px)}
-.btn-red:disabled{opacity:.6;cursor:progress}
-.btn-line{display:inline-flex;align-items:center;gap:10px;background:none;border:1.5px solid currentColor;border-radius:999px;padding:14px 22px;font:600 15px/1 var(--f-body)}
+.btn{display:inline-flex;align-items:center;gap:14px;background:var(--ink);color:var(--bg);border:0;border-radius:12px;padding:9px 9px 9px 20px;min-height:48px;font:700 15.5px/1 var(--f-body);transition:transform .12s,box-shadow .2s}
+.btn .ar{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:8px;background:color-mix(in oklab,var(--bg) 16%,var(--ink));transition:transform .25s cubic-bezier(.3,1.5,.5,1),background .2s,color .2s;flex:none}
+.btn .ar svg{width:16px;height:16px;display:block}
+.btn:hover{box-shadow:0 12px 26px -14px rgba(0,0,0,.55)}
+.btn:hover .ar{transform:translateX(3px);background:var(--red);color:#fff}
+.btn:active{transform:translateY(1px)}
+.btn:disabled{opacity:.55;cursor:progress}
+.intro .btn,.results .btn{background:#f4f4f5;color:#0b0b0c}
+.intro .btn .ar,.results .btn .ar{background:#0b0b0c;color:#f4f4f5}
+.intro .btn:hover .ar,.results .btn:hover .ar{background:var(--red);color:#fff}
+.btn.xl{padding:12px 12px 12px 26px;gap:26px;border-radius:16px;min-height:0}
+.btn.xl .cta-txt{display:grid;gap:7px;text-align:left}
+.btn.xl small{font:500 10.5px/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:#6b6b73}
+.btn.xl #start-txt{font:600 22px/1 var(--f-display);letter-spacing:-.005em}
+.btn.xl .ar{width:50px;height:50px;border-radius:11px}
+.btn.xl .ar svg{width:20px;height:20px}
+.btn-line{display:inline-flex;align-items:center;gap:10px;background:none;border:1.5px solid currentColor;border-radius:12px;padding:14px 22px;font:600 15px/1 var(--f-body)}
 
 /* ---------- gate header (steps 1+) ---------- */
 .gatebar{position:sticky;top:env(safe-area-inset-top,0px);z-index:15;background:var(--board);color:var(--board-ink)}
@@ -495,8 +507,7 @@ footer .sig span{margin-left:6px;font-style:italic}
         <p class="warn">Ogni tentativo di corruzione sarà punito con disagi durante VE2027.</p>
       </div>
       <div class="intro-cta">
-        <button class="btn-red" id="start" type="button"><span id="start-txt">Inizia il check-in</span> <span aria-hidden="true">→</span></button>
-        <span class="meta" id="start-meta">11 gate, circa 5 minuti</span>
+        <button class="btn xl" id="start" type="button"><span class="cta-txt"><small>Imbarco aperto</small><span id="start-txt">Inizia il check-in</span></span><span class="ar" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 4 12.5 8l-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
         <button class="link cos-link" id="cos-open" type="button">Area COS</button>
       </div>
     </div>
@@ -526,7 +537,7 @@ footer .sig span{margin-left:6px;font-style:italic}
         <div class="pins">
           <div class="pin-f"><label for="pin">PIN</label><input class="pin-in" id="pin" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" placeholder="····"></div>
           <div class="pin-f" id="pin2-wrap" hidden><label for="pin2">Ripeti il PIN</label><input class="pin-in" id="pin2" type="password" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" placeholder="····"></div>
-          <button class="btn-red" id="login" type="button"><span id="login-txt">Entra</span> <span aria-hidden="true">→</span></button>
+          <button class="btn" id="login" type="button"><span id="login-txt">Entra</span><span class="ar" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 4 12.5 8l-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
         </div>
       </div>
       <div id="logged" class="logged" hidden><span class="who-badge" id="who-badge"></span><span id="logged-txt"></span><button class="link" id="logout" type="button">Non sei tu? Esci</button></div>
@@ -667,7 +678,7 @@ footer .sig span{margin-left:6px;font-style:italic}
     <div class="missing" id="missing"></div>
     <div id="pass-slot"></div>
     <div class="submit-row">
-      <button class="btn-red" id="submit" type="button"><span id="go-txt">Conferma il check-in</span> <span aria-hidden="true">→</span></button>
+      <button class="btn" id="submit" type="button"><span id="go-txt">Conferma il check-in</span><span class="ar" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 4 12.5 8l-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
       <p class="note" id="sub-note"></p>
     </div>
           </section>
@@ -679,7 +690,7 @@ footer .sig span{margin-left:6px;font-style:italic}
       <p class="help">Inserisci la parola d'ordine del Comitato. Il tabellone mostra le risposte di ogni partecipante ed è visibile solo ai membri del COS.</p>
       <div class="pins" style="margin-top:22px">
         <div class="pin-f" style="flex:1;min-width:220px;max-width:420px"><label for="cos-pass">Parola d'ordine</label><input class="txt dark-in" id="cos-pass" type="password" autocomplete="current-password"></div>
-        <button class="btn-red" id="cos-go" type="button">Apri il tabellone <span aria-hidden="true">→</span></button>
+        <button class="btn" id="cos-go" type="button">Apri il tabellone<span class="ar" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 4 12.5 8l-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
       </div>
       <p class="name-note" id="cos-note" style="color:var(--board-mute)"></p>
     </div>
@@ -699,7 +710,7 @@ footer .sig span{margin-left:6px;font-style:italic}
   <div class="wrap">
     <button class="back" id="nav-back" type="button">← Indietro</button>
     <span class="count" id="nav-count"></span>
-    <button class="btn-red" id="nav-next" type="button"><span id="nav-next-txt">Avanti</span> <span aria-hidden="true">→</span></button>
+    <button class="btn" id="nav-next" type="button"><span id="nav-next-txt">Avanti</span><span class="ar" aria-hidden="true"><svg viewBox="0 0 16 16"><path d="M3 8h9.5M8.5 4 12.5 8l-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
   </div>
 </nav>
 
