@@ -22,7 +22,7 @@
 <style>
 /* VE2027 su sfoc.it. Layout: un gate per schermata. Il tabellone a palette resta in alto e cambia nome a ogni gate; la barra d'imbarco in basso porta avanti. Mono solo per tabellone e codici, il resto in grotesk. */
 :root{
-  --bg:#f2f2f0; --surface:#ffffff; --ink:#111113; --muted:#62636b; --soft:#8d8e96; --line:#dcdcdf; --dot:#cbcbd0;
+  --bg:#ffffff; --surface:#f4f4f6; --ink:#111113; --muted:#62636b; --soft:#8d8e96; --line:#dcdcdf; --dot:#cbcbd0;
   --red:#d0132f; --red-ink:#ffffff; --red-wash:#fbe7ea;
   --board:#0b0b0c; --board-cell:#1a1a1d; --board-ink:#f4f4f5; --board-mute:#8c8c95; --board-line:#29292e;
   --c-face:#ffffff; --c-ink:#111113; --c-red:#d0132f;
@@ -480,6 +480,11 @@ footer .sig .mini-card{box-shadow:inset 0 0 0 1px var(--line)}
 footer .sig span{margin-left:6px;font-style:italic}
 
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+/* superfici bianche con bordo sul fondo bianco */
+.act-card,.pass,.ledger{background:var(--card,#fff);box-shadow:0 1px 2px rgba(10,10,20,.04),0 24px 48px -32px rgba(10,10,20,.35);border:1px solid var(--line)}
+.ledger{box-shadow:none}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--card:var(--surface)}}
+:root[data-theme="dark"]{--card:var(--surface)}
 </style>
 </head>
 <body>
