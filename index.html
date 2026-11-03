@@ -14,20 +14,17 @@
 <meta name="theme-color" content="#0b0b0c">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&display=swap">
 <style>
 /* VE2027 su sfoc.it. Layout: un gate per schermata. Il tabellone a palette resta in alto e cambia nome a ogni gate; la barra d'imbarco in basso porta avanti. Mono solo per tabellone e codici, il resto in grotesk. */
 :root{
-  --bg:#ffffff; --surface:#f5f5f7; --ink:#0b0b0d; --muted:#6e6e73; --soft:#8e8e93; --line:#e4e4e8; --dot:#d1d1d6;
+  --bg:#ffffff; --surface:#f5f5f7; --ink:#1d1d1f; --muted:#6e6e73; --soft:#86868b; --line:#d2d2d7; --dot:#d2d2d7;
   --red:#d0132f; --red-ink:#ffffff; --red-wash:#fbe7ea;
   --board:#0b0b0c; --board-cell:#1a1a1d; --board-ink:#f4f4f5; --board-mute:#8c8c95; --board-line:#29292e;
   --c-face:#ffffff; --c-ink:#111113; --c-red:#d0132f;
   /* un solo carattere per tutto il sito, anche per il tabellone a palette */
-  --f-display:"Funnel Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --f-body:"Funnel Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --f-mono:"Funnel Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-display:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --f-body:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --f-mono:-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Helvetica,Arial,sans-serif;
   --r:10px;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
@@ -510,6 +507,140 @@ footer .sig span{margin-left:6px;font-style:italic}
 .act-card,.pass{background:var(--card,#fff);box-shadow:0 1px 2px rgba(10,10,20,.04),0 24px 48px -32px rgba(10,10,20,.35);border:1px solid var(--line)}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--card:var(--surface)}}
 :root[data-theme="dark"]{--card:var(--surface)}
+
+/* ===== Linguaggio Apple: SF Pro di sistema, tile grigie senza bordo, pulsanti a pillola, controlli segmentati ===== */
+body{font-size:17px;line-height:1.47;letter-spacing:-.022em}
+main{padding-block:64px 170px}
+.step-k{display:block;font:600 14px/1.3 var(--f-body);letter-spacing:-.01em;text-transform:none;color:var(--red)}
+.step-k::before{display:none}
+.step h2{font:600 clamp(32px,4.6vw,48px)/1.08 var(--f-display);letter-spacing:-.022em;margin-top:6px;max-width:20ch}
+.step h2 .g{color:var(--soft)}
+.step .help{font-size:17px;line-height:1.47;color:var(--muted);margin-top:16px;max-width:56ch}
+.step .body{margin-top:44px}
+.sub{font:600 24px/1.16 var(--f-display);letter-spacing:-.02em;margin-top:64px}
+.ov{font:600 12px/1.3 var(--f-body);letter-spacing:0;text-transform:none;color:var(--soft)}
+/* pulsanti */
+.btn{border-radius:980px;padding:12px 22px;min-height:0;gap:8px;font:400 17px/1.18 var(--f-body);letter-spacing:-.022em;background:var(--ink);color:#fff;transition:background .2s}
+.btn .ar{display:none}
+.btn:hover{box-shadow:none;background:#000}
+.intro .btn,.results .btn{background:#f5f5f7;color:#1d1d1f}
+.intro .btn:hover,.results .btn:hover{background:#fff}
+.btn.xl{padding:16px 32px}
+.btn.xl .cta-txt{gap:0}
+.btn.xl small{display:none}
+.btn.xl #start-txt{font:400 19px/1.1 var(--f-body);letter-spacing:-.02em}
+.btn-line{border-radius:980px;border-width:1px;padding:10px 18px;font-weight:400;font-size:15px}
+.link{font-weight:400;font-size:17px;color:var(--muted)}
+.cos-link{text-decoration:none;font-size:17px}
+.cos-link::after{content:" ›"}
+/* barre */
+.gatebar{background:rgba(22,22,23,.86);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px)}
+.gatebar .wrap{padding-block:9px}
+.gatebar .gnum,.gatebar .gname{--fs:13px}
+.gatebar img{width:26px;height:26px}
+.track{height:3px;gap:2px}
+.navbar{background:rgba(255,255,255,.8);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-top:1px solid rgba(0,0,0,.08)}
+.navbar .back{font-weight:400;font-size:17px;color:var(--ink)}
+.navbar .count{font:400 12px/1 var(--f-body);letter-spacing:0;color:var(--soft)}
+/* campi */
+.name-in{max-width:520px;border:1px solid var(--line);border-radius:14px;padding:16px 18px;font:600 30px/1.1 var(--f-display);letter-spacing:-.01em;text-transform:uppercase;background:#fff}
+.name-in:focus{border-color:var(--ink);box-shadow:0 0 0 4px rgba(0,0,0,.06)}
+.pin-in{border-radius:14px;border:1px solid var(--line);background:#fff;font:600 24px/1 var(--f-display);height:56px}
+.pin-in:focus{box-shadow:0 0 0 4px rgba(0,0,0,.06)}
+.pin-f label{font-size:14px;font-weight:400}
+.pins .btn{height:56px}
+.txt{border-radius:14px;border:1px solid var(--line);background:#fff;font-size:17px;letter-spacing:-.022em;padding:15px 16px}
+.txt:focus{box-shadow:0 0 0 4px rgba(0,0,0,.06)}
+.field label{font-weight:600;font-size:17px}
+.field small{font-size:15px}
+.who-badge{font:600 clamp(30px,5vw,44px)/1 var(--f-display);letter-spacing:-.02em}
+/* tile grigie */
+.map-box,.act-card,.ve26,.bud-card{background:var(--surface);border:0;box-shadow:none;border-radius:28px}
+.map-box{padding:28px 18px 18px}
+.act-card{padding:30px 32px 32px}
+.act-card .perf{display:none}
+.act-code{margin-top:28px;font:700 clamp(64px,11vw,96px)/.9 var(--f-display);letter-spacing:-.045em}
+.act-name{font:600 28px/1.1 var(--f-display);letter-spacing:-.02em}
+.act-top{font-size:14px}
+.ve26{padding:clamp(24px,3.4vw,44px)}
+.ve26-head{border-bottom-color:rgba(0,0,0,.08)}
+.ve26-head h3{font:600 clamp(26px,3vw,32px)/1.1 var(--f-display);letter-spacing:-.022em}
+.pay{background:#fff;border-radius:18px;padding:20px 22px}
+.pay-h b{font:600 30px/1.1 var(--f-display);letter-spacing:-.02em}
+.rates span{background:var(--surface);border:0}
+.rates b{font:600 13px/1 var(--f-body)}
+.legend-list li:hover,.legend-list li.on{background:var(--surface)}
+.legend-list li .v,.legend-list li .p{font-family:var(--f-body)}
+.bud-card{padding:clamp(24px,3.4vw,40px)}
+.bud-val b,.bud-cmp b{font:600 clamp(44px,7vw,64px)/1 var(--f-display);letter-spacing:-.03em}
+.bud-cmp{border-left-color:rgba(0,0,0,.1)}
+.coh{border-top-color:rgba(0,0,0,.08)}
+.ref-pin span{font:600 12px/1 var(--f-body);letter-spacing:0}
+.scale{font:400 12px/1 var(--f-body);color:var(--soft)}
+.donut-c b{font:600 clamp(34px,4.4vw,44px)/1 var(--f-display);letter-spacing:-.03em}
+/* opzioni come nel configuratore Apple Store */
+.mv{background:#fff;box-shadow:inset 0 0 0 1px var(--line);border-radius:18px;padding:22px 22px 24px}
+.mv:hover{transform:none;box-shadow:inset 0 0 0 1px var(--soft)}
+.mv[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--ink)}
+.mv .code{font:600 12px/1 var(--f-body);letter-spacing:0;color:var(--red)}
+.mv h3{font:600 21px/1.15 var(--f-display);letter-spacing:-.02em}
+.mv p{font-size:15px}
+.choice,.cchip,.brush,.pk{background:#fff;box-shadow:inset 0 0 0 1px var(--line);border-radius:12px;padding:13px 18px;font-weight:400;font-size:17px;letter-spacing:-.022em}
+.choice:hover,.cchip:hover,.brush:hover,.pk:hover{box-shadow:inset 0 0 0 1px var(--soft)}
+.choice[aria-pressed="true"],.brush[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--ink)}
+.choice[aria-pressed="true"] i{box-shadow:inset 0 0 0 5px var(--ink)}
+.cchip[data-s="1"]{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 2px var(--red)}
+.cchip[data-s="-1"]{background:#fff;color:var(--soft);box-shadow:inset 0 0 0 2px var(--ink)}
+.pk .v{font:400 13px/1 var(--f-body);color:var(--soft)}
+.q h3{font:600 21px/1.2 var(--f-display);letter-spacing:-.02em}
+.q p{font-size:15px}
+/* controllo segmentato 1-5 */
+.meter{background:#e8e8ed;border-radius:12px;padding:3px;gap:2px}
+.meter button,.meter button:first-child,.meter button:last-child{height:38px;border-radius:9px;background:transparent;box-shadow:none;color:var(--ink);font:400 15px/1 var(--f-body)}
+.meter button:hover{box-shadow:none;background:rgba(255,255,255,.55)}
+.meter button.on,.meter button.on.lt{background:transparent;color:var(--ink)}
+.meter button[aria-pressed="true"]{background:#fff;font-weight:600;box-shadow:0 3px 8px rgba(0,0,0,.12),0 3px 1px rgba(0,0,0,.04)}
+.meter.sm button{height:34px;font-size:14px}
+.meter-lab{font-size:13px;color:var(--soft)}
+.stay{border-bottom-color:rgba(0,0,0,.08);padding:18px 0}
+.stay .n{font-size:17px}
+.stay .n small{font-size:14px}
+/* lista attività */
+.arow{border-radius:10px}
+.arow.cur{background:var(--surface);box-shadow:none}
+.arow .c{font:600 11px/1 var(--f-body);color:var(--soft)}
+.bars i.on{background:var(--ink)}
+/* calendario */
+.day{border-radius:10px;font:500 14px/1 var(--f-body)}
+.day small{font:600 9px/1 var(--f-body);letter-spacing:.02em}
+.dh{font:600 11px/1 var(--f-body);letter-spacing:0;color:var(--soft)}
+/* notti */
+.nights-out .v{font:600 clamp(56px,10vw,88px)/1 var(--f-display);letter-spacing:-.04em}
+.moon b{font:500 12px/1 var(--f-body)}
+/* bagaglio */
+.tag .k{font:600 13px/1 var(--f-body)}
+/* carta d'imbarco */
+.pass{border-radius:24px}
+.pf span{font-size:12px}
+.pf div{font:600 16px/1.3 var(--f-body);letter-spacing:-.01em}
+.pf .big{font:700 clamp(28px,5vw,40px)/1 var(--f-display);letter-spacing:-.02em}
+.pf .route{font:700 40px/1 var(--f-display);letter-spacing:-.02em}
+.missing button{border-radius:980px;font-weight:400;font-size:15px}
+/* intro */
+.intro h1{font:600 clamp(24px,2.5vw,40px)/1.1 var(--f-display);letter-spacing:-.022em}
+.intro .warn{font-size:14px}
+.board-title .it{font:600 clamp(22px,2.4vw,40px)/1 var(--f-display);letter-spacing:-.02em}
+.board-title .en{font:400 clamp(14px,1.3vw,22px)/1 var(--f-display)}
+.bl{font:600 clamp(10px,.8vw,12px)/1 var(--f-body);letter-spacing:.06em}
+.state{font-weight:600;letter-spacing:.04em}
+.board-foot{font:600 clamp(11px,.85vw,13px)/1.3 var(--f-body);letter-spacing:.04em}
+.flap{font-weight:600}
+.clock{font:400 13px/1 var(--f-body);letter-spacing:0}
+/* area COS */
+.results{border-radius:28px}
+.rb h3{font:600 14px/1.3 var(--f-body);letter-spacing:-.01em}
+.hb .v,.cols .col b,.cols .col span,.hc,.who span,.quotes p small,.prog-pill,.pp summary .nm,.revs button,.acts-mini span b{font-family:var(--f-body);letter-spacing:0}
+.tab{font-weight:400;font-size:17px}
 </style>
 </head>
 <body>
@@ -558,8 +689,8 @@ footer .sig span{margin-left:6px;font-style:italic}
 <main class="wrap" id="main" hidden>
 
   <section class="step" data-s="1" hidden>
-    <p class="step-k">Gate 01, passeggero</p>
-    <h2>Come ti chiami?</h2>
+    <p class="step-k">Gate 01 di 11</p>
+    <h2>Passeggero. <span class="g">Come ti chiami?</span></h2>
     <p class="help">Scrivi il tuo nome e scegli un PIN di 4 cifre. Ti serve per rientrare e modificare le risposte, e nessuno potrà votare al posto tuo.</p>
     <div class="body">
       <div id="login-box">
@@ -576,8 +707,8 @@ footer .sig span{margin-left:6px;font-style:italic}
   </section>
 
   <section class="step" data-s="2" hidden>
-    <p class="step-k">Gate 02, rotta</p>
-    <h2>Su quale continente punti?</h2>
+    <p class="step-k">Gate 02 di 11</p>
+    <h2>Rotta. <span class="g">Su quale continente punti?</span></h2>
     <p class="help">Tocca un continente: una volta se ci andresti volentieri, due se proprio no, tre per tornare indifferente.</p>
     <div class="body">
       <div class="map-box"><svg class="map" id="map" role="img" aria-label="Mappa del mondo"></svg></div>
@@ -587,8 +718,8 @@ footer .sig span{margin-left:6px;font-style:italic}
   </section>
 
   <section class="step" data-s="3" hidden>
-    <p class="step-k">Gate 03, attività</p>
-    <h2>Cosa ti va di fare?</h2>
+    <p class="step-k">Gate 03 di 11</p>
+    <h2>Attività. <span class="g">Cosa ti va di fare?</span></h2>
     <p class="help">Una carta alla volta. 1 è dissenso assoluto, 3 è "me l'accollo", 5 è forte desiderio. Con la tastiera puoi usare i tasti da 1 a 5.</p>
     <div class="body deck">
       <div>
@@ -611,28 +742,28 @@ footer .sig span{margin-left:6px;font-style:italic}
   </section>
 
   <section class="step" data-s="4" hidden>
-    <p class="step-k">Gate 04, bagaglio a mano</p>
-    <h2>Tre cose sole nel bagaglio a mano</h2>
+    <p class="step-k">Gate 04 di 11</p>
+    <h2>Bagaglio a mano. <span class="g">Ci stanno solo tre cose.</span></h2>
     <p class="help">Scegli, in ordine, le attività che non lasceresti mai a casa. Sono ordinate dai tuoi voti più alti.</p>
     <div class="body carry"><div class="pick" id="pick"></div><div class="tags" id="tags"></div></div>
   </section>
 
   <section class="step" data-s="5" hidden>
-    <p class="step-k">Gate 05, scali</p>
-    <h2>Quante tappe ha il tuo viaggio ideale?</h2>
+    <p class="step-k">Gate 05 di 11</p>
+    <h2>Scali. <span class="g">Quante tappe ha il tuo viaggio ideale?</span></h2>
     <div class="body moves" id="moves"></div>
   </section>
 
   <section class="step" data-s="6" hidden>
-    <p class="step-k">Gate 06, alloggio</p>
-    <h2>Dove ti piacerebbe dormire?</h2>
+    <p class="step-k">Gate 06 di 11</p>
+    <h2>Alloggio. <span class="g">Dove ti piacerebbe dormire?</span></h2>
     <p class="help">Da 1, mai, a 5, sì ti prego.</p>
     <div class="body stays" id="stays"></div>
   </section>
 
   <section class="step" data-s="7" hidden>
-    <p class="step-k">Gate 07, date</p>
-    <h2>Quando sei libero?</h2>
+    <p class="step-k">Gate 07 di 11</p>
+    <h2>Date. <span class="g">Quando sei libero?</span></h2>
     <p class="help">Scegli un pennello e tocca o trascina sui giorni. In rosso quando preferiresti partire, a righe quando proprio non puoi. Il resto vale come "va bene".</p>
     <div class="body">
       <div class="brushes" role="group" aria-label="Pennello">
@@ -646,8 +777,8 @@ footer .sig span{margin-left:6px;font-style:italic}
   </section>
 
   <section class="step" data-s="8" hidden>
-    <p class="step-k">Gate 08, notti</p>
-    <h2>Quanto deve durare?</h2>
+    <p class="step-k">Gate 08 di 11</p>
+    <h2>Notti. <span class="g">Quanto deve durare il viaggio?</span></h2>
     <p class="help">Di solito stiamo via 7–10 notti. Trascina i due cursori sul minimo e sul massimo che ti vanno bene.</p>
     <div class="body">
       <div class="nights-out"><span class="v" id="n-val">7–10</span><span class="u">notti</span></div>
@@ -659,8 +790,8 @@ footer .sig span{margin-left:6px;font-style:italic}
   </section>
 
   <section class="step" data-s="9" hidden>
-    <p class="step-k">Gate 09, budget</p>
-    <h2>Quanto vuoi spendere?</h2>
+    <p class="step-k">Gate 09 di 11</p>
+    <h2>Budget. <span class="g">Quanto vuoi spendere?</span></h2>
     <p class="help">Prima di rispondere, ecco quanto è costato a testa il viaggio dell'anno scorso. Si chiede la massima coerenza tra durata, tipo di viaggio e budget.</p>
     <div class="body">
       <article class="ve26">
@@ -705,14 +836,14 @@ footer .sig span{margin-left:6px;font-style:italic}
   </section>
 
   <section class="step" data-s="10" hidden>
-    <p class="step-k">Gate 10, controllo documenti</p>
-    <h2>Tre domande secche</h2>
+    <p class="step-k">Gate 10 di 11</p>
+    <h2>Documenti. <span class="g">Tre domande secche.</span></h2>
     <div class="body qq" id="qq"></div>
   </section>
 
   <section class="step" data-s="11" hidden>
-    <p class="step-k">Gate 11, ultima chiamata</p>
-    <h2>Convinci il COS</h2>
+    <p class="step-k">Gate 11 di 11</p>
+    <h2>Ultima chiamata. <span class="g">Convinci il COS.</span></h2>
     <p class="help">Potrebbe essere l'ultima occasione.</p>
     <div class="body extras">
       <div class="field"><label for="veto">Il tuo vincolo</label><small>Il motivo per cui ti rifiuteresti di venire.</small><textarea class="txt" id="veto" maxlength="400" placeholder="Se c'è una notte in tenda non vengo"></textarea></div>
