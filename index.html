@@ -658,7 +658,7 @@ main{padding-block:64px 170px}
 .intro{position:relative;overflow:hidden;isolation:isolate;background:#d9dde2;color:#fff}
 html.on-intro,html.on-intro body{background:#d9dde2}
 .iwrap{position:relative;z-index:2}
-.scene{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:#d9dde2 url(poster.jpg) center/cover no-repeat}
+.scene{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:#9fdcff}
 .lay{position:absolute;inset:-4%;will-change:transform;transform:translate3d(var(--px,0px),var(--py,0px),0) scale(var(--ps,1));transition:transform 1.1s cubic-bezier(.65,0,.25,1)}
 .intro.live .lay{transition:none}
 .lay video{width:100%;height:100%;object-fit:cover;display:block}
@@ -761,6 +761,91 @@ html.on-intro,html.on-intro body{background:#d9dde2}
 /* tabellone su telefono: le 11 caselle della destinazione entrano sempre nello schermo */
 @media (max-width:600px){.bgrid{--fs:min(22px,calc((100vw - 104px)/12.6))}.board-stack{--pad:16px}}
 @media (max-width:600px){.brushes{display:flex;width:100%}.brushes .brush{flex:1;justify-content:center;padding:9px 6px;font-size:14px;gap:6px}}
+
+/* ===== Schermata d'avvio a cartone animato (sostituisce il video) ===== */
+:root{--navy:#1b2a4a;--sun:#ffd23f;--pink:#ff4d6d;--sky:#7fd3f7;--grass:#7ccf6a;--f-round:ui-rounded,"SF Pro Rounded",-apple-system,BlinkMacSystemFont,"Arial Rounded MT Bold","Helvetica Neue",sans-serif}
+.intro{background:#9fdcff;color:var(--navy)}
+html.on-intro,html.on-intro body{background:#9fdcff}
+.scene{background:#9fdcff}
+.lay{inset:-3%;width:106%;height:106%}
+.shade{display:none}
+.sunrays{animation:spin 40s linear infinite;transform-origin:0 0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.cloud{animation:drift 60s linear infinite}
+.c1{transform:translate(120px,200px)}.c2{transform:translate(760px,130px)}.c3{transform:translate(1420px,300px)}
+.c1{animation:drift1 70s linear infinite}.c2{animation:drift2 90s linear infinite}.c3{animation:drift3 80s linear infinite}
+@keyframes drift1{from{transform:translate(-200px,210px)}to{transform:translate(1800px,210px)}}
+@keyframes drift2{from{transform:translate(500px,120px)}to{transform:translate(1800px,120px)}}
+@keyframes drift3{from{transform:translate(-300px,330px) scale(.9)}to{transform:translate(1800px,330px) scale(.9)}}
+.banner{animation:bannerfly 26s linear infinite}
+@keyframes bannerfly{from{transform:translate(1700px,95px)}to{transform:translate(-700px,140px)}}
+.banner .prop{animation:propspin .12s linear infinite;transform-origin:10px 30px}
+@keyframes propspin{50%{transform:scaleY(.2)}}
+.radar{animation:radar 2.4s ease-in-out infinite;transform-origin:0 0}
+@keyframes radar{50%{transform:scaleX(-1)}}
+.sock{animation:sock 2.2s ease-in-out infinite;transform-origin:0 26px}
+@keyframes sock{50%{transform:skewY(7deg) scaleX(.94)}}
+.rlights circle{animation:blink 1.6s steps(2) infinite}
+.rlights circle:nth-child(odd){animation-delay:.8s}
+@keyframes blink{50%{fill:#fff6c9}}
+.cart{animation:cart 14s ease-in-out infinite alternate}
+@keyframes cart{from{transform:translate(160px,792px)}to{transform:translate(1320px,792px)}}
+.jet-body{animation:idle 1.8s ease-in-out infinite}
+@keyframes idle{50%{transform:translateY(-3px)}}
+.jet-main{transform-box:view-box;cursor:pointer}
+.jet-hit{pointer-events:auto;cursor:pointer}
+.scene .jet-main{pointer-events:auto}
+.jet-main.go{animation:takeoffJ 2.6s cubic-bezier(.5,0,.6,1) forwards}
+.jet-main.back{animation:landJ 1.4s cubic-bezier(.2,.8,.3,1)}
+@keyframes takeoffJ{0%{transform:translate(0,0)}35%{transform:translate(380px,0)}100%{transform:translate(1500px,-760px) rotate(-18deg)}}
+@keyframes landJ{from{transform:translate(-1200px,0)}to{transform:translate(0,0)}}
+.tap-hint{position:absolute;z-index:1;left:50%;bottom:calc(15% + 10px);transform:translateX(-50%) rotate(-4deg);background:#fff;color:var(--navy);font:800 15px/1 var(--f-round);padding:9px 14px;border:3px solid var(--navy);border-radius:12px;box-shadow:0 4px 0 var(--navy);pointer-events:none;animation:bob 1.4s ease-in-out infinite}
+.tap-hint::after{content:"";position:absolute;left:50%;bottom:-11px;width:14px;height:14px;background:#fff;border-right:3px solid var(--navy);border-bottom:3px solid var(--navy);transform:translateX(-50%) rotate(45deg)}
+.tap-hint.gone{opacity:0;transition:opacity .3s}
+@keyframes bob{50%{transform:translateX(-50%) rotate(-4deg) translateY(-5px)}}
+.iris{position:absolute;inset:0;z-index:6;background:var(--pink);clip-path:circle(0 at var(--ix,50%) var(--iy,70%));pointer-events:none;transition:clip-path .7s cubic-bezier(.7,0,.3,1)}
+.intro.boarding .iris{clip-path:circle(150% at var(--ix,50%) var(--iy,70%))}
+.intro.boarding .board{transform:none;opacity:1}
+/* intestazione */
+.intro .brand span{color:var(--navy);text-shadow:none;font-family:var(--f-round);font-weight:700}.intro .brand small{color:#355078}
+.intro .brand img{box-shadow:0 0 0 3px var(--navy)}
+.intro .clock{color:#355078;font-family:var(--f-round)}.intro .clock b{color:var(--navy)}
+/* tabellone come cartello di un gioco */
+.board-zone{justify-content:flex-start;padding-top:clamp(10px,3vh,34px)}
+.board{background:#fff;border:4px solid var(--navy);border-radius:20px;box-shadow:0 8px 0 var(--navy)}
+.board-stack .board{padding-top:clamp(16px,2vw,26px);padding-bottom:clamp(14px,1.6vw,22px)}
+.board-title .it{font:800 clamp(22px,2.3vw,36px)/1 var(--f-round);color:var(--navy);letter-spacing:-.01em}
+.board-title .en{font:700 clamp(14px,1.3vw,20px)/1 var(--f-round);color:#7a8aa8}
+.board-title .plane{color:var(--pink)}
+.flap{background:var(--navy);color:#fff;border-radius:6px;font-family:var(--f-round);font-weight:800}
+.flap::after{background:#0e1830;height:2px}
+.flap.y{color:var(--sun)}
+.flaps.dim{opacity:.5}
+#b-dest{cursor:pointer;pointer-events:auto}
+#b-dest:hover .flap{background:#26396a}
+.bl{color:#7a8aa8;border-bottom-color:#e3e8f2;font-family:var(--f-round);font-weight:800}
+.state{color:#7a8aa8;font-family:var(--f-round);font-weight:800}.state.on{color:var(--pink)}
+.board-foot{color:#7a8aa8;border-top-color:#e3e8f2;font-family:var(--f-round);font-weight:800}.board-foot .live{color:var(--navy)}
+.board .mini-card{box-shadow:0 0 0 2px var(--navy)}
+.board::before,.board::after{background:var(--navy)!important;width:4px!important}
+.board-msg{position:absolute;left:50%;top:-18px;transform:translateX(-50%) rotate(-3deg);background:var(--sun);color:var(--navy);border:3px solid var(--navy);border-radius:10px;padding:6px 12px;font:800 14px/1 var(--f-round);white-space:nowrap;box-shadow:0 3px 0 var(--navy);opacity:0;pointer-events:none;transition:opacity .2s,transform .25s}
+.board-msg.on{opacity:1;transform:translateX(-50%) rotate(-3deg) translateY(-4px)}
+/* riquadro con il pulsante START */
+.ibottom{background:#fff;border:4px solid var(--navy);border-radius:20px;box-shadow:0 8px 0 var(--navy)}
+.ibottom h1{font:800 clamp(21px,2vw,30px)/1.15 var(--f-round);letter-spacing:-.01em;color:var(--navy)}
+.ibottom h1 em{color:var(--pink)}
+.ibottom .warn{color:#7a8aa8;font-family:var(--f-round);font-weight:600}
+.ibottom .btn{background:var(--pink);color:#fff;border:4px solid var(--navy);border-radius:16px;box-shadow:0 6px 0 var(--navy);padding:12px 26px;font:800 19px/1 var(--f-round);letter-spacing:.01em;transition:transform .08s,box-shadow .08s;animation:pulse 2s ease-in-out infinite}
+.ibottom .btn:hover{background:#ff5f7c}
+.ibottom .btn:active{transform:translateY(5px);box-shadow:0 1px 0 var(--navy);animation:none}
+.ibottom .btn #start-txt::after{content:"  ▶"}
+@keyframes pulse{50%{transform:scale(1.04)}}
+.ibottom .cos-link{color:#7a8aa8;font-family:var(--f-round);font-weight:700}
+.ibottom .cos-link:hover{color:var(--navy)}
+@media (max-width:600px){.tap-hint{bottom:calc(14% + 6px);font-size:13px}.board{border-width:3px;box-shadow:0 6px 0 var(--navy)}.ibottom{border-width:3px;box-shadow:0 6px 0 var(--navy)}}
+@media (prefers-reduced-motion:reduce){.sunrays,.cloud,.banner,.prop,.radar,.sock,.rlights circle,.cart,.jet-body,.tap-hint,.ibottom .btn{animation:none!important}.banner{display:none}}
+.ibottom .btn{white-space:nowrap}
+@media (max-width:600px){.ibottom .btn{font-size:17px;padding:12px 16px}}
 </style>
 </head>
 <body>
@@ -768,10 +853,90 @@ html.on-intro,html.on-intro body{background:#d9dde2}
 <!-- INTRO -->
 <header class="intro" id="intro">
   <div class="scene" id="scene" aria-hidden="true">
-    <div class="lay lay-video"><video id="bgvid" data-sd="terminal.mp4" data-hd="terminal-hd.mp4" poster="poster.jpg" autoplay muted loop playsinline preload="auto" disablepictureinpicture></video></div>
-    <div class="shade"></div>
+    <svg class="lay lay-sky" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="gk-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4fb3f6"/><stop offset=".55" stop-color="#9fdcff"/><stop offset="1" stop-color="#ffe3b3"/></linearGradient>
+      </defs>
+      <rect width="1600" height="900" fill="url(#gk-sky)"/>
+      <g transform="translate(1290 160)">
+        <g class="sunrays" fill="#ffd23f">
+          <rect x="-8" y="-118" width="16" height="36" rx="8"/><rect x="-8" y="-118" width="16" height="36" rx="8" transform="rotate(30)"/><rect x="-8" y="-118" width="16" height="36" rx="8" transform="rotate(60)"/><rect x="-8" y="-118" width="16" height="36" rx="8" transform="rotate(90)"/><rect x="-8" y="-118" width="16" height="36" rx="8" transform="rotate(120)"/><rect x="-8" y="-118" width="16" height="36" rx="8" transform="rotate(150)"/><rect x="-8" y="-118" width="16" height="36" rx="8" transform="rotate(180)"/><rect x="-8" y="-118" width="16" height="36" rx="8" transform="rotate(210)"/><rect x="-8" y="-118" width="16" height="36" rx="8" transform="rotate(240)"/><rect x="-8" y="-118" width="16" height="36" rx="8" transform="rotate(270)"/><rect x="-8" y="-118" width="16" height="36" rx="8" transform="rotate(300)"/><rect x="-8" y="-118" width="16" height="36" rx="8" transform="rotate(330)"/>
+        </g>
+        <circle r="66" fill="#ffd23f" stroke="#1b2a4a" stroke-width="7"/>
+      </g>
+      <g class="cloud c1"><g fill="none" stroke="#1b2a4a" stroke-width="14"><circle cx="0" cy="0" r="40"/><circle cx="46" cy="-18" r="50"/><circle cx="100" cy="0" r="38"/><rect x="0" y="0" width="100" height="38" rx="19"/></g><g fill="#fff"><circle cx="0" cy="0" r="40"/><circle cx="46" cy="-18" r="50"/><circle cx="100" cy="0" r="38"/><rect x="0" y="0" width="100" height="38" rx="19"/></g></g>
+      <g class="cloud c2"><g fill="none" stroke="#1b2a4a" stroke-width="14"><circle cx="0" cy="0" r="30"/><circle cx="36" cy="-14" r="38"/><circle cx="76" cy="0" r="28"/><rect x="0" y="0" width="76" height="28" rx="14"/></g><g fill="#fff"><circle cx="0" cy="0" r="30"/><circle cx="36" cy="-14" r="38"/><circle cx="76" cy="0" r="28"/><rect x="0" y="0" width="76" height="28" rx="14"/></g></g>
+      <g class="cloud c3"><g fill="none" stroke="#1b2a4a" stroke-width="14"><circle cx="0" cy="0" r="34"/><circle cx="40" cy="-16" r="44"/><circle cx="88" cy="0" r="32"/><rect x="0" y="0" width="88" height="32" rx="16"/></g><g fill="#fff"><circle cx="0" cy="0" r="34"/><circle cx="40" cy="-16" r="44"/><circle cx="88" cy="0" r="32"/><rect x="0" y="0" width="88" height="32" rx="16"/></g></g>
+      <g class="banner">
+        <path d="M150 0 C170 -6 190 6 210 0" fill="none" stroke="#1b2a4a" stroke-width="3"/>
+        <g transform="translate(210 -26)"><rect width="300" height="52" rx="10" fill="#ff4d6d" stroke="#1b2a4a" stroke-width="5"/><text x="150" y="35" text-anchor="middle" font-family="ui-rounded,'SF Pro Rounded',-apple-system,'Arial Rounded MT Bold',sans-serif" font-weight="800" font-size="28" fill="#fff">VE2027, DOVE SI VA?</text></g>
+        <g transform="translate(0 -30)">
+          <path d="M20 30 C20 14 40 8 70 8 L120 10 C140 10 150 20 150 30 C150 42 140 50 120 50 L70 52 C40 52 20 46 20 30Z" fill="#ffd23f" stroke="#1b2a4a" stroke-width="5"/>
+          <path d="M70 30 L100 -6 L116 -6 L106 30Z" fill="#ffb703" stroke="#1b2a4a" stroke-width="5" stroke-linejoin="round"/>
+          <path d="M126 14 L150 -2 L156 4 L142 22Z" fill="#ffb703" stroke="#1b2a4a" stroke-width="4" stroke-linejoin="round"/>
+          <circle cx="54" cy="26" r="8" fill="#7fd3f7" stroke="#1b2a4a" stroke-width="4"/>
+          <g class="prop"><rect x="6" y="6" width="8" height="48" rx="4" fill="#1b2a4a"/></g>
+        </g>
+      </g>
+    </svg>
+
+    <svg class="lay lay-mid" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+      <path d="M-40 640 C120 560 260 600 380 570 C520 535 640 600 780 580 C920 560 1060 520 1200 560 C1340 600 1460 560 1640 590 V700 H-40Z" fill="#8fd67b" stroke="#1b2a4a" stroke-width="7" stroke-linejoin="round"/>
+      <g stroke="#1b2a4a" stroke-width="6">
+        <circle cx="190" cy="610" r="26" fill="#3fb46a"/><circle cx="226" cy="600" r="32" fill="#4cc177"/><circle cx="1500" cy="606" r="28" fill="#4cc177"/>
+      </g>
+      <!-- terminal -->
+      <g transform="translate(470 520)">
+        <rect x="0" y="0" width="560" height="120" rx="22" fill="#ffffff" stroke="#1b2a4a" stroke-width="7"/>
+        <rect x="24" y="40" width="512" height="46" rx="12" fill="#7fd3f7" stroke="#1b2a4a" stroke-width="6"/>
+        <g stroke="#1b2a4a" stroke-width="5"><line x1="110" y1="40" x2="110" y2="86"/><line x1="196" y1="40" x2="196" y2="86"/><line x1="282" y1="40" x2="282" y2="86"/><line x1="368" y1="40" x2="368" y2="86"/><line x1="454" y1="40" x2="454" y2="86"/></g>
+        <path d="M-12 8 C120 -40 440 -40 572 8" fill="none" stroke="#1b2a4a" stroke-width="7"/>
+        <path d="M-12 8 C120 -40 440 -40 572 8 L572 16 L-12 16Z" fill="#ff4d6d" stroke="#1b2a4a" stroke-width="7" stroke-linejoin="round"/>
+        <rect x="190" y="-62" width="180" height="40" rx="10" fill="#1b2a4a"/><text x="280" y="-34" text-anchor="middle" font-family="ui-rounded,'SF Pro Rounded',-apple-system,'Arial Rounded MT Bold',sans-serif" font-weight="800" font-size="22" fill="#ffd23f">AEROPORTO SFO</text>
+        <line x1="230" y1="-22" x2="230" y2="-4" stroke="#1b2a4a" stroke-width="5"/><line x1="330" y1="-22" x2="330" y2="-4" stroke="#1b2a4a" stroke-width="5"/>
+      </g>
+      <!-- torre di controllo -->
+      <g transform="translate(1120 330)">
+        <path d="M40 300 L52 90 L108 90 L120 300Z" fill="#ffffff" stroke="#1b2a4a" stroke-width="7" stroke-linejoin="round"/>
+        <rect x="18" y="40" width="124" height="54" rx="14" fill="#7fd3f7" stroke="#1b2a4a" stroke-width="7"/>
+        <path d="M10 44 L80 4 L150 44Z" fill="#ff4d6d" stroke="#1b2a4a" stroke-width="7" stroke-linejoin="round"/>
+        <line x1="80" y1="4" x2="80" y2="-30" stroke="#1b2a4a" stroke-width="6"/>
+        <g transform="translate(80 -36)"><g class="radar"><path d="M-28 0 Q0 -26 28 0Z" fill="#ffd23f" stroke="#1b2a4a" stroke-width="5" stroke-linejoin="round"/></g></g>
+        <g stroke="#1b2a4a" stroke-width="5"><line x1="50" y1="40" x2="50" y2="94"/><line x1="80" y1="40" x2="80" y2="94"/><line x1="110" y1="40" x2="110" y2="94"/></g>
+      </g>
+      <!-- manica a vento -->
+      <g transform="translate(330 470)">
+        <line x1="0" y1="0" x2="0" y2="150" stroke="#1b2a4a" stroke-width="7" stroke-linecap="round"/>
+        <g class="sock"><path d="M0 6 L96 16 L96 40 L0 46Z" fill="#fff" stroke="#1b2a4a" stroke-width="6" stroke-linejoin="round"/><path d="M0 6 L32 9.5 L32 42.5 L0 46Z" fill="#ff4d6d"/><path d="M64 12.5 L96 16 L96 40 L64 39.5Z" fill="#ff4d6d"/><path d="M0 6 L96 16 L96 40 L0 46Z" fill="none" stroke="#1b2a4a" stroke-width="6" stroke-linejoin="round"/></g>
+      </g>
+    </svg>
+
+    <svg class="lay lay-front" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+      <rect x="-40" y="690" width="1680" height="260" fill="#6f7fa3" stroke="#1b2a4a" stroke-width="7"/>
+      <rect x="-40" y="836" width="1680" height="120" fill="#7ccf6a" stroke="#1b2a4a" stroke-width="7"/>
+      <line x1="-40" y1="764" x2="1640" y2="764" stroke="#fff" stroke-width="10" stroke-dasharray="70 50"/>
+      <g class="rlights" fill="#ffd23f" stroke="#1b2a4a" stroke-width="3"><circle cx="40" cy="708" r="7"/><circle cx="200" cy="708" r="7"/><circle cx="360" cy="708" r="7"/><circle cx="520" cy="708" r="7"/><circle cx="680" cy="708" r="7"/><circle cx="840" cy="708" r="7"/><circle cx="1000" cy="708" r="7"/><circle cx="1160" cy="708" r="7"/><circle cx="1320" cy="708" r="7"/><circle cx="1480" cy="708" r="7"/></g>
+      <g class="cart"><rect x="0" y="0" width="90" height="44" rx="10" fill="#ffd23f" stroke="#1b2a4a" stroke-width="6"/><rect x="12" y="-24" width="40" height="28" rx="6" fill="#7fd3f7" stroke="#1b2a4a" stroke-width="6"/><circle cx="20" cy="48" r="12" fill="#1b2a4a"/><circle cx="72" cy="48" r="12" fill="#1b2a4a"/></g>
+      <!-- l'aereo: toccalo per farlo decollare -->
+      <g class="jet-main" id="jet-main">
+        <g class="jet-body">
+          <path d="M700 728 L640 640 L686 640 L770 724Z" fill="#ff4d6d" stroke="#1b2a4a" stroke-width="7" stroke-linejoin="round"/>
+          <text x="684" y="700" font-family="ui-rounded,'SF Pro Rounded',-apple-system,'Arial Rounded MT Bold',sans-serif" font-weight="800" font-size="22" fill="#fff" transform="rotate(-36 684 700)">COS</text>
+          <path d="M680 760 C680 726 712 712 770 712 L1010 712 C1060 712 1100 730 1112 760 C1100 790 1060 806 1010 806 L770 806 C712 806 680 794 680 760Z" fill="#ffffff" stroke="#1b2a4a" stroke-width="7"/>
+          <path d="M1060 722 C1080 726 1096 738 1104 752 L1066 752 C1058 744 1056 732 1060 722Z" fill="#7fd3f7" stroke="#1b2a4a" stroke-width="5" stroke-linejoin="round"/>
+          <g fill="#7fd3f7" stroke="#1b2a4a" stroke-width="5"><circle cx="780" cy="748" r="11"/><circle cx="826" cy="748" r="11"/><circle cx="872" cy="748" r="11"/><circle cx="918" cy="748" r="11"/><circle cx="964" cy="748" r="11"/><circle cx="1010" cy="748" r="11"/></g>
+          <rect x="680" y="772" width="400" height="10" fill="#ff4d6d"/>
+          <path d="M680 760 C680 726 712 712 770 712 L1010 712 C1060 712 1100 730 1112 760 C1100 790 1060 806 1010 806 L770 806 C712 806 680 794 680 760Z" fill="none" stroke="#1b2a4a" stroke-width="7"/>
+          <path d="M850 784 L790 846 L840 846 L930 784Z" fill="#e8ecf3" stroke="#1b2a4a" stroke-width="7" stroke-linejoin="round"/>
+          <rect x="838" y="808" width="70" height="30" rx="15" fill="#c9d3e3" stroke="#1b2a4a" stroke-width="6"/>
+          <g class="wheels"><line x1="760" y1="806" x2="760" y2="830" stroke="#1b2a4a" stroke-width="7"/><line x1="1040" y1="806" x2="1040" y2="830" stroke="#1b2a4a" stroke-width="7"/><circle cx="760" cy="836" r="11" fill="#1b2a4a"/><circle cx="1040" cy="836" r="11" fill="#1b2a4a"/></g>
+        </g>
+        <rect class="jet-hit" x="630" y="630" width="500" height="230" fill="transparent"/>
+      </g>
+    </svg>
+    <div class="tap-hint" id="tap-hint">Toccami!</div>
   </div>
-  <div class="flash" id="flash"></div>
+  <div class="iris" id="iris"></div>
   <div class="wrap iwrap">
     <div class="top">
       <div class="brand"><img src="logo.png" alt="Logo del COS"><span>Comitato Organizzativo dello Sfo®<small>Sondaggio conoscitivo VE2027</small></span></div>
@@ -780,7 +945,7 @@ html.on-intro,html.on-intro body{background:#d9dde2}
     <div class="board-zone">
       <div class="board-stack">
         <div class="board" role="img" aria-label="Tabellone partenze: volo VE2027, destinazione segreta, gate COS, check-in aperto">
-          <div class="board-title"><span class="it">Partenze</span><span class="en">Departures</span><span class="plane" aria-hidden="true">✈</span></div>
+          <div class="board-msg" id="board-msg">Bel tentativo! Il COS non dice niente</div><div class="board-title"><span class="it">Partenze</span><span class="en">Departures</span><span class="plane" aria-hidden="true">✈</span></div>
           <div class="bgrid" id="bgrid">
             <span class="bl">Volo</span><span class="bl">Destinazione</span><span class="bl">Gate</span><span class="bl c-s">Stato</span>
             <div class="flaps" id="b-flight"></div><div class="flaps" id="b-dest"></div><div class="flaps" id="b-gate"></div><span class="state on c-s"><i class="blink"></i>Check-in</span>
@@ -1561,7 +1726,7 @@ $("#cos-csv").addEventListener("click",()=>{
 
 
 /* ---------- POV nel terminal: i livelli si spostano con il puntatore (parallasse leggera) ---------- */
-const boardEl=$(".board"),introEl=$("#intro"),LAYS=[[$(".lay-video"),26,14]];
+const boardEl=$(".board"),introEl=$("#intro"),LAYS=[[$(".lay-sky"),8,4],[$(".lay-mid"),18,8],[$(".lay-front"),30,10]];
 let cam={x:0,y:0,tx:0,ty:0},camRun=false,t0=performance.now();
 function setTarget(cx,cy){const r=introEl.getBoundingClientRect();cam.tx=Math.max(-1,Math.min(1,(cx-r.left)/r.width*2-1));cam.ty=Math.max(-1,Math.min(1,(cy-r.top)/r.height*2-1));}
 introEl.addEventListener("pointermove",e=>setTarget(e.clientX,e.clientY));
@@ -1572,7 +1737,7 @@ function camLoop(now){
     const t=(now-t0)/1000;cam.x+=(cam.tx-cam.x)*.06;cam.y+=(cam.ty-cam.y)*.06;
     const x=cam.x+Math.sin(t*.3)*.08,y=cam.y+Math.sin(t*.45)*.05;
     LAYS.forEach(([el,ax,ay])=>{el.style.setProperty("--px",(-x*ax).toFixed(2)+"px");el.style.setProperty("--py",(-y*ay).toFixed(2)+"px");});
-    boardEl.style.setProperty("--bx",(x*14).toFixed(2)+"px");boardEl.style.setProperty("--by",(y*6).toFixed(2)+"px");
+
   }
   requestAnimationFrame(camLoop);
 }
@@ -1584,9 +1749,20 @@ function chime(){try{actx=actx||new (window.AudioContext||window.webkitAudioCont
 function boardWalk(done){
   if(reduce){done();return;}
   chime();introEl.classList.remove("live");
+  const r=introEl.getBoundingClientRect(),br=$("#start").getBoundingClientRect(),ir=$("#iris");
+  ir.style.setProperty("--ix",(br.left+br.width/2-r.left)+"px");ir.style.setProperty("--iy",(br.top+br.height/2-r.top)+"px");
   requestAnimationFrame(()=>introEl.classList.add("boarding"));
-  setTimeout(()=>{done();introEl.classList.remove("boarding");$("#flash").style.transition="none";camRun=false;},1150);
+  setTimeout(()=>{done();introEl.classList.remove("boarding");camRun=false;},760);
 }
+/* toccare l'aereo lo fa decollare */
+(function(){const jet=$("#jet-main"),hint=$("#tap-hint");if(!jet)return;let busy=false;
+  jet.addEventListener("click",()=>{if(busy)return;busy=true;hint&&hint.classList.add("gone");jet.classList.remove("back");jet.classList.add("go");
+    setTimeout(()=>{jet.classList.remove("go");jet.classList.add("back");setTimeout(()=>{jet.classList.remove("back");busy=false;},1450);},2700);});})();
+/* toccare la destinazione fa girare le palette, ma il COS non svela niente */
+(function(){const d=$("#b-dest"),msg=$("#board-msg");if(!d)return;let spinning=false;
+  d.addEventListener("click",()=>{if(spinning)return;spinning=true;let k=0;
+    const it=setInterval(()=>{flaps(d,CITIES[Math.floor(Math.random()*CITIES.length)],DLEN,"y");if(++k>=6){clearInterval(it);setTimeout(()=>{flaps(d,"TOP SECRET",DLEN,"y");msg.classList.add("on");
+      setTimeout(()=>{msg.classList.remove("on");flaps(d,"???????????",DLEN,"y");spinning=false;},2200);},350);}},260);});})();
 
 /* ---------- video di sfondo: avvio robusto anche su Safari ---------- */
 (function(){const v=$("#bgvid");if(!v)return;
