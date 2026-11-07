@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Check-in VE2027</title>
-<meta name="description" content="Il sondaggio del COS per il Viaggio Estivo 2027. Dicci che viaggio vuoi: dove, lo scopri al gate.">
+<meta name="description" content="Sondaggio conoscitivo del COS per il Viaggio Estivo 2027. Il check-in è aperto.">
 <meta property="og:title" content="Check-in VE2027">
-<meta property="og:description" content="Dicci che viaggio vuoi. Dove lo scopri al gate.">
-<meta property="og:image" content="https://sfoc.it/og.png">
+<meta property="og:description" content="Sondaggio conoscitivo VE2027. Il check-in è aperto.">
+<meta property="og:image" content="https://sfoc.it/og.png?v=2">
 <meta property="og:url" content="https://sfoc.it/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
@@ -15,7 +15,7 @@
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap">
 <link rel="apple-touch-icon" href="favicon.png">
 <style>
 /* VE2027 su sfoc.it. Layout: un gate per schermata. Il tabellone a palette resta in alto e cambia nome a ogni gate; la barra d'imbarco in basso porta avanti. Mono solo per tabellone e codici, il resto in grotesk. */
@@ -661,7 +661,7 @@ main{padding-block:64px 170px}
 .intro{position:relative;overflow:hidden;isolation:isolate;background:#d9dde2;color:#fff}
 html.on-intro,html.on-intro body{background:#d9dde2}
 .iwrap{position:relative;z-index:2}
-.scene{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:#0a0a0a url(rosso.jpg) center/cover no-repeat}
+.scene{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:#0a0a0a url(bn.jpg) center/cover no-repeat}
 .lay{position:absolute;inset:-4%;will-change:transform;transform:translate3d(var(--px,0px),var(--py,0px),0) scale(var(--ps,1));transition:transform 1.1s cubic-bezier(.65,0,.25,1)}
 .intro.live .lay{transition:none}
 .lay video{width:100%;height:100%;object-fit:cover;display:block}
@@ -784,18 +784,18 @@ html.on-intro,html.on-intro body{background:#d9dde2}
    VE2027 · stile "di nicchia": rosso pieno, nero, Helvetica stretta e maiuscola,
    righe nere, nessun angolo arrotondato, un filo di gotico per l'ironia.
    ===================================================================== */
-:root{--hot:#ff1e1e;--blk:#0a0a0a;--cream:#f3e9d2;
-  --bg:#ff1e1e !important;--surface:rgba(10,10,10,.08) !important;--card:transparent !important;--ink:#0a0a0a !important;
+:root{--hot:#ff2b1c;--blk:#0a0a0a;--cream:#ffffff;--paper:#ffffff;--on:#ffffff;
+  --bg:#ffffff !important;--surface:rgba(10,10,10,.05) !important;--card:transparent !important;--ink:#0a0a0a !important;
   --muted:rgba(10,10,10,.78) !important;--soft:rgba(10,10,10,.56) !important;--line:#0a0a0a !important;--dot:rgba(10,10,10,.26) !important;
-  --red:#0a0a0a !important;--red-ink:#ff1e1e !important;--red-wash:rgba(10,10,10,.12) !important;--rad:0px !important;--rad-s:0px !important;
+  --red:#0a0a0a !important;--red-ink:#ff2b1c !important;--red-wash:rgba(10,10,10,.12) !important;--rad:0px !important;--rad-s:0px !important;
   --f-display:"Helvetica Neue",Helvetica,Arial,sans-serif !important;--f-body:"Helvetica Neue",Helvetica,Arial,sans-serif !important;--f-mono:"Helvetica Neue",Helvetica,Arial,sans-serif !important;
-  --goth:"UnifrakturMaguntia","Old English Text MT",serif;color-scheme:light !important}
-body{background:var(--hot);color:var(--blk);letter-spacing:-.01em}
-::selection{background:var(--blk);color:var(--hot)}
-.bl-goth{font-family:var(--goth)!important;font-style:normal!important;letter-spacing:0!important;text-transform:none!important}
-.btn,.btn.xl,.ibottom .btn,.intro .btn,.results .btn{border-radius:0;background:var(--blk);color:var(--hot);font:700 17px/1 var(--f-body);letter-spacing:-.02em;text-transform:uppercase;padding:15px 22px;border:0;box-shadow:none;animation:none}
+  --goth:"Instrument Serif",Georgia,serif;color-scheme:light !important}
+body{background:var(--paper);color:var(--blk);letter-spacing:-.01em}
+::selection{background:var(--hot);color:#fff}
+.bl-goth{font-family:var(--goth)!important;font-style:italic!important;font-weight:400!important;letter-spacing:-.01em!important;text-transform:none!important}
+.btn,.btn.xl,.ibottom .btn,.intro .btn,.results .btn{border-radius:0;background:var(--blk);color:var(--on);font:700 17px/1 var(--f-body);letter-spacing:-.02em;text-transform:uppercase;padding:15px 22px;border:0;box-shadow:none;animation:none}
 .btn::after{content:"\2192";margin-left:.55em;font-weight:400}
-.btn:hover{background:#000;color:#fff}
+.btn:hover{background:var(--hot);color:#fff}
 .btn-line{border-radius:0;border:2px solid currentColor;font-weight:700;text-transform:uppercase;letter-spacing:-.01em}
 .link{color:var(--blk);font-weight:700;text-transform:uppercase;font-size:14px;letter-spacing:-.01em}
 .link:hover{text-decoration:underline;text-underline-offset:3px}
@@ -837,11 +837,11 @@ main{padding-block:28px 160px}
 /* opzioni a scelta: rettangoli con bordo nero, selezione nera piena */
 .choice,.cchip,.pk,.mv,.brush{background:transparent;border-radius:0;box-shadow:inset 0 0 0 2px var(--blk);color:var(--blk);font-weight:700}
 .choice:hover,.cchip:hover,.pk:hover,.mv:hover,.brush:hover{box-shadow:inset 0 0 0 2px var(--blk);background:rgba(10,10,10,.08)}
-.choice[aria-pressed="true"],.mv[aria-pressed="true"],.cchip[data-s="1"]{background:var(--blk);color:var(--hot);box-shadow:inset 0 0 0 2px var(--blk)}
+.choice[aria-pressed="true"],.mv[aria-pressed="true"],.cchip[data-s="1"]{background:var(--blk);color:var(--on);box-shadow:inset 0 0 0 2px var(--blk)}
 .cchip[data-s="1"]{background:#fff;color:var(--blk)}
-.cchip[data-s="-1"]{background:var(--blk);color:rgba(255,30,30,.7);box-shadow:inset 0 0 0 2px var(--blk)}
+.cchip[data-s="-1"]{background:var(--blk);color:rgba(255,43,28,.7);box-shadow:inset 0 0 0 2px var(--blk)}
 .choice i{box-shadow:inset 0 0 0 2px var(--blk);border-radius:0}
-.choice[aria-pressed="true"] i{box-shadow:inset 0 0 0 4px var(--hot);background:var(--blk)}
+.choice[aria-pressed="true"] i{box-shadow:inset 0 0 0 4px var(--blk);background:var(--hot)}
 .q h3{font:700 22px/1.15 var(--f-display);letter-spacing:-.03em}
 .q p{color:var(--muted)}
 
@@ -849,17 +849,17 @@ main{padding-block:28px 160px}
 .map-box{background:transparent;border:2px solid var(--blk);border-radius:0;padding:24px 14px 14px}
 .map .dots{stroke:rgba(10,10,10,.28)}
 .map g.hov .dots{stroke:rgba(10,10,10,.6)}
-.map g[data-s="1"] .dots{stroke:#fff}
+.map g[data-s="1"] .dots{stroke:var(--hot)}
 .map g[data-s="-1"] .dots{stroke:var(--blk);stroke-width:1.6}
-.map .lab{fill:var(--blk);stroke:var(--hot);font-weight:700;text-transform:uppercase;letter-spacing:-.02em}
-.map .lab tspan.st{fill:#fff}
+.map .lab{fill:var(--blk);stroke:var(--paper);font-weight:700;text-transform:uppercase;letter-spacing:-.02em}
+.map .lab tspan.st{fill:var(--hot)}
 .map g[data-s="-1"] .lab tspan.st{fill:var(--blk)}
-.ripple{stroke:#fff}
+.ripple{stroke:var(--hot)}
 .legend i{border-radius:0!important}
-.legend span:first-child i{background:#fff!important}
+.legend span:first-child i{background:var(--hot)!important}
 
 /* gate 03: la carta è un rettangolo nero con il codice rosso */
-.act-card,.deck1 .act-card{background:var(--blk);color:var(--hot);border:0;border-radius:0;box-shadow:none}
+.act-card,.deck1 .act-card{background:var(--blk);color:var(--on);border:0;border-radius:0;box-shadow:none}
 .act-top{color:rgba(255,255,255,.55);text-transform:uppercase;font-weight:700;font-size:13px}
 .act-top b{color:#fff}
 .act-top .suit.r{color:var(--hot)}
@@ -870,10 +870,10 @@ main{padding-block:28px 160px}
 .meter button,.meter button:first-child,.meter button:last-child{border-radius:0;background:transparent;box-shadow:inset 0 0 0 2px var(--blk);color:var(--blk);font-weight:700}
 .meter button:hover{background:rgba(10,10,10,.1);box-shadow:inset 0 0 0 2px var(--blk)}
 .meter button.on,.meter button.on.lt{background:rgba(10,10,10,.14);color:var(--blk)}
-.meter button[aria-pressed="true"]{background:var(--blk);color:var(--hot);box-shadow:inset 0 0 0 2px var(--blk)}
+.meter button[aria-pressed="true"]{background:var(--blk);color:var(--on);box-shadow:inset 0 0 0 2px var(--blk)}
 .act-card .meter button{box-shadow:inset 0 0 0 2px var(--hot);color:var(--hot)}
-.act-card .meter button:hover{background:rgba(255,30,30,.15)}
-.act-card .meter button.on,.act-card .meter button.on.lt{background:rgba(255,30,30,.22);color:var(--hot)}
+.act-card .meter button:hover{background:rgba(255,43,28,.15)}
+.act-card .meter button.on,.act-card .meter button.on.lt{background:rgba(255,43,28,.22);color:var(--hot)}
 .act-card .meter button[aria-pressed="true"]{background:var(--hot);color:var(--blk)}
 .act-card .meter-lab{color:rgba(255,255,255,.5)}
 .meter-lab{color:var(--muted);text-transform:uppercase;font-weight:700;font-size:11px}
@@ -881,7 +881,7 @@ main{padding-block:28px 160px}
 .md-count{color:var(--blk);font-weight:700;text-transform:uppercase;font-size:12px}
 .md{border-radius:0;background:transparent;box-shadow:inset 0 0 0 2px var(--blk);color:var(--blk)}
 .md:hover{background:rgba(10,10,10,.12)}
-.md.rated{background:var(--blk);color:var(--hot)}
+.md.rated{background:var(--blk);color:var(--on)}
 .md.cur{box-shadow:inset 0 0 0 2px var(--blk),0 0 0 3px #fff}
 .deck-nav .link{font-size:13px}
 
@@ -902,7 +902,7 @@ main{padding-block:28px 160px}
 .mv p{color:inherit;opacity:.8}
 .mv svg .rt{stroke:rgba(10,10,10,.45)}
 .mv[aria-pressed="true"] svg .rt{stroke:var(--hot)}
-.mv svg .st{fill:var(--hot);stroke:var(--blk)}
+.mv svg .st{fill:var(--paper);stroke:var(--blk)}
 .mv[aria-pressed="true"] svg .st{fill:var(--blk);stroke:var(--hot)}
 .mv svg .car{fill:var(--blk)}
 .mv[aria-pressed="true"] svg .car{fill:#fff}
@@ -915,7 +915,7 @@ main{padding-block:28px 160px}
 /* calendario */
 .brushes{background:transparent;border-radius:0;padding:0;gap:6px}
 .brushes .brush{border-radius:0;box-shadow:inset 0 0 0 2px var(--blk);background:transparent}
-.brushes .brush[aria-pressed="true"]{background:var(--blk);color:var(--hot);box-shadow:inset 0 0 0 2px var(--blk)}
+.brushes .brush[aria-pressed="true"]{background:var(--blk);color:var(--on);box-shadow:inset 0 0 0 2px var(--blk)}
 .brush .dotk{border-radius:0}
 .brushes .brush[aria-pressed="true"] .dotk{box-shadow:inset 0 0 0 2px var(--hot)}
 .month h4{font:700 26px/1 var(--f-display);letter-spacing:-.05em;text-transform:uppercase;text-align:left;border-top:3px solid var(--blk);padding-top:10px}
@@ -923,10 +923,10 @@ main{padding-block:28px 160px}
 .cal-months .day span{color:var(--blk);font-weight:700}
 .cal-months .day:hover span{box-shadow:inset 0 0 0 2px var(--blk)}
 .cal-months .day.off,.cal-months .day.off span{color:rgba(10,10,10,.3)}
-.cal-months .day[data-v="p"] span{background:var(--blk);color:var(--hot)}
-.cal-months .day.l{background:linear-gradient(90deg,rgba(10,10,10,.22) 50%,transparent 50%)}
-.cal-months .day.r{background:linear-gradient(90deg,transparent 50%,rgba(10,10,10,.22) 50%)}
-.cal-months .day.l.r{background:rgba(10,10,10,.22)}
+.cal-months .day[data-v="p"] span{background:var(--hot);color:#fff}
+.cal-months .day.l{background:linear-gradient(90deg,rgba(255,43,28,.22) 50%,transparent 50%)}
+.cal-months .day.r{background:linear-gradient(90deg,transparent 50%,rgba(255,43,28,.22) 50%)}
+.cal-months .day.l.r{background:rgba(255,43,28,.22)}
 .cal-months .day[data-v="x"] span{background:transparent;color:rgba(10,10,10,.45);text-decoration-thickness:3px}
 .cal-foot{border-top:3px solid var(--blk);color:var(--blk);font-weight:700}
 
@@ -962,7 +962,7 @@ main{padding-block:28px 160px}
 .bud-cmp b.up{color:#fff}
 .bud-val .tier,.bud-cmp .cmp-sub{color:var(--blk);font-weight:700;text-transform:uppercase;font-size:13px}
 .bud-cmp{border-left:2px solid var(--blk)}
-.ref-pin span{background:var(--blk);color:var(--hot);border-radius:0;font-weight:700;text-transform:uppercase}
+.ref-pin span{background:var(--blk);color:var(--on);border-radius:0;font-weight:700;text-transform:uppercase}
 .ref-pin::after{background:var(--blk)}
 .range::-webkit-slider-runnable-track{height:6px;border-radius:0;background:linear-gradient(90deg,var(--blk) 0 var(--p,24%),rgba(10,10,10,.22) var(--p,24%) 100%)}
 .range::-moz-range-track{border-radius:0;background:rgba(10,10,10,.22)}
@@ -971,12 +971,12 @@ main{padding-block:28px 160px}
 .range::-moz-range-thumb{border-radius:0;background:var(--hot);border:3px solid var(--blk);box-shadow:none}
 .scale{color:var(--blk);font-weight:700}
 .coh{border-top:2px solid var(--blk);color:var(--blk)}
-.coh b,.coh[data-k="ok"] b{border-radius:0;background:var(--blk);color:var(--hot);text-transform:uppercase}
+.coh b,.coh[data-k="ok"] b{border-radius:0;background:var(--blk);color:var(--on);text-transform:uppercase}
 .coh[data-k="low"] b{background:#fff;color:var(--blk)}
 
 /* imbarco: la carta d'imbarco è color crema, come un biglietto vero */
-.missing button{border-radius:0;background:var(--blk);color:var(--hot);font-weight:700;text-transform:uppercase;font-size:13px}
-.pass{background:var(--cream);border-radius:0;border:0;box-shadow:12px 12px 0 var(--blk)}
+.missing button{border-radius:0;background:var(--blk);color:var(--on);font-weight:700;text-transform:uppercase;font-size:13px}
+.pass{background:#fff;border-radius:0;border:2px solid var(--blk);box-shadow:10px 10px 0 var(--hot)}
 .pass-head{background:var(--blk);color:#fff}
 .pass-head .r{color:var(--hot)}
 .pf span{color:rgba(10,10,10,.55);text-transform:uppercase;font-weight:700;font-size:11px}
@@ -991,12 +991,12 @@ main{padding-block:28px 160px}
 .note{color:var(--blk)}.note.err{color:#fff}
 
 /* barra in basso */
-.navbar{background:var(--hot);backdrop-filter:none;-webkit-backdrop-filter:none;border-top:3px solid var(--blk)}
+.navbar{background:var(--paper);backdrop-filter:none;-webkit-backdrop-filter:none;border-top:3px solid var(--blk)}
 .navbar .back{color:var(--blk);font-weight:700;text-transform:uppercase;font-size:15px}
 .navbar .count{color:var(--blk);font-weight:700}
 
 /* area COS: nero con il rosso come accento */
-.results{--red:#ff1e1e;background:var(--blk);border-radius:0;color:#fff}
+.results{--red:#ff2b1c;background:var(--blk);border-radius:0;color:#fff}
 .results .step-k{border-top-color:var(--hot);color:var(--hot)}
 .results h2 .w,.results h2{color:var(--hot)}
 .results .help{color:rgba(255,255,255,.7)}
@@ -1015,18 +1015,18 @@ footer .sig span{font-size:20px;font-weight:400}
 /* ===== prima schermata: fondo nero, sala in bicromia, tabellone nero, scritta rossa gigante ===== */
 .intro,html.on-intro,html.on-intro body{background:var(--blk)}
 .intro{color:#fff}
-.scene{background:var(--blk) url(rosso.jpg) center/cover no-repeat}
+.scene{background:var(--blk) url(bn.jpg) center/cover no-repeat}
 .lay-video{inset:-2%}
 .shade{background:linear-gradient(to bottom,rgba(10,10,10,.65) 0%,rgba(10,10,10,.1) 22%,rgba(10,10,10,0) 50%,rgba(10,10,10,.85) 84%,var(--blk) 100%)}
 .scene::after{content:"";position:absolute;inset:0;opacity:.16;mix-blend-mode:overlay;pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
 .intro .brand span{color:#fff;text-shadow:none;font-weight:700;text-transform:uppercase;letter-spacing:-.01em;font-size:13px}
-.intro .brand small{color:var(--hot);font-family:var(--goth);text-transform:none;font-size:15px;font-weight:400;letter-spacing:0}
+.intro .brand small{color:#fff;font-family:var(--goth);font-style:italic;text-transform:none;font-size:17px;font-weight:400;letter-spacing:-.01em}
 .intro .brand img{border-radius:50%}
 .intro .clock{color:rgba(255,255,255,.7);font-weight:700}.intro .clock b{color:var(--hot)}
 .board{background:var(--blk);border:0;border-radius:0;box-shadow:none!important}
 .board-title .it{color:#fff;font:700 clamp(26px,3vw,46px)/1 var(--f-display);letter-spacing:-.06em;text-transform:uppercase}
-.board-title .en{color:var(--hot);font:400 clamp(18px,1.8vw,28px)/1 var(--goth);letter-spacing:0;text-transform:none}
+.board-title .en{color:var(--hot);font:italic 400 clamp(20px,2vw,30px)/1 var(--goth);letter-spacing:-.01em;text-transform:none}
 .board-title .plane{color:var(--hot)}
 .bl{color:rgba(255,255,255,.5);border-bottom:1px solid #2a2a2a;font-weight:700}
 .flaps.dim{opacity:.38}
@@ -1037,9 +1037,9 @@ footer .sig span{font-size:20px;font-weight:400}
 .ibottom{background:transparent;border:0;border-top:3px solid var(--hot);border-radius:0;box-shadow:none!important;padding:16px 0 0;grid-template-columns:minmax(0,1fr) auto;align-items:end}
 .ibottom h1{color:var(--hot);font:700 clamp(30px,4.4vw,68px)/.86 var(--f-display);letter-spacing:-.065em;text-transform:uppercase}
 .ibottom h1 em{color:#fff}
-.ibottom .warn{color:var(--cream);font-size:clamp(16px,1.4vw,21px);margin-top:10px}
+.ibottom .warn{color:#fff;font-size:clamp(16px,1.4vw,21px);margin-top:10px}
 .ibottom .intro-cta{flex-direction:column;align-items:stretch;gap:10px}
-.ibottom .btn{background:var(--hot);color:var(--blk);font-size:clamp(17px,1.5vw,22px);padding:18px 26px}
+.ibottom .btn{background:#fff;color:var(--blk);font-size:clamp(17px,1.5vw,22px);padding:18px 26px}
 .ibottom .btn:hover{background:#fff;color:var(--blk)}
 .ibottom .cos-link{color:rgba(255,255,255,.6);font-size:13px;text-align:right}
 .ibottom .cos-link:hover{color:#fff}
@@ -1050,6 +1050,9 @@ footer .sig span{font-size:20px;font-weight:400}
 .ibottom{align-items:center}
 .ibottom .warn{margin-top:0}
 .ext-who{display:grid;gap:22px;margin-top:6px;padding-top:22px;border-top:2px solid var(--blk)}
+.ibottom .btn:hover{background:var(--hot);color:#fff}
+.cchip[data-s="1"]{background:var(--hot)!important;color:#fff!important;box-shadow:inset 0 0 0 2px var(--hot)!important}
+.cchip[data-s="-1"]{color:rgba(255,255,255,.6)!important;text-decoration:line-through;text-decoration-thickness:2px}
 </style>
 </head>
 <body>
@@ -1057,7 +1060,7 @@ footer .sig span{font-size:20px;font-weight:400}
 <!-- INTRO -->
 <header class="intro" id="intro">
   <div class="scene" id="scene" aria-hidden="true">
-    <div class="lay lay-video"><video id="bgvid" data-sd="rosso.mp4" data-hd="rosso.mp4" poster="rosso.jpg" autoplay muted loop playsinline preload="auto" disablepictureinpicture></video></div>
+    <div class="lay lay-video"><video id="bgvid" data-sd="bn.mp4" data-hd="bn.mp4" poster="bn.jpg" autoplay muted loop playsinline preload="auto" disablepictureinpicture></video></div>
     <div class="shade"></div>
   </div>
   <div class="flash" id="flash"></div>
@@ -1176,7 +1179,7 @@ footer .sig span{font-size:20px;font-weight:400}
     <p class="help">Tocca o trascina sui giorni: in rosso quando preferiresti partire, barrati quando proprio non puoi.</p>
     <div class="body">
       <div class="brushes" role="group" aria-label="Cosa segni">
-        <button class="brush" type="button" data-brush="p" aria-pressed="true"><i class="dotk" style="background:var(--red)"></i>Preferite</button>
+        <button class="brush" type="button" data-brush="p" aria-pressed="true"><i class="dotk" style="background:var(--hot)"></i>Preferite</button>
         <button class="brush" type="button" data-brush="x" aria-pressed="false"><i class="dotk dk-x"></i>Non posso</button>
         <button class="brush" type="button" data-brush="" aria-pressed="false"><i class="dotk dk-e"></i>Cancella</button>
       </div>
@@ -1379,9 +1382,9 @@ const DAYKEYS=new Set(DAYS.map(d=>d.k));
 /* VE2026, a persona: voci del bilancio divise per 15, più la stima delle spese sul posto */
 const PP=[
   {k:"voli",n:"Voli",v:3187.94/15,c:"#0a0a0a",paid:1},
-  {k:"alloggi",n:"Alloggi",v:1522.46/15,c:"#ffffff",paid:1},
-  {k:"trasporti",n:"Trasporti",v:738.43/15,c:"#7a0000",paid:1},
-  {k:"altro",n:"Gite, magliette e straforo",v:(225+169.93+167.63)/15,c:"#f3e9d2",paid:1},
+  {k:"alloggi",n:"Alloggi",v:1522.46/15,c:"#ff2b1c",paid:1},
+  {k:"trasporti",n:"Trasporti",v:738.43/15,c:"#8f8f8f",paid:1},
+  {k:"altro",n:"Gite, magliette e straforo",v:(225+169.93+167.63)/15,c:"#d6d6d6",paid:1},
   {k:"posto",n:"Spese sul posto (stima)",v:25*11,c:"url(#hatch)",paid:0}];
 const PER_NIGHT=40,PER_DAY=25,REF=Math.round(PP.reduce((a,b)=>a+b.v,0));
 const GATES=["PASSEGGERO","ROTTA","ATTIVITÀ","BAGAGLIO","SCALI","ALLOGGIO","DATE","NOTTI","BUDGET","DOCUMENTI","ESTERNI","NOTE","IMBARCO","AREA COS"];
@@ -1624,7 +1627,7 @@ nMin.addEventListener("input",()=>onN(nMin));nMax.addEventListener("input",()=>o
 /* ---------- step 9: budget ---------- */
 (function donut(){
   const svg=$("#donut"),tot=PP.reduce((a,b)=>a+b.v,0),R=90,C=2*Math.PI*R,GAP=3;let off=0;
-  let h=`<defs><pattern id="hatch" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-45)"><rect width="7" height="7" fill="#ff1e1e"/><rect width="2.6" height="7" fill="#0a0a0a"/></pattern></defs><g transform="rotate(-90 110 110)">`;
+  let h=`<defs><pattern id="hatch" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-45)"><rect width="7" height="7" fill="#ffffff"/><rect width="2.6" height="7" fill="#0a0a0a"/></pattern></defs><g transform="rotate(-90 110 110)">`;
   PP.forEach(p=>{const len=p.v/tot*C;h+=`<circle class="seg" data-k="${p.k}" cx="110" cy="110" r="${R}" style="stroke:${p.c}" stroke-dasharray="${Math.max(0,len-GAP)} ${C}" stroke-dashoffset="${-off}"><title>${p.n}: ${eur(p.v)}</title></circle>`;off+=len;});
   svg.innerHTML=h+"</g>";
   $("#donut-total").textContent=eur(tot);
