@@ -11,8 +11,11 @@
 <meta property="og:url" content="https://sfoc.it/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0b0b0c">
+<meta name="theme-color" content="#0a0a0a">
 <link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap">
 <link rel="apple-touch-icon" href="favicon.png">
 <style>
 /* VE2027 su sfoc.it. Layout: un gate per schermata. Il tabellone a palette resta in alto e cambia nome a ogni gate; la barra d'imbarco in basso porta avanti. Mono solo per tabellone e codici, il resto in grotesk. */
@@ -658,7 +661,7 @@ main{padding-block:64px 170px}
 .intro{position:relative;overflow:hidden;isolation:isolate;background:#d9dde2;color:#fff}
 html.on-intro,html.on-intro body{background:#d9dde2}
 .iwrap{position:relative;z-index:2}
-.scene{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:#cfd4da url(hall.jpg) center/cover no-repeat}
+.scene{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:#0a0a0a url(rosso.jpg) center/cover no-repeat}
 .lay{position:absolute;inset:-4%;will-change:transform;transform:translate3d(var(--px,0px),var(--py,0px),0) scale(var(--ps,1));transition:transform 1.1s cubic-bezier(.65,0,.25,1)}
 .intro.live .lay{transition:none}
 .lay video{width:100%;height:100%;object-fit:cover;display:block}
@@ -776,6 +779,274 @@ html.on-intro,html.on-intro body{background:#d9dde2}
 .intro.boarding .board{transform:none;opacity:1}
 .intro.boarding .board-stack{transform:translateZ(520px);opacity:0}
 .intro.boarding .lay-video{--ps:1.12}
+
+/* =====================================================================
+   VE2027 · stile "di nicchia": rosso pieno, nero, Helvetica stretta e maiuscola,
+   righe nere, nessun angolo arrotondato, un filo di gotico per l'ironia.
+   ===================================================================== */
+:root{--hot:#ff1e1e;--blk:#0a0a0a;--cream:#f3e9d2;
+  --bg:#ff1e1e !important;--surface:rgba(10,10,10,.08) !important;--card:transparent !important;--ink:#0a0a0a !important;
+  --muted:rgba(10,10,10,.78) !important;--soft:rgba(10,10,10,.56) !important;--line:#0a0a0a !important;--dot:rgba(10,10,10,.26) !important;
+  --red:#0a0a0a !important;--red-ink:#ff1e1e !important;--red-wash:rgba(10,10,10,.12) !important;--rad:0px !important;--rad-s:0px !important;
+  --f-display:"Helvetica Neue",Helvetica,Arial,sans-serif !important;--f-body:"Helvetica Neue",Helvetica,Arial,sans-serif !important;--f-mono:"Helvetica Neue",Helvetica,Arial,sans-serif !important;
+  --goth:"UnifrakturMaguntia","Old English Text MT",serif;color-scheme:light !important}
+body{background:var(--hot);color:var(--blk);letter-spacing:-.01em}
+::selection{background:var(--blk);color:var(--hot)}
+.bl-goth{font-family:var(--goth)!important;font-style:normal!important;letter-spacing:0!important;text-transform:none!important}
+.btn,.btn.xl,.ibottom .btn,.intro .btn,.results .btn{border-radius:0;background:var(--blk);color:var(--hot);font:700 17px/1 var(--f-body);letter-spacing:-.02em;text-transform:uppercase;padding:15px 22px;border:0;box-shadow:none;animation:none}
+.btn::after{content:"\2192";margin-left:.55em;font-weight:400}
+.btn:hover{background:#000;color:#fff}
+.btn-line{border-radius:0;border:2px solid currentColor;font-weight:700;text-transform:uppercase;letter-spacing:-.01em}
+.link{color:var(--blk);font-weight:700;text-transform:uppercase;font-size:14px;letter-spacing:-.01em}
+.link:hover{text-decoration:underline;text-underline-offset:3px}
+
+/* barra in alto e linea dei gate */
+body::before{background:var(--blk)}
+.gatebar{background:var(--blk);backdrop-filter:none;-webkit-backdrop-filter:none}
+.flap{background:#1d1d1d;color:#fff;border-radius:2px;font-weight:700;font-family:var(--f-display)}
+.flap::after{background:var(--blk);height:1px}
+.flap.y{color:var(--hot)}
+.track{background:var(--blk);height:4px}
+.track button{background:#333}.track button.done{background:#fff}.track button.cur{background:var(--hot)}
+
+/* intestazione di ogni gate: numero, riga nera, parola gigante */
+main{padding-block:28px 160px}
+.step-k{display:flex;align-items:baseline;gap:4px;border-top:3px solid var(--blk);padding-top:12px;color:var(--blk);font:700 15px/1 var(--f-body);letter-spacing:0;text-transform:uppercase}
+.step-k::before{display:none}
+.step-k span{opacity:.5}
+.step h2{margin-top:10px;max-width:none;font:700 15px/1 var(--f-display);color:var(--blk)}
+.step h2 .w{display:block;font:700 clamp(54px,11.5vw,150px)/.84 var(--f-display);letter-spacing:-.065em;text-transform:uppercase;margin-left:-.04em;overflow-wrap:anywhere}
+.step h2 .g{display:block;margin-top:18px;font:400 clamp(22px,2.6vw,32px)/1.1 var(--f-display);letter-spacing:-.03em;color:var(--blk)}
+.step .help{color:var(--blk);font-size:17px;margin-top:10px}
+.step .body{margin-top:36px}
+.sub{font:700 clamp(30px,4vw,48px)/.95 var(--f-display);letter-spacing:-.05em;text-transform:uppercase;border-top:3px solid var(--blk);padding-top:12px}
+.ov{color:var(--blk);font:700 12px/1.2 var(--f-body);text-transform:uppercase;letter-spacing:0;opacity:.6}
+
+/* campi */
+.name-in{background:transparent;border:0;border-bottom:4px solid var(--blk);border-radius:0;padding:6px 0 10px;font:700 clamp(40px,7vw,84px)/1 var(--f-display);letter-spacing:-.05em;color:var(--blk);max-width:760px}
+.name-in::placeholder{color:rgba(10,10,10,.3)}
+.name-in:focus{box-shadow:none;border-bottom-color:#fff}
+.pin-in,.txt{background:transparent;border:2px solid var(--blk);border-radius:0;color:var(--blk)}
+.pin-in::placeholder,.txt::placeholder{color:rgba(10,10,10,.4)}
+.pin-in:focus,.txt:focus{box-shadow:none;background:rgba(10,10,10,.07);border-color:var(--blk)}
+.pin-f label,.field label{color:var(--blk);font-weight:700;text-transform:uppercase;font-size:14px}
+.field small{color:var(--muted)}
+.who-badge{font:700 clamp(40px,7vw,84px)/1 var(--f-display);letter-spacing:-.05em}
+.name-note.warn2{color:#fff}
+
+/* opzioni a scelta: rettangoli con bordo nero, selezione nera piena */
+.choice,.cchip,.pk,.mv,.brush{background:transparent;border-radius:0;box-shadow:inset 0 0 0 2px var(--blk);color:var(--blk);font-weight:700}
+.choice:hover,.cchip:hover,.pk:hover,.mv:hover,.brush:hover{box-shadow:inset 0 0 0 2px var(--blk);background:rgba(10,10,10,.08)}
+.choice[aria-pressed="true"],.mv[aria-pressed="true"],.cchip[data-s="1"]{background:var(--blk);color:var(--hot);box-shadow:inset 0 0 0 2px var(--blk)}
+.cchip[data-s="1"]{background:#fff;color:var(--blk)}
+.cchip[data-s="-1"]{background:var(--blk);color:rgba(255,30,30,.7);box-shadow:inset 0 0 0 2px var(--blk)}
+.choice i{box-shadow:inset 0 0 0 2px var(--blk);border-radius:0}
+.choice[aria-pressed="true"] i{box-shadow:inset 0 0 0 4px var(--hot);background:var(--blk)}
+.q h3{font:700 22px/1.15 var(--f-display);letter-spacing:-.03em}
+.q p{color:var(--muted)}
+
+/* mappa */
+.map-box{background:transparent;border:2px solid var(--blk);border-radius:0;padding:24px 14px 14px}
+.map .dots{stroke:rgba(10,10,10,.28)}
+.map g.hov .dots{stroke:rgba(10,10,10,.6)}
+.map g[data-s="1"] .dots{stroke:#fff}
+.map g[data-s="-1"] .dots{stroke:var(--blk);stroke-width:1.6}
+.map .lab{fill:var(--blk);stroke:var(--hot);font-weight:700;text-transform:uppercase;letter-spacing:-.02em}
+.map .lab tspan.st{fill:#fff}
+.map g[data-s="-1"] .lab tspan.st{fill:var(--blk)}
+.ripple{stroke:#fff}
+.legend i{border-radius:0!important}
+.legend span:first-child i{background:#fff!important}
+
+/* gate 03: la carta è un rettangolo nero con il codice rosso */
+.act-card,.deck1 .act-card{background:var(--blk);color:var(--hot);border:0;border-radius:0;box-shadow:none}
+.act-top{color:rgba(255,255,255,.55);text-transform:uppercase;font-weight:700;font-size:13px}
+.act-top b{color:#fff}
+.act-top .suit.r{color:var(--hot)}
+.act-code{color:var(--hot);font:700 clamp(84px,16vw,180px)/.8 var(--f-display);letter-spacing:-.07em;margin-left:-.05em}
+.act-name{color:#fff;font:700 clamp(28px,3.4vw,40px)/1 var(--f-display);letter-spacing:-.04em;text-transform:uppercase}
+.act-desc{color:rgba(255,255,255,.7)}
+.meter{background:transparent;padding:0;gap:6px;border-radius:0}
+.meter button,.meter button:first-child,.meter button:last-child{border-radius:0;background:transparent;box-shadow:inset 0 0 0 2px var(--blk);color:var(--blk);font-weight:700}
+.meter button:hover{background:rgba(10,10,10,.1);box-shadow:inset 0 0 0 2px var(--blk)}
+.meter button.on,.meter button.on.lt{background:rgba(10,10,10,.14);color:var(--blk)}
+.meter button[aria-pressed="true"]{background:var(--blk);color:var(--hot);box-shadow:inset 0 0 0 2px var(--blk)}
+.act-card .meter button{box-shadow:inset 0 0 0 2px var(--hot);color:var(--hot)}
+.act-card .meter button:hover{background:rgba(255,30,30,.15)}
+.act-card .meter button.on,.act-card .meter button.on.lt{background:rgba(255,30,30,.22);color:var(--hot)}
+.act-card .meter button[aria-pressed="true"]{background:var(--hot);color:var(--blk)}
+.act-card .meter-lab{color:rgba(255,255,255,.5)}
+.meter-lab{color:var(--muted);text-transform:uppercase;font-weight:700;font-size:11px}
+.minideck-wrap{border-top:3px solid var(--blk)}
+.md-count{color:var(--blk);font-weight:700;text-transform:uppercase;font-size:12px}
+.md{border-radius:0;background:transparent;box-shadow:inset 0 0 0 2px var(--blk);color:var(--blk)}
+.md:hover{background:rgba(10,10,10,.12)}
+.md.rated{background:var(--blk);color:var(--hot)}
+.md.cur{box-shadow:inset 0 0 0 2px var(--blk),0 0 0 3px #fff}
+.deck-nav .link{font-size:13px}
+
+/* bagaglio a mano */
+.pk[aria-pressed="true"]{opacity:.28}
+.pk .v{color:var(--muted)}
+.tag{border:2px dashed var(--blk);border-radius:0}
+.tag .k,.tag .t{color:rgba(10,10,10,.55)}
+.tag.full{background:var(--blk);border:2px solid var(--blk)}
+.tag.full .k{color:#fff}
+.tag.full .t{color:var(--hot);font:700 24px/1 var(--f-display);letter-spacing:-.04em;text-transform:uppercase}
+.tag .x{color:#fff}
+
+/* scali */
+.mv .code{color:var(--blk);font-weight:700}
+.mv[aria-pressed="true"] .code{color:#fff}
+.mv h3{font:700 26px/1 var(--f-display);letter-spacing:-.04em;text-transform:uppercase}
+.mv p{color:inherit;opacity:.8}
+.mv svg .rt{stroke:rgba(10,10,10,.45)}
+.mv[aria-pressed="true"] svg .rt{stroke:var(--hot)}
+.mv svg .st{fill:var(--hot);stroke:var(--blk)}
+.mv[aria-pressed="true"] svg .st{fill:var(--blk);stroke:var(--hot)}
+.mv svg .car{fill:var(--blk)}
+.mv[aria-pressed="true"] svg .car{fill:#fff}
+
+/* alloggio */
+.stay{border-bottom:2px solid var(--blk)}
+.stay .n{font:700 20px/1.1 var(--f-display);letter-spacing:-.03em;text-transform:uppercase}
+.stay .n small{text-transform:none;letter-spacing:0;font-weight:400;color:var(--muted)}
+
+/* calendario */
+.brushes{background:transparent;border-radius:0;padding:0;gap:6px}
+.brushes .brush{border-radius:0;box-shadow:inset 0 0 0 2px var(--blk);background:transparent}
+.brushes .brush[aria-pressed="true"]{background:var(--blk);color:var(--hot);box-shadow:inset 0 0 0 2px var(--blk)}
+.brush .dotk{border-radius:0}
+.brushes .brush[aria-pressed="true"] .dotk{box-shadow:inset 0 0 0 2px var(--hot)}
+.month h4{font:700 26px/1 var(--f-display);letter-spacing:-.05em;text-transform:uppercase;text-align:left;border-top:3px solid var(--blk);padding-top:10px}
+.mgrid .dh{color:var(--blk);font-weight:700}
+.cal-months .day span{color:var(--blk);font-weight:700}
+.cal-months .day:hover span{box-shadow:inset 0 0 0 2px var(--blk)}
+.cal-months .day.off,.cal-months .day.off span{color:rgba(10,10,10,.3)}
+.cal-months .day[data-v="p"] span{background:var(--blk);color:var(--hot)}
+.cal-months .day.l{background:linear-gradient(90deg,rgba(10,10,10,.22) 50%,transparent 50%)}
+.cal-months .day.r{background:linear-gradient(90deg,transparent 50%,rgba(10,10,10,.22) 50%)}
+.cal-months .day.l.r{background:rgba(10,10,10,.22)}
+.cal-months .day[data-v="x"] span{background:transparent;color:rgba(10,10,10,.45);text-decoration-thickness:3px}
+.cal-foot{border-top:3px solid var(--blk);color:var(--blk);font-weight:700}
+
+/* notti */
+.nights-out .v{font:700 clamp(90px,16vw,200px)/.8 var(--f-display);letter-spacing:-.08em}
+.nights-out .u{color:var(--blk);font-weight:700;text-transform:uppercase}
+.moon i{box-shadow:inset 0 0 0 2px var(--blk);background:transparent}
+.moon.on i{background:var(--blk);box-shadow:inset -8px -3px 0 0 #fff}
+.moon b,.moon.on b{color:var(--blk);font-weight:700}
+.dual .track2{background:rgba(10,10,10,.22);border-radius:0}
+.dual .fill{background:var(--blk);border-radius:0}
+.dual input::-webkit-slider-thumb{background:var(--hot);border:3px solid var(--blk);border-radius:0;box-shadow:none}
+.dual input::-moz-range-thumb{background:var(--hot);border:3px solid var(--blk);border-radius:0}
+
+/* budget */
+.ve26,.bud-card{background:transparent;border:2px solid var(--blk);border-radius:0}
+.ve26-head{border-bottom:2px solid var(--blk)}
+.ve26-head h3{font:700 clamp(30px,4vw,44px)/.95 var(--f-display);letter-spacing:-.05em;text-transform:uppercase}
+.ve26-meta{color:var(--blk);font-weight:700}
+.pay{background:rgba(10,10,10,.08);border-radius:0}
+.pay-h p{color:var(--blk);font-weight:700;text-transform:uppercase;font-size:13px}
+.pay-h b{font:700 40px/1 var(--f-display);letter-spacing:-.05em}
+.sw{border-radius:0}
+.sw-paid{background:var(--blk)}
+.rates span{background:transparent;box-shadow:inset 0 0 0 2px var(--blk);border-radius:0;color:var(--blk)}
+.legend-list li:hover,.legend-list li.on{background:rgba(10,10,10,.1)}
+.legend-list li i{border-radius:0}
+.legend-list li .p{color:var(--muted)}
+.pay-note{color:var(--muted)}
+.donut-c b{font:700 clamp(40px,5vw,56px)/1 var(--f-display);letter-spacing:-.06em}
+.donut-c .k{color:var(--blk);font-weight:700;text-transform:uppercase;font-size:11px}
+.bud-val b,.bud-cmp b{font:700 clamp(54px,8vw,92px)/.9 var(--f-display);letter-spacing:-.07em}
+.bud-cmp b.up{color:#fff}
+.bud-val .tier,.bud-cmp .cmp-sub{color:var(--blk);font-weight:700;text-transform:uppercase;font-size:13px}
+.bud-cmp{border-left:2px solid var(--blk)}
+.ref-pin span{background:var(--blk);color:var(--hot);border-radius:0;font-weight:700;text-transform:uppercase}
+.ref-pin::after{background:var(--blk)}
+.range::-webkit-slider-runnable-track{height:6px;border-radius:0;background:linear-gradient(90deg,var(--blk) 0 var(--p,24%),rgba(10,10,10,.22) var(--p,24%) 100%)}
+.range::-moz-range-track{border-radius:0;background:rgba(10,10,10,.22)}
+.range::-moz-range-progress{border-radius:0;background:var(--blk)}
+.range::-webkit-slider-thumb{border-radius:0;background:var(--hot);border:3px solid var(--blk);box-shadow:none;width:26px;height:26px;margin-top:-10px}
+.range::-moz-range-thumb{border-radius:0;background:var(--hot);border:3px solid var(--blk);box-shadow:none}
+.scale{color:var(--blk);font-weight:700}
+.coh{border-top:2px solid var(--blk);color:var(--blk)}
+.coh b,.coh[data-k="ok"] b{border-radius:0;background:var(--blk);color:var(--hot);text-transform:uppercase}
+.coh[data-k="low"] b{background:#fff;color:var(--blk)}
+
+/* imbarco: la carta d'imbarco è color crema, come un biglietto vero */
+.missing button{border-radius:0;background:var(--blk);color:var(--hot);font-weight:700;text-transform:uppercase;font-size:13px}
+.pass{background:var(--cream);border-radius:0;border:0;box-shadow:12px 12px 0 var(--blk)}
+.pass-head{background:var(--blk);color:#fff}
+.pass-head .r{color:var(--hot)}
+.pf span{color:rgba(10,10,10,.55);text-transform:uppercase;font-weight:700;font-size:11px}
+.pf .big{font:700 clamp(34px,6vw,60px)/.9 var(--f-display);letter-spacing:-.06em}
+.pf .route{font:700 48px/1 var(--f-display);letter-spacing:-.05em}
+.pf .route i{color:var(--hot)}
+.pf .r{color:#c40000}
+.pass .stub{border-left:2px dashed var(--blk)}
+.sl{color:rgba(10,10,10,.55)}
+.stamp{border-color:#c40000;color:#c40000;border-radius:0;background:transparent}
+.barcode{background:repeating-linear-gradient(90deg,var(--blk) 0 2px,transparent 2px 4px,var(--blk) 4px 5px,transparent 5px 8px,var(--blk) 8px 11px,transparent 11px 12px)}
+.note{color:var(--blk)}.note.err{color:#fff}
+
+/* barra in basso */
+.navbar{background:var(--hot);backdrop-filter:none;-webkit-backdrop-filter:none;border-top:3px solid var(--blk)}
+.navbar .back{color:var(--blk);font-weight:700;text-transform:uppercase;font-size:15px}
+.navbar .count{color:var(--blk);font-weight:700}
+
+/* area COS: nero con il rosso come accento */
+.results{--red:#ff1e1e;background:var(--blk);border-radius:0;color:#fff}
+.results .step-k{border-top-color:var(--hot);color:var(--hot)}
+.results h2 .w,.results h2{color:var(--hot)}
+.results .help{color:rgba(255,255,255,.7)}
+.results .btn{background:var(--hot);color:var(--blk)}
+.results .btn:hover{background:#fff}
+.dark-in{border-color:#444!important;color:#fff!important}
+.cos-tools .btn-line{border-radius:0}
+.tab{color:rgba(255,255,255,.55);text-transform:uppercase;font-weight:700}
+.tab[aria-selected="true"]{color:#fff;border-bottom-color:var(--hot)}
+.pp,.res-map-box,.revs button,.who span,.prog-pill,.acts-mini span{border-radius:0}
+
+footer{color:var(--blk);font-weight:700}
+footer .sig .mini-card{box-shadow:inset 0 0 0 1px var(--blk)}
+footer .sig span{font-size:20px;font-weight:400}
+
+/* ===== prima schermata: fondo nero, sala in bicromia, tabellone nero, scritta rossa gigante ===== */
+.intro,html.on-intro,html.on-intro body{background:var(--blk)}
+.intro{color:#fff}
+.scene{background:var(--blk) url(rosso.jpg) center/cover no-repeat}
+.lay-video{inset:-2%}
+.shade{background:linear-gradient(to bottom,rgba(10,10,10,.65) 0%,rgba(10,10,10,.1) 22%,rgba(10,10,10,0) 50%,rgba(10,10,10,.85) 84%,var(--blk) 100%)}
+.scene::after{content:"";position:absolute;inset:0;opacity:.16;mix-blend-mode:overlay;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+.intro .brand span{color:#fff;text-shadow:none;font-weight:700;text-transform:uppercase;letter-spacing:-.01em;font-size:13px}
+.intro .brand small{color:var(--hot);font-family:var(--goth);text-transform:none;font-size:15px;font-weight:400;letter-spacing:0}
+.intro .brand img{border-radius:50%}
+.intro .clock{color:rgba(255,255,255,.7);font-weight:700}.intro .clock b{color:var(--hot)}
+.board{background:var(--blk);border:0;border-radius:0;box-shadow:none!important}
+.board-title .it{color:#fff;font:700 clamp(26px,3vw,46px)/1 var(--f-display);letter-spacing:-.06em;text-transform:uppercase}
+.board-title .en{color:var(--hot);font:400 clamp(18px,1.8vw,28px)/1 var(--goth);letter-spacing:0;text-transform:none}
+.board-title .plane{color:var(--hot)}
+.bl{color:rgba(255,255,255,.5);border-bottom:1px solid #2a2a2a;font-weight:700}
+.flaps.dim{opacity:.38}
+.state{color:rgba(255,255,255,.45);font-weight:700}.state.on{color:var(--hot)}
+.board-foot{color:rgba(255,255,255,.5);border-top:1px solid #2a2a2a;font-weight:700}.board-foot .live{color:#fff}
+.board .mini-card{box-shadow:none}
+.board::before,.board::after{background:var(--hot)!important;width:2px!important}
+.ibottom{background:transparent;border:0;border-top:3px solid var(--hot);border-radius:0;box-shadow:none!important;padding:16px 0 0;grid-template-columns:minmax(0,1fr) auto;align-items:end}
+.ibottom h1{color:var(--hot);font:700 clamp(30px,4.4vw,68px)/.86 var(--f-display);letter-spacing:-.065em;text-transform:uppercase}
+.ibottom h1 em{color:#fff}
+.ibottom .warn{color:var(--cream);font-size:clamp(16px,1.4vw,21px);margin-top:10px}
+.ibottom .intro-cta{flex-direction:column;align-items:stretch;gap:10px}
+.ibottom .btn{background:var(--hot);color:var(--blk);font-size:clamp(17px,1.5vw,22px);padding:18px 26px}
+.ibottom .btn:hover{background:#fff;color:var(--blk)}
+.ibottom .cos-link{color:rgba(255,255,255,.6);font-size:13px;text-align:right}
+.ibottom .cos-link:hover{color:#fff}
+@media (max-width:640px){.ibottom{grid-template-columns:1fr}.ibottom .intro-cta{flex-direction:column-reverse}.ibottom .cos-link{text-align:left}}
+@media (max-width:600px){.step h2 .w{font-size:clamp(46px,15vw,80px)}}
+#board-title,.results h2{font:700 clamp(46px,8.5vw,120px)/.86 var(--f-display)!important;letter-spacing:-.065em!important;text-transform:uppercase;margin-left:-.04em}
+.results h2{color:var(--hot)!important}
 </style>
 </head>
 <body>
@@ -783,7 +1054,7 @@ html.on-intro,html.on-intro body{background:#d9dde2}
 <!-- INTRO -->
 <header class="intro" id="intro">
   <div class="scene" id="scene" aria-hidden="true">
-    <div class="lay lay-video"><video id="bgvid" data-sd="hall.mp4" data-hd="hall.mp4" poster="hall.jpg" autoplay muted loop playsinline preload="auto" disablepictureinpicture></video></div>
+    <div class="lay lay-video"><video id="bgvid" data-sd="rosso.mp4" data-hd="rosso.mp4" poster="rosso.jpg" autoplay muted loop playsinline preload="auto" disablepictureinpicture></video></div>
     <div class="shade"></div>
   </div>
   <div class="flash" id="flash"></div>
@@ -805,7 +1076,7 @@ html.on-intro,html.on-intro body{background:#d9dde2}
         <div class="ibottom">
           <div class="ib-text">
             <h1>Dicci che viaggio vuoi. <em>Dove</em> lo scopri al gate.</h1>
-            <p class="warn">Ogni tentativo di corruzione sarà punito con disagi durante VE2027.</p>
+            <p class="warn bl-goth">ogni tentativo di corruzione sarà punito con disagi</p>
           </div>
           <div class="intro-cta">
             <button class="link cos-link" id="cos-open" type="button">Area COS</button>
@@ -831,8 +1102,8 @@ html.on-intro,html.on-intro body{background:#d9dde2}
 <main class="wrap" id="main" hidden>
 
   <section class="step" data-s="1" hidden>
-    <p class="step-k">Gate 01 di 11</p>
-    <h2>Passeggero. <span class="g">Come ti chiami?</span></h2>
+    <p class="step-k"><b>01</b><span>/11</span></p>
+    <h2><span class="w">Passeggero</span> <span class="g">Come ti chiami?</span></h2>
     <p class="help">Scrivi il tuo nome e scegli un PIN di 4 cifre. Ti serve per rientrare e modificare le risposte, e nessuno potrà votare al posto tuo.</p>
     <div class="body">
       <div id="login-box">
@@ -849,8 +1120,8 @@ html.on-intro,html.on-intro body{background:#d9dde2}
   </section>
 
   <section class="step" data-s="2" hidden>
-    <p class="step-k">Gate 02 di 11</p>
-    <h2>Rotta. <span class="g">Su quale continente punti?</span></h2>
+    <p class="step-k"><b>02</b><span>/11</span></p>
+    <h2><span class="w">Rotta</span> <span class="g">Su quale continente punti?</span></h2>
     <p class="help">Tocca un continente: una volta se ci andresti volentieri, due se proprio no, tre per tornare indifferente.</p>
     <div class="body">
       <div class="map-box"><svg class="map" id="map" role="img" aria-label="Mappa del mondo"></svg></div>
@@ -860,8 +1131,8 @@ html.on-intro,html.on-intro body{background:#d9dde2}
   </section>
 
   <section class="step" data-s="3" hidden>
-    <p class="step-k">Gate 03 di 11</p>
-    <h2>Attività. <span class="g">Cosa ti va di fare?</span></h2>
+    <p class="step-k"><b>03</b><span>/11</span></p>
+    <h2><span class="w">Attività</span> <span class="g">Cosa ti va di fare?</span></h2>
     <p class="help">Una carta per volta, voto da 1 a 5.</p>
     <div class="body deck1">
       <article class="act-card" id="act-card" aria-live="polite">
@@ -878,28 +1149,28 @@ html.on-intro,html.on-intro body{background:#d9dde2}
   </section>
 
   <section class="step" data-s="4" hidden>
-    <p class="step-k">Gate 04 di 11</p>
-    <h2>Bagaglio a mano. <span class="g">Ci stanno solo tre cose.</span></h2>
+    <p class="step-k"><b>04</b><span>/11</span></p>
+    <h2><span class="w">Bagaglio a mano</span> <span class="g">Ci stanno solo tre cose.</span></h2>
     <p class="help">Scegli, in ordine, le attività che non lasceresti mai a casa. Sono ordinate dai tuoi voti più alti.</p>
     <div class="body carry"><div class="pick" id="pick"></div><div class="tags" id="tags"></div></div>
   </section>
 
   <section class="step" data-s="5" hidden>
-    <p class="step-k">Gate 05 di 11</p>
-    <h2>Scali. <span class="g">Quante tappe ha il tuo viaggio ideale?</span></h2>
+    <p class="step-k"><b>05</b><span>/11</span></p>
+    <h2><span class="w">Scali</span> <span class="g">Quante tappe ha il tuo viaggio ideale?</span></h2>
     <div class="body moves" id="moves"></div>
   </section>
 
   <section class="step" data-s="6" hidden>
-    <p class="step-k">Gate 06 di 11</p>
-    <h2>Alloggio. <span class="g">Dove ti piacerebbe dormire?</span></h2>
+    <p class="step-k"><b>06</b><span>/11</span></p>
+    <h2><span class="w">Alloggio</span> <span class="g">Dove ti piacerebbe dormire?</span></h2>
     <p class="help">Da 1, mai, a 5, sì ti prego.</p>
     <div class="body stays" id="stays"></div>
   </section>
 
   <section class="step" data-s="7" hidden>
-    <p class="step-k">Gate 07 di 11</p>
-    <h2>Date. <span class="g">Quando sei libero?</span></h2>
+    <p class="step-k"><b>07</b><span>/11</span></p>
+    <h2><span class="w">Date</span> <span class="g">Quando sei libero?</span></h2>
     <p class="help">Tocca o trascina sui giorni: in rosso quando preferiresti partire, barrati quando proprio non puoi.</p>
     <div class="body">
       <div class="brushes" role="group" aria-label="Cosa segni">
@@ -913,8 +1184,8 @@ html.on-intro,html.on-intro body{background:#d9dde2}
   </section>
 
   <section class="step" data-s="8" hidden>
-    <p class="step-k">Gate 08 di 11</p>
-    <h2>Notti. <span class="g">Quanto deve durare il viaggio?</span></h2>
+    <p class="step-k"><b>08</b><span>/11</span></p>
+    <h2><span class="w">Notti</span> <span class="g">Quanto deve durare il viaggio?</span></h2>
     <p class="help">Di solito stiamo via 7–10 notti. Trascina i due cursori sul minimo e sul massimo che ti vanno bene.</p>
     <div class="body">
       <div class="nights-out"><span class="v" id="n-val">7–10</span><span class="u">notti</span></div>
@@ -926,8 +1197,8 @@ html.on-intro,html.on-intro body{background:#d9dde2}
   </section>
 
   <section class="step" data-s="9" hidden>
-    <p class="step-k">Gate 09 di 11</p>
-    <h2>Budget. <span class="g">Quanto vuoi spendere?</span></h2>
+    <p class="step-k"><b>09</b><span>/11</span></p>
+    <h2><span class="w">Budget</span> <span class="g">Quanto vuoi spendere?</span></h2>
     <p class="help">Prima di rispondere, ecco quanto è costato a testa il viaggio dell'anno scorso. Si chiede la massima coerenza tra durata, tipo di viaggio e budget.</p>
     <div class="body">
       <article class="ve26">
@@ -972,14 +1243,14 @@ html.on-intro,html.on-intro body{background:#d9dde2}
   </section>
 
   <section class="step" data-s="10" hidden>
-    <p class="step-k">Gate 10 di 11</p>
-    <h2>Documenti. <span class="g">Due domande secche.</span></h2>
+    <p class="step-k"><b>10</b><span>/11</span></p>
+    <h2><span class="w">Documenti</span> <span class="g">Due domande secche.</span></h2>
     <div class="body qq" id="qq"></div>
   </section>
 
   <section class="step" data-s="11" hidden>
-    <p class="step-k">Gate 11 di 11</p>
-    <h2>Ultima chiamata. <span class="g">Convinci il COS.</span></h2>
+    <p class="step-k"><b>11</b><span>/11</span></p>
+    <h2><span class="w">Ultima chiamata</span> <span class="g">Convinci il COS.</span></h2>
     <p class="help">Potrebbe essere l'ultima occasione.</p>
     <div class="body extras">
       <div class="field"><label for="veto">Il tuo vincolo</label><small>Il motivo per cui ti rifiuteresti di venire.</small><textarea class="txt" id="veto" maxlength="400" placeholder="Se c'è una notte in tenda non vengo"></textarea></div>
@@ -1091,10 +1362,10 @@ for(let t=Date.UTC(2027,6,12);t<=Date.UTC(2027,7,31);t+=864e5){const d=new Date(
 const DAYKEYS=new Set(DAYS.map(d=>d.k));
 /* VE2026, a persona: voci del bilancio divise per 15, più la stima delle spese sul posto */
 const PP=[
-  {k:"voli",n:"Voli",v:3187.94/15,c:"var(--red)",paid:1},
-  {k:"alloggi",n:"Alloggi",v:1522.46/15,c:"var(--ink)",paid:1},
-  {k:"trasporti",n:"Trasporti",v:738.43/15,c:"#8a1124",paid:1},
-  {k:"altro",n:"Gite, magliette e straforo",v:(225+169.93+167.63)/15,c:"#b8b8bf",paid:1},
+  {k:"voli",n:"Voli",v:3187.94/15,c:"#0a0a0a",paid:1},
+  {k:"alloggi",n:"Alloggi",v:1522.46/15,c:"#ffffff",paid:1},
+  {k:"trasporti",n:"Trasporti",v:738.43/15,c:"#7a0000",paid:1},
+  {k:"altro",n:"Gite, magliette e straforo",v:(225+169.93+167.63)/15,c:"#f3e9d2",paid:1},
   {k:"posto",n:"Spese sul posto (stima)",v:25*11,c:"url(#hatch)",paid:0}];
 const PER_NIGHT=40,PER_DAY=25,REF=Math.round(PP.reduce((a,b)=>a+b.v,0));
 const GATES=["PASSEGGERO","ROTTA","ATTIVITÀ","BAGAGLIO","SCALI","ALLOGGIO","DATE","NOTTI","BUDGET","DOCUMENTI","NOTE","IMBARCO","AREA COS"];
@@ -1333,7 +1604,7 @@ nMin.addEventListener("input",()=>onN(nMin));nMax.addEventListener("input",()=>o
 /* ---------- step 9: budget ---------- */
 (function donut(){
   const svg=$("#donut"),tot=PP.reduce((a,b)=>a+b.v,0),R=90,C=2*Math.PI*R,GAP=3;let off=0;
-  let h=`<defs><pattern id="hatch" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-45)"><rect width="7" height="7" fill="var(--surface)"/><rect width="2.4" height="7" fill="var(--dot)"/></pattern></defs><g transform="rotate(-90 110 110)">`;
+  let h=`<defs><pattern id="hatch" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-45)"><rect width="7" height="7" fill="#ff1e1e"/><rect width="2.6" height="7" fill="#0a0a0a"/></pattern></defs><g transform="rotate(-90 110 110)">`;
   PP.forEach(p=>{const len=p.v/tot*C;h+=`<circle class="seg" data-k="${p.k}" cx="110" cy="110" r="${R}" style="stroke:${p.c}" stroke-dasharray="${Math.max(0,len-GAP)} ${C}" stroke-dashoffset="${-off}"><title>${p.n}: ${eur(p.v)}</title></circle>`;off+=len;});
   svg.innerHTML=h+"</g>";
   $("#donut-total").textContent=eur(tot);
