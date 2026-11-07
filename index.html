@@ -1049,6 +1049,7 @@ footer .sig span{font-size:20px;font-weight:400}
 .results h2{color:var(--hot)!important}
 .ibottom{align-items:center}
 .ibottom .warn{margin-top:0}
+.ext-who{display:grid;gap:22px;margin-top:6px;padding-top:22px;border-top:2px solid var(--blk)}
 </style>
 </head>
 <body>
@@ -1103,7 +1104,7 @@ footer .sig span{font-size:20px;font-weight:400}
 <main class="wrap" id="main" hidden>
 
   <section class="step" data-s="1" hidden>
-    <p class="step-k"><b>01</b><span>/11</span></p>
+    <p class="step-k"><b>01</b><span>/12</span></p>
     <h2><span class="w">Passeggero</span> <span class="g">Come ti chiami?</span></h2>
     <p class="help">Scrivi il tuo nome e scegli un PIN di 4 cifre. Ti serve per rientrare e modificare le risposte, e nessuno potrà votare al posto tuo.</p>
     <div class="body">
@@ -1121,7 +1122,7 @@ footer .sig span{font-size:20px;font-weight:400}
   </section>
 
   <section class="step" data-s="2" hidden>
-    <p class="step-k"><b>02</b><span>/11</span></p>
+    <p class="step-k"><b>02</b><span>/12</span></p>
     <h2><span class="w">Rotta</span> <span class="g">Su quale continente punti?</span></h2>
     <p class="help">Tocca un continente: una volta se ci andresti volentieri, due se proprio no, tre per tornare indifferente.</p>
     <div class="body">
@@ -1132,7 +1133,7 @@ footer .sig span{font-size:20px;font-weight:400}
   </section>
 
   <section class="step" data-s="3" hidden>
-    <p class="step-k"><b>03</b><span>/11</span></p>
+    <p class="step-k"><b>03</b><span>/12</span></p>
     <h2><span class="w">Attività</span> <span class="g">Cosa ti va di fare?</span></h2>
     <p class="help">Una carta per volta, voto da 1 a 5.</p>
     <div class="body deck1">
@@ -1150,27 +1151,27 @@ footer .sig span{font-size:20px;font-weight:400}
   </section>
 
   <section class="step" data-s="4" hidden>
-    <p class="step-k"><b>04</b><span>/11</span></p>
+    <p class="step-k"><b>04</b><span>/12</span></p>
     <h2><span class="w">Bagaglio a mano</span> <span class="g">Ci stanno solo tre cose.</span></h2>
     <p class="help">Scegli, in ordine, le attività che non lasceresti mai a casa. Sono ordinate dai tuoi voti più alti.</p>
     <div class="body carry"><div class="pick" id="pick"></div><div class="tags" id="tags"></div></div>
   </section>
 
   <section class="step" data-s="5" hidden>
-    <p class="step-k"><b>05</b><span>/11</span></p>
+    <p class="step-k"><b>05</b><span>/12</span></p>
     <h2><span class="w">Scali</span> <span class="g">Quante tappe ha il tuo viaggio ideale?</span></h2>
     <div class="body moves" id="moves"></div>
   </section>
 
   <section class="step" data-s="6" hidden>
-    <p class="step-k"><b>06</b><span>/11</span></p>
+    <p class="step-k"><b>06</b><span>/12</span></p>
     <h2><span class="w">Alloggio</span> <span class="g">Dove ti piacerebbe dormire?</span></h2>
     <p class="help">Da 1, mai, a 5, sì ti prego.</p>
     <div class="body stays" id="stays"></div>
   </section>
 
   <section class="step" data-s="7" hidden>
-    <p class="step-k"><b>07</b><span>/11</span></p>
+    <p class="step-k"><b>07</b><span>/12</span></p>
     <h2><span class="w">Date</span> <span class="g">Quando sei libero?</span></h2>
     <p class="help">Tocca o trascina sui giorni: in rosso quando preferiresti partire, barrati quando proprio non puoi.</p>
     <div class="body">
@@ -1185,7 +1186,7 @@ footer .sig span{font-size:20px;font-weight:400}
   </section>
 
   <section class="step" data-s="8" hidden>
-    <p class="step-k"><b>08</b><span>/11</span></p>
+    <p class="step-k"><b>08</b><span>/12</span></p>
     <h2><span class="w">Notti</span> <span class="g">Quanto deve durare il viaggio?</span></h2>
     <p class="help">Di solito stiamo via 7–10 notti. Trascina i due cursori sul minimo e sul massimo che ti vanno bene.</p>
     <div class="body">
@@ -1198,7 +1199,7 @@ footer .sig span{font-size:20px;font-weight:400}
   </section>
 
   <section class="step" data-s="9" hidden>
-    <p class="step-k"><b>09</b><span>/11</span></p>
+    <p class="step-k"><b>09</b><span>/12</span></p>
     <h2><span class="w">Budget</span> <span class="g">Quanto vuoi spendere?</span></h2>
     <p class="help">Prima di rispondere, ecco quanto è costato a testa il viaggio dell'anno scorso. Si chiede la massima coerenza tra durata, tipo di viaggio e budget.</p>
     <div class="body">
@@ -1244,13 +1245,27 @@ footer .sig span{font-size:20px;font-weight:400}
   </section>
 
   <section class="step" data-s="10" hidden>
-    <p class="step-k"><b>10</b><span>/11</span></p>
+    <p class="step-k"><b>10</b><span>/12</span></p>
     <h2><span class="w">Documenti</span> <span class="g">Due domande secche.</span></h2>
     <div class="body qq" id="qq"></div>
   </section>
 
   <section class="step" data-s="11" hidden>
-    <p class="step-k"><b>11</b><span>/11</span></p>
+    <p class="step-k"><b>11</b><span>/12</span></p>
+    <h2><span class="w">Esterni</span> <span class="g">Nuovi passeggeri a bordo?</span></h2>
+    <p class="help">Quest'anno il gruppo potrebbe allargarsi a qualcuno da fuori. Il COS vuole sapere come la pensate.</p>
+    <div class="body qq">
+      <div class="q"><h3>Ti accolleresti la presenza di persone esterne al gruppo?</h3><div class="choices" role="group" aria-label="Persone esterne" id="ext-ok"></div></div>
+      <div class="q"><h3>Vorresti portare qualcuno di esterno?</h3><div class="choices" role="group" aria-label="Portare un esterno" id="ext-bring"></div></div>
+      <div class="ext-who" id="ext-who-box" hidden>
+        <div class="field"><label for="ext-who">Chi vorresti portare?</label><input class="txt" id="ext-who" maxlength="80" placeholder="Nome e cognome, o come lo conosciamo"></div>
+        <div class="field"><label for="ext-why">Perché dovrebbe venire?</label><small>Lo legge solo il COS. Chi è, perché c'entra con noi, perché ne vale la pena.</small><textarea class="txt" id="ext-why" maxlength="600"></textarea></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" data-s="12" hidden>
+    <p class="step-k"><b>12</b><span>/12</span></p>
     <h2><span class="w">Ultima chiamata</span> <span class="g">Convinci il COS.</span></h2>
     <p class="help">Potrebbe essere l'ultima occasione.</p>
     <div class="body extras">
@@ -1260,7 +1275,7 @@ footer .sig span{font-size:20px;font-weight:400}
     </div>
   </section>
 
-  <section class="step" data-s="12" hidden>
+  <section class="step" data-s="13" hidden>
     <p class="step-k">Imbarco</p>
     <h2 id="board-title">La tua carta d'imbarco</h2>
     <p class="help" id="board-help">Controlla che sia tutto giusto, poi conferma il check-in.</p>
@@ -1272,7 +1287,7 @@ footer .sig span{font-size:20px;font-weight:400}
     </div>
           </section>
 
-  <section class="step results" data-s="13" hidden aria-live="polite">
+  <section class="step results" data-s="14" hidden aria-live="polite">
     <p class="step-k">Area riservata al COS</p>
     <h2>La volontà popolare</h2>
     <div id="cos-gate">
@@ -1369,10 +1384,12 @@ const PP=[
   {k:"altro",n:"Gite, magliette e straforo",v:(225+169.93+167.63)/15,c:"#f3e9d2",paid:1},
   {k:"posto",n:"Spese sul posto (stima)",v:25*11,c:"url(#hatch)",paid:0}];
 const PER_NIGHT=40,PER_DAY=25,REF=Math.round(PP.reduce((a,b)=>a+b.v,0));
-const GATES=["PASSEGGERO","ROTTA","ATTIVITÀ","BAGAGLIO","SCALI","ALLOGGIO","DATE","NOTTI","BUDGET","DOCUMENTI","NOTE","IMBARCO","AREA COS"];
+const GATES=["PASSEGGERO","ROTTA","ATTIVITÀ","BAGAGLIO","SCALI","ALLOGGIO","DATE","NOTTI","BUDGET","DOCUMENTI","ESTERNI","NOTE","IMBARCO","AREA COS"];
+const NG=12,REV=13,COSN=14;
+const EXT_OK=[["si","Sì, nessun problema"],["dip","Dipende da chi"],["no","Preferirei di no"]],EXT_BRING=[["si","Sì"],["no","No"]];
 
 /* ---------- state ---------- */
-const blank=()=>({name:"",continents:{},acts:{},top3:[],move:"",stays:{},days:{},nights:[7,10],budget:700,drive:"",night:"",veto:"",pitch:"",more:"",touched:{}});
+const blank=()=>({name:"",continents:{},acts:{},top3:[],move:"",stays:{},days:{},nights:[7,10],budget:700,drive:"",night:"",extOk:"",extBring:"",extWho:"",extWhy:"",veto:"",pitch:"",more:"",touched:{}});
 function clean(src){
   let o={};try{o=JSON.parse(JSON.stringify(src||{}));}catch(e){}
   const S=blank();
@@ -1387,6 +1404,8 @@ function clean(src){
   if(+o.budget)S.budget=Math.min(2000,Math.max(300,Math.round(+o.budget/25)*25));
   QQ.forEach(q=>{if(q.o.some(x=>x[0]===o[q.k]))S[q.k]=o[q.k];});
   ["veto","pitch","more"].forEach(k=>S[k]=String(o[k]||""));
+  if(EXT_OK.some(x=>x[0]===o.extOk))S.extOk=o.extOk;if(EXT_BRING.some(x=>x[0]===o.extBring))S.extBring=o.extBring;
+  S.extWho=String(o.extWho||"").slice(0,80);S.extWhy=String(o.extWhy||"").slice(0,600);
   if(o.touched&&typeof o.touched==="object")["days","nights","budget"].forEach(k=>{if(o.touched[k])S.touched[k]=1;});
   return S;
 }
@@ -1636,38 +1655,47 @@ function renderQQ(){const el=$("#qq");el.textContent="";
       b.addEventListener("click",()=>{S[q.k]=S[q.k]===v?"":v;save();[...g.children].forEach((x,j)=>x.setAttribute("aria-pressed",String(S[q.k]===q.o[j][0])));});g.appendChild(b);});
     el.appendChild(d);});}
 
-/* ---------- step 11 ---------- */
+/* ---------- step 11: esterni ---------- */
+function choiceGroup(el,opts,key,after){el.textContent="";
+  opts.forEach(([v,l])=>{const b=document.createElement("button");b.type="button";b.className="choice";b.innerHTML=`<i></i>${l}`;b.setAttribute("aria-pressed",String(S[key]===v));
+    b.addEventListener("click",()=>{S[key]=S[key]===v?"":v;save();[...el.children].forEach((x,i)=>x.setAttribute("aria-pressed",String(S[key]===opts[i][0])));after&&after();});el.appendChild(b);});}
+function renderExt(){choiceGroup($("#ext-ok"),EXT_OK,"extOk");choiceGroup($("#ext-bring"),EXT_BRING,"extBring",extBox);$("#ext-who").value=S.extWho;$("#ext-why").value=S.extWhy;extBox();}
+function extBox(){$("#ext-who-box").hidden=S.extBring!=="si";}
+$("#ext-who").addEventListener("input",e=>{S.extWho=e.target.value;save();});
+$("#ext-why").addEventListener("input",e=>{S.extWhy=e.target.value;save();});
+
+/* ---------- step 12 ---------- */
 ["veto","pitch","more"].forEach(k=>{const el=$("#"+k);el.addEventListener("input",()=>{S[k]=el.value;save();});});
 
 /* ---------- completion ---------- */
 const DONE_F=[null,s=>!!s.name,s=>Object.keys(s.continents).length>0,s=>Object.keys(s.acts).length>=ACTS.length,s=>s.top3.length===3,s=>!!s.move,
-  s=>Object.keys(s.stays).length>=STAYS.length,s=>!!s.touched.days,s=>!!s.touched.nights,s=>!!s.touched.budget,s=>!!(s.drive&&s.night),s=>!!(s.veto||s.pitch)];
+  s=>Object.keys(s.stays).length>=STAYS.length,s=>!!s.touched.days,s=>!!s.touched.nights,s=>!!s.touched.budget,s=>!!(s.drive&&s.night),s=>!!(s.extOk&&s.extBring&&(s.extBring!=="si"||(s.extWho.trim()&&s.extWhy.trim()))),s=>!!(s.veto||s.pitch)];
 const DONE=DONE_F.map(f=>f&&(()=>f(S)));
 const doneCount=s=>DONE_F.filter(f=>f&&f(s)).length;
-const LABELS=[null,"Nome","Rotta","Attività","Bagaglio a mano","Scali","Alloggio","Date","Notti","Budget","Documenti","Ultima chiamata"];
+const LABELS=[null,"Nome","Rotta","Attività","Bagaglio a mano","Scali","Alloggio","Date","Notti","Budget","Documenti","Esterni","Ultima chiamata"];
 const trackEl=$("#track");
-for(let i=1;i<=11;i++){const b=document.createElement("button");b.type="button";b.setAttribute("aria-label","Gate "+i+", "+LABELS[i]);b.addEventListener("click",()=>show(i));trackEl.appendChild(b);}
+for(let i=1;i<=NG;i++){const b=document.createElement("button");b.type="button";b.setAttribute("aria-label","Gate "+i+", "+LABELS[i]);b.addEventListener("click",()=>show(i));trackEl.appendChild(b);}
 function updateTrack(){[...trackEl.children].forEach((b,i)=>{b.classList.toggle("done",DONE[i+1]());b.classList.toggle("cur",cur===i+1);});}
-function renderAll(){renderMap();deckIdx=Math.max(0,ACTS.findIndex(a=>!S.acts[a.c]));renderDeck();renderCarry();renderMoves();renderStays();renderCal();renderNights();renderQQ();
+function renderAll(){renderMap();deckIdx=Math.max(0,ACTS.findIndex(a=>!S.acts[a.c]));renderDeck();renderCarry();renderMoves();renderStays();renderCal();renderNights();renderQQ();renderExt();
   ["veto","pitch","more"].forEach(k=>$("#"+k).value=S[k]||"");updateTrack();}
 
 /* ---------- navigation ---------- */
 let cur=0;
 const navBack=$("#nav-back"),navNext=$("#nav-next"),navTxt=$("#nav-next-txt");
 function show(n){
-  if(n>=2&&n<=12&&!me){n=1;setTimeout(()=>note("Prima entra con il tuo nome e il PIN.",true),50);}
+  if(n>=2&&n<=REV&&!me){n=1;setTimeout(()=>note("Prima entra con il tuo nome e il PIN.",true),50);}
   cur=n;
-  const intro=n===0,cos=n===13;
+  const intro=n===0,cos=n===COSN;
   $("#intro").hidden=!intro;{const v=$("#bgvid");if(v){if(intro){const p=v.play();if(p&&p.catch)p.catch(()=>{});}else v.pause();}}if(intro){const f=$("#flash");if(f)f.style.transition="";setTimeout(()=>startCam&&startCam(),30);}document.documentElement.classList.toggle("on-intro",intro);
   const tc=document.querySelector('meta[name="theme-color"]');if(tc)tc.content=intro?"#0b0b0c":"#0b0b0c";$("#gatebar").hidden=intro;$("#main").hidden=intro;$("#navbar").hidden=intro||cos;
   $("#track").hidden=cos;
   $$(".step").forEach(s=>s.hidden=+s.dataset.s!==n);
   if(!intro){
-    flaps($("#g-num"),n<=11?"G"+String(n).padStart(2,"0"):(n===12?"G--":"COS"),3,"y");
+    flaps($("#g-num"),n<=NG?"G"+String(n).padStart(2,"0"):(n===REV?"G--":"COS"),3,"y");
     flaps($("#g-name"),GATES[n-1],10);
-    $("#nav-count").textContent=n<=11?`GATE ${String(n).padStart(2,"0")} DI 11`:"";
-    navNext.hidden=n>=12||(n===1&&!me);navTxt.textContent=n===11?"Vai all'imbarco":"Avanti";
-    if(n===3)renderDeck();if(n===4)renderCarry();if(n===12)renderReview();
+    $("#nav-count").textContent=n<=NG?`GATE ${String(n).padStart(2,"0")} DI ${NG}`:"";
+    navNext.hidden=n>=REV||(n===1&&!me);navTxt.textContent=n===NG?"Vai all'imbarco":"Avanti";
+    if(n===3)renderDeck();if(n===4)renderCarry();if(n===REV)renderReview();
     if(cos)openCos();
   }
   updateTrack();
@@ -1675,14 +1703,14 @@ function show(n){
   if(n===1&&!me)setTimeout(()=>{try{nameEl.focus({preventScroll:true});}catch(e){}},60);
 }
 navBack.addEventListener("click",()=>show(Math.max(0,cur-1)));
-navNext.addEventListener("click",()=>show(Math.min(12,cur+1)));
-$("#start").addEventListener("click",()=>boardWalk(()=>show(me?(savedAt?12:2):1)));
-$("#cos-open").addEventListener("click",()=>show(13));
+navNext.addEventListener("click",()=>show(Math.min(REV,cur+1)));
+$("#start").addEventListener("click",()=>boardWalk(()=>show(me?(savedAt?REV:2):1)));
+$("#cos-open").addEventListener("click",()=>show(COSN));
 $("#home").addEventListener("click",()=>show(0));
 document.addEventListener("keydown",e=>{
   const tag=document.activeElement&&document.activeElement.tagName;
   if(cur===3&&/^[1-5]$/.test(e.key)&&!/INPUT|TEXTAREA/.test(tag)){rate(+e.key);return;}
-  if(e.key==="Enter"&&cur>=2&&cur<=11&&!/INPUT|TEXTAREA|BUTTON/.test(tag)){e.preventDefault();show(cur+1);}
+  if(e.key==="Enter"&&cur>=2&&cur<=NG&&!/INPUT|TEXTAREA|BUTTON/.test(tag)){e.preventDefault();show(cur+1);}
 });
 
 /* ---------- review + submit ---------- */
@@ -1719,9 +1747,9 @@ function passEl(stamped){
 }
 const dirty=()=>JSON.stringify(payloadCore())!==lastSaved;
 function payloadCore(){return{name:S.name.slice(0,16),continents:S.continents,acts:S.acts,top3:S.top3.slice(0,3),move:S.move,stays:S.stays,days:S.days,nights:S.nights,budget:S.budget,
-  drive:S.drive,night:S.night,veto:(S.veto||"").slice(0,400),pitch:(S.pitch||"").slice(0,600),more:(S.more||"").slice(0,200),touched:S.touched};}
+  drive:S.drive,night:S.night,extOk:S.extOk,extBring:S.extBring,extWho:S.extBring==="si"?S.extWho.slice(0,80):"",extWhy:S.extBring==="si"?S.extWhy.slice(0,600):"",veto:(S.veto||"").slice(0,400),pitch:(S.pitch||"").slice(0,600),more:(S.more||"").slice(0,200),touched:S.touched};}
 function renderReview(){
-  const miss=[];for(let i=2;i<=11;i++)if(!DONE[i]())miss.push(i);
+  const miss=[];for(let i=2;i<=NG;i++)if(!DONE[i]())miss.push(i);
   const m=$("#missing");m.textContent="";
   if(miss.length){m.insertAdjacentHTML("beforeend",`<span style="font-size:14px;color:var(--muted);align-self:center;margin-right:4px">Da completare:</span>`);
     miss.forEach(i=>{const b=document.createElement("button");b.type="button";b.textContent=LABELS[i];b.addEventListener("click",()=>show(i));m.appendChild(b);});}
@@ -1781,6 +1809,9 @@ function detailHTML(s){
     <dt>Notti</dt><dd>${s.touched.nights?s.nights[0]+"–"+s.nights[1]:"–"}</dd>
     <dt>Budget</dt><dd>${s.touched.budget?eur(s.budget):"–"}</dd>
     <dt>Guida</dt><dd>${optName("drive",s.drive)}</dd><dt>Nottata stile Lisbona2026</dt><dd>${optName("night",s.night)}</dd>
+    <dt>Esterni nel gruppo</dt><dd>${(EXT_OK.find(x=>x[0]===s.extOk)||[0,"–"])[1]}</dd>
+    <dt>Vuole portare qualcuno</dt><dd>${s.extBring==="si"?"Sì: "+esc(s.extWho||"(nome non scritto)"):(s.extBring==="no"?"No":"–")}</dd>
+    ${s.extBring==="si"?`<dt>Perché</dt><dd>${esc(s.extWhy||"–")}</dd>`:""}
     <dt>Vincolo</dt><dd>${esc(s.veto||"–")}</dd><dt>Convincici</dt><dd>${esc(s.pitch||"–")}</dd><dt>Altre attività</dt><dd>${esc(s.more||"–")}</dd>
   </dl>`;
 }
@@ -1791,7 +1822,7 @@ function renderCos(){
   // people tab
   const pb=$("#people-body");
   pb.innerHTML=people.length?`<div class="ppl">${people.map((p,i)=>{const s=p.payload?clean(p.payload):null,dc=s?doneCount(Object.assign(s,{name:p.name})):1;
-    return `<details class="pp" data-i="${i}"><summary><span class="nm">${esc(p.name)}</span><span class="prog-pill${dc===11?" full":""}">${s?dc+"/11":"non confermato"}</span><span class="meta upd">${p.updated_at?fmtTime(p.updated_at):"registrato "+fmtTime(p.registered_at)}</span><span class="chev" aria-hidden="true">›</span></summary>
+    return `<details class="pp" data-i="${i}"><summary><span class="nm">${esc(p.name)}</span><span class="prog-pill${dc===NG?" full":""}">${s?dc+"/"+NG:"non confermato"}</span><span class="meta upd">${p.updated_at?fmtTime(p.updated_at):"registrato "+fmtTime(p.registered_at)}</span><span class="chev" aria-hidden="true">›</span></summary>
       <div class="pp-body">${s?`<div class="det">${detailHTML(s)}</div>`:'<p class="empty-res">Ha scelto nome e PIN ma non ha ancora confermato il check-in.</p>'}
       ${(p.revisions||[]).length?`<div class="revs"><h4>Storico: ${p.revisions.length} ${p.revisions.length===1?"salvataggio":"salvataggi"}. Tocca una data per vedere quella versione.</h4><div class="rl">${p.revisions.map((r,j)=>`<button type="button" data-j="${j}" aria-pressed="${j===p.revisions.length-1}">${fmtTime(r.at)}</button>`).join("")}</div></div>`:""}</div></details>`;}).join("")}</div>`:'<p class="empty-res">Ancora nessun passeggero registrato.</p>';
   pb.querySelectorAll(".revs button").forEach(b=>b.addEventListener("click",()=>{const d=b.closest(".pp"),p=people[+d.dataset.i],r=p.revisions[+b.dataset.j];
@@ -1813,7 +1844,8 @@ function renderCos(){
     <div class="lg">${opts.map((o,i)=>`<span><em style="background:${cols[i]}"></em>${o[1]}, ${cnt[i]}</span>`).join("")}</div></div>`;};
   const quotes=R.filter(r=>r.veto).map(r=>`<p class="v"><small>${esc(r.name)}, vincolo</small>${esc(r.veto)}</p>`).join("")
     +R.filter(r=>r.pitch).map(r=>`<p><small>${esc(r.name)}, convincici</small>${esc(r.pitch)}</p>`).join("")
-    +R.filter(r=>r.more).map(r=>`<p><small>${esc(r.name)}, propone</small>${esc(r.more)}</p>`).join("");
+    +R.filter(r=>r.more).map(r=>`<p><small>${esc(r.name)}, propone</small>${esc(r.more)}</p>`).join("")
+    +R.filter(r=>r.extBring==="si").map(r=>`<p><small>${esc(r.name)} vorrebbe portare ${esc(r.extWho||"qualcuno")}</small>${esc(r.extWhy||"senza motivazione")}</p>`).join("");
   body.innerHTML=`<div class="res-grid">
     <div class="rb full"><h3>Rotta: più rosso, più voti a favore</h3><div class="res-map-box"><svg class="map res-map" id="res-map" role="img" aria-label="Mappa dei voti per continente"></svg></div></div>
     <div class="rb"><h3>Attività, voto medio su 5</h3>${bars(acts,x=>esc(x.a.n))}</div>
@@ -1823,7 +1855,7 @@ function renderCos(){
       <div class="bud-strip"><div class="ln"></div><span class="ref" style="left:${bp(REF)}%"></span>${bs.map(v=>`<span class="pt" style="left:${bp(v)}%"></span>`).join("")}<span class="med" style="left:${bp(med)}%"></span></div>
       <div class="scale" style="color:var(--board-mute)"><span>€300</span><span>tratteggio: VE2026</span><span>€2.000</span></div></div>
     <div class="rb full"><h3>Date: più rosso, più preferenze; in basso quanti non possono</h3><div class="heat" id="heat"></div></div>
-    <div class="rb full"><h3>Scali e documenti</h3><div class="splits">${split("Scali",MOVES.map(m=>[m.k,m.n]),"move")}${split(QQ[0].t,QQ[0].o,"drive")}${split("Nottata stile Lisbona2026",QQ[1].o,"night")}</div></div>
+    <div class="rb full"><h3>Scali e documenti</h3><div class="splits">${split("Scali",MOVES.map(m=>[m.k,m.n]),"move")}${split(QQ[0].t,QQ[0].o,"drive")}${split("Nottata stile Lisbona2026",QQ[1].o,"night")}${split("Esterni nel gruppo",EXT_OK,"extOk")}${split("Vorrebbe portare qualcuno",EXT_BRING,"extBring")}</div></div>
     ${quotes?`<div class="rb full"><h3>Note per il COS</h3><div class="quotes">${quotes}</div></div>`:""}
   </div>`;
   const rg=buildMap($("#res-map"),false);
@@ -1836,13 +1868,13 @@ function renderCos(){
 function download(name,type,text){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},500);}
 $("#cos-json").addEventListener("click",()=>download("ve2027-risposte.json","application/json",JSON.stringify(people,null,2)));
 $("#cos-csv").addEventListener("click",()=>{
-  const head=["nome","registrato","ultimo_salvataggio","salvataggi","continenti_si","continenti_no",...ACTS.map(a=>"att_"+a.c),"bagaglio_a_mano","scali",...STAYS.map(s=>"alloggio_"+s.k),"date_preferite","date_no","notti_min","notti_max","budget","guida","nottata","vincolo","convincici","altre_attivita"];
+  const head=["nome","registrato","ultimo_salvataggio","salvataggi","continenti_si","continenti_no",...ACTS.map(a=>"att_"+a.c),"bagaglio_a_mano","scali",...STAYS.map(s=>"alloggio_"+s.k),"date_preferite","date_no","notti_min","notti_max","budget","guida","nottata","esterni_ok","porta_esterno","esterno_chi","esterno_perche","vincolo","convincici","altre_attivita"];
   const q=v=>{v=v==null?"":String(v);return /[",;\n]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v;};
   const rows=people.map(p=>{const s=clean(p.payload||{});return [p.name,p.registered_at,p.updated_at||"",(p.revisions||[]).length,
     CONTS.filter(c=>s.continents[c.k]===1).map(c=>c.n).join(" / "),CONTS.filter(c=>s.continents[c.k]===-1).map(c=>c.n).join(" / "),
     ...ACTS.map(a=>s.acts[a.c]||""),s.top3.map(c=>ACT_BY[c].n).join(" / "),s.move,...STAYS.map(x=>s.stays[x.k]||""),
     rangesOf(Object.keys(s.days).filter(k=>s.days[k]==="p")),rangesOf(Object.keys(s.days).filter(k=>s.days[k]==="x")),
-    p.payload&&s.touched.nights?s.nights[0]:"",p.payload&&s.touched.nights?s.nights[1]:"",p.payload&&s.touched.budget?s.budget:"",s.drive,s.night,s.veto,s.pitch,s.more].map(q).join(";");});
+    p.payload&&s.touched.nights?s.nights[0]:"",p.payload&&s.touched.nights?s.nights[1]:"",p.payload&&s.touched.budget?s.budget:"",s.drive,s.night,s.extOk,s.extBring,s.extWho,s.extWhy,s.veto,s.pitch,s.more].map(q).join(";");});
   download("ve2027-risposte.csv","text/csv;charset=utf-8","﻿"+[head.join(";")].concat(rows).join("\n"));
 });
 
