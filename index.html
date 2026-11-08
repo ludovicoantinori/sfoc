@@ -1339,6 +1339,37 @@ footer .sig span{font-size:20px;font-weight:400}
 .gb-nav button:hover{background:transparent;color:#fff;box-shadow:inset 0 -2px 0 rgba(255,255,255,.6)}
 .gb-nav button.on,.gb-nav button.on:hover{background:transparent;color:#fff;box-shadow:inset 0 -2px 0 var(--hot)}
 @media (hover:none){.site-nav button:hover{background:transparent;color:#fff}}
+/* ===== lettore atti ===== */
+.nw[data-atto]{cursor:pointer;transition:transform .15s,box-shadow .15s}
+.nw[data-atto]:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--blk)}
+.nw.pin[data-atto]:hover{box-shadow:13px 13px 0 var(--hot)}
+.nw[data-atto]:focus-visible{outline:4px solid var(--hot);outline-offset:3px}
+html.atto-on,html.atto-on body{overflow:hidden}
+.atto{position:fixed;inset:0;z-index:200;background:#f2f2f2;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;animation:attoIn .28s cubic-bezier(.2,.8,.2,1)}
+@keyframes attoIn{from{transform:translateY(30px);opacity:0}to{transform:none;opacity:1}}
+.atto-bar{position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--blk);color:#fff;padding:12px max(16px,3vw);padding-top:max(12px,env(safe-area-inset-top));font:800 13px/1 var(--f-body);text-transform:uppercase}
+.atto-bar button{font:800 13px/1 var(--f-body);text-transform:uppercase;background:var(--hot);color:#fff;border:0;padding:11px 14px;cursor:pointer}
+.atto-body{max-width:1000px;margin:0 auto;padding:clamp(18px,4vw,48px) max(16px,3vw) 80px;display:grid;gap:28px}
+.at-h{background:#fff;border:2px solid var(--blk);padding:clamp(18px,3vw,34px);display:grid;gap:14px}
+.at-h h2{font:800 clamp(30px,5vw,64px)/.92 var(--f-display);letter-spacing:-.055em;text-transform:uppercase;margin:0}
+.at-doc{display:grid;gap:12px;scroll-margin-top:70px}
+.at-dh{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;gap:12px;align-items:center}
+.at-dh .ext{width:36px;height:42px;display:grid;place-items:center;background:var(--hot);color:#fff;font:800 10px/1 var(--f-body);text-transform:uppercase;clip-path:polygon(0 0,70% 0,100% 22%,100% 100%,0 100%)}
+.at-dh b{font-size:16px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.at-dh small{font:700 12px/1 var(--f-body);color:rgba(10,10,10,.55);text-transform:uppercase}
+.mini-dl{font:800 12px/1 var(--f-body);text-transform:uppercase;padding:9px 11px;border:2px solid var(--blk);background:#fff;color:var(--blk);cursor:pointer}
+.mini-dl:hover{background:var(--blk);color:#fff}
+.at-view{display:grid;gap:10px;justify-items:center}
+.at-view .pg{display:block;width:100%;max-width:100%;height:auto;background:#fff;box-shadow:0 1px 0 rgba(0,0,0,.08),0 10px 30px rgba(0,0,0,.12)}
+.pgn{margin:0 0 8px;font:700 12px/1 var(--f-body);text-transform:uppercase;color:rgba(10,10,10,.5)}
+.txtdoc{width:100%;margin:0;background:#fff;padding:18px;border:2px solid var(--blk);white-space:pre-wrap;font:14px/1.5 ui-monospace,Menlo,monospace;overflow:auto}
+.nopreview{width:100%;display:grid;gap:8px;justify-items:center;text-align:center;padding:40px 20px;background:#fff;border:2px dashed rgba(10,10,10,.3)}
+.nopreview b{font:800 34px/1 var(--f-display);color:var(--hot);text-transform:uppercase}
+.nopreview span{max-width:40ch;font-size:15px}
+.loading{display:flex;gap:10px;align-items:center;padding:40px 0;font:700 13px/1 var(--f-body);text-transform:uppercase;color:rgba(10,10,10,.6)}
+.loading i{width:16px;height:16px;border:3px solid rgba(10,10,10,.2);border-top-color:var(--hot);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media (max-width:560px){.at-dh{grid-template-columns:auto minmax(0,1fr) auto}.at-dh small{display:none}}
 </style>
 </head>
 <body>
@@ -1419,6 +1450,11 @@ footer .sig span{font-size:20px;font-weight:400}
     </ol>
   </section>
   <footer class="wrap ld-foot">Comitato Organizzativo dello Sfo®, VE2027.</footer>
+</div>
+
+<div class="atto" id="atto" hidden role="dialog" aria-modal="true" aria-labelledby="atto-k">
+  <div class="atto-bar"><span id="atto-k">Gazzetta Ufficiale</span><button type="button" id="atto-x" aria-label="Chiudi">Chiudi ✕</button></div>
+  <div class="atto-body" id="atto-body"></div>
 </div>
 
 <!-- GATE BAR -->
@@ -2219,26 +2255,64 @@ const isImg=d=>/^image\/(png|jpe?g|gif|webp)$/i.test(d.mime);
 const docCache={};
 async function getDoc(id){if(docCache[id])return docCache[id];const r=await rpc("ve_doc_get",{p_id:id});if(!r.ok)throw new Error(r.error);
   const bin=atob(r.b64),u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);
-  return docCache[id]={name:r.name,url:URL.createObjectURL(new Blob([u],{type:r.mime}))};}
+  return docCache[id]={name:r.name,mime:r.mime,bytes:u,url:URL.createObjectURL(new Blob([u],{type:r.mime}))};}
 async function downloadDoc(id,btn){const g=btn&&btn.querySelector(".go"),t=g&&g.textContent;if(g)g.textContent="…";
   try{const d=await getDoc(id),a=document.createElement("a");a.href=d.url;a.download=d.name;document.body.appendChild(a);a.click();a.remove();if(g)g.textContent=t;}
   catch(e){if(g)g.textContent="Errore";}}
 const nums={};
+/* ---------- lettore degli atti: si apre a schermo intero, PDF e immagini già visibili ---------- */
+let pdfLib=null;
+function loadPdfJs(){if(pdfLib)return pdfLib;pdfLib=new Promise((ok,ko)=>{const s=document.createElement("script");s.src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js";
+  s.onload=()=>{window.pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";ok(window.pdfjsLib);};s.onerror=()=>{pdfLib=null;ko(new Error("pdfjs"));};document.head.appendChild(s);});return pdfLib;}
+const ATT=$("#atto"),ATB=$("#atto-body");let attoOpen=false;
+function closeAtto(fromPop){if(!attoOpen)return;attoOpen=false;ATT.hidden=true;document.documentElement.classList.remove("atto-on");if(!fromPop&&history.state&&history.state.atto)history.back();}
+addEventListener("popstate",()=>closeAtto(true));
+addEventListener("keydown",e=>{if(e.key==="Escape")closeAtto();});
+$("#atto-x").addEventListener("click",()=>closeAtto());
+async function renderPdf(box,d){const lib=await loadPdfJs(),pdf=await lib.getDocument({data:d.bytes.slice()}).promise,W=Math.min(box.clientWidth||800,1100),dpr=Math.min(2,devicePixelRatio||1);
+  box.innerHTML="";for(let i=1;i<=pdf.numPages;i++){const pg=await pdf.getPage(i),v0=pg.getViewport({scale:1}),sc=W/v0.width,vp=pg.getViewport({scale:sc*dpr}),c=document.createElement("canvas");
+    c.width=vp.width;c.height=vp.height;c.style.width=W+"px";c.style.maxWidth="100%";c.style.height="auto";c.className="pg";box.appendChild(c);
+    await pg.render({canvasContext:c.getContext("2d"),viewport:vp}).promise;
+    if(pdf.numPages>1){const n=document.createElement("p");n.className="pgn";n.textContent=`Pagina ${i} di ${pdf.numPages}`;box.appendChild(n);}}}
+async function renderDocInto(box,meta){
+  try{const d=await getDoc(meta.id),m=(d.mime||"").toLowerCase(),ext=fext(d.name).toLowerCase();
+    if(m==="application/pdf"||ext==="pdf")await renderPdf(box,d);
+    else if(/^image\//.test(m))box.innerHTML=`<img class="pg" src="${d.url}" alt="${esc(d.name)}">`;
+    else if(/^text\/|json|csv/.test(m)||["txt","csv","md","json"].includes(ext)){box.innerHTML=`<pre class="txtdoc"></pre>`;box.firstChild.textContent=new TextDecoder().decode(d.bytes);}
+    else if(/^(video|audio)\//.test(m))box.innerHTML=m.startsWith("video")?`<video class="pg" src="${d.url}" controls playsinline></video>`:`<audio src="${d.url}" controls></audio>`;
+    else box.innerHTML=`<div class="nopreview"><b>.${esc(ext)}</b><span>Questo formato non si può sfogliare qui dentro. Scaricalo e aprilo con l'app giusta.</span></div>`;
+  }catch(e){box.innerHTML=`<div class="nopreview"><b>!</b><span>Il documento non si è caricato. Controlla la connessione e riprova.</span></div>`;}}
+function openAtto(id,docId){const x=news.find(n=>n.id===id);if(!x)return;
+  const k=(KINDS.find(k=>k[0]===x.kind)||KINDS[0])[1];
+  $("#atto-k").textContent=`Gazzetta Ufficiale · N. ${nums[x.id]}`;
+  ATB.innerHTML=`<header class="at-h"><div class="nw-h"><span class="nw-k">${esc(k)}</span><span class="nw-d">${fmtDay(x.at)}</span></div><h2>${esc(x.title)}</h2>${x.body?`<div class="nw-b">${esc(x.body)}</div>`:""}
+    <div class="nw-f">${authCard(x.author)}<span>${x.author?"firmato "+esc(x.author):"il COS"}</span></div></header>
+    ${(x.docs||[]).map(dm=>`<section class="at-doc" id="atdoc-${dm.id}"><div class="at-dh"><span class="ext">${esc(fext(dm.name))}</span><b>${esc(dm.name)}</b><small>${fsize(dm.size)}</small><button type="button" class="mini-dl" data-dl="${dm.id}">Scarica</button></div><div class="at-view"><div class="loading"><i></i>Apro il documento…</div></div></section>`).join("")}`;
+  ATT.hidden=false;ATT.scrollTop=0;document.documentElement.classList.add("atto-on");
+  if(!attoOpen){attoOpen=true;history.pushState({atto:id},"",location.pathname+location.search+"#atto-"+nums[x.id]);}
+  ATB.querySelectorAll("[data-dl]").forEach(b=>b.addEventListener("click",async()=>{const t=b.textContent;b.textContent="…";try{const d=await getDoc(+b.dataset.dl),a=document.createElement("a");a.href=d.url;a.download=d.name;document.body.appendChild(a);a.click();a.remove();b.textContent=t;}catch(e){b.textContent="Errore";}}));
+  const jobs=(x.docs||[]).map(dm=>renderDocInto(ATB.querySelector(`#atdoc-${dm.id} .at-view`),dm));
+  if(docId)Promise.all(jobs).then(()=>{const el=$("#atdoc-"+docId);if(attoOpen&&el)el.scrollIntoView({block:"start",behavior:"smooth"});});
+  if(docId){const el=$("#atdoc-"+docId);if(el)setTimeout(()=>el.scrollIntoView({block:"start"}),60);}}
+
+let deep=/^#atto-(\d+)$/.exec(location.hash);
 async function loadNews(){try{const r=await rpc("ve_news_list",{});news=Array.isArray(r)?r:[];newsErr=false;}catch(e){newsErr=true;}
-  news.slice().sort((a,b)=>new Date(a.at)-new Date(b.at)).forEach((x,i)=>nums[x.id]=i+1);renderNews();}
+  news.slice().sort((a,b)=>new Date(a.at)-new Date(b.at)).forEach((x,i)=>nums[x.id]=i+1);renderNews();
+  if(deep){const n=+deep[1],x=news.find(y=>nums[y.id]===n);deep=null;if(x){history.replaceState(null,"",location.pathname+location.search);openAtto(x.id);}}}
 function renderNews(){
   const L=$("#news-list");$("#gu-n").textContent=`Anno I, n. ${news.length}`;
-  L.innerHTML=newsErr?'<p class="empty-res">La Gazzetta non è raggiungibile in questo momento.</p>':news.length?news.map(x=>`<article class="nw${x.pinned?" pin":""}" data-k="${esc(x.kind)}">
+  L.innerHTML=newsErr?'<p class="empty-res">La Gazzetta non è raggiungibile in questo momento.</p>':news.length?news.map(x=>`<article class="nw${x.pinned?" pin":""}" data-k="${esc(x.kind)}" data-atto="${x.id}" tabindex="0" role="button" aria-label="Apri ${esc(x.title)}">
     <div class="nw-h"><span class="nw-k">${esc((KINDS.find(k=>k[0]===x.kind)||KINDS[0])[1])}</span><span class="nw-d">N. ${nums[x.id]} · ${fmtDay(x.at)}</span>${x.pinned?'<span class="nw-p">In evidenza</span>':""}</div>
     <h3>${esc(x.title)}</h3>${x.body?`<div class="nw-b">${esc(x.body)}</div>`:""}
-    ${(x.docs||[]).length?`<div class="docs">${x.docs.map(d=>isImg(d)&&d.size<3e6?`<img class="doc-img" data-img="${d.id}" alt="${esc(d.name)}">`:"").join("")}${x.docs.map(d=>`<button type="button" class="doc" data-doc="${d.id}"><span class="ext">${esc(fext(d.name))}</span><span><b>${esc(d.name)}</b><small>${fsize(d.size)}</small></span><span class="go">Scarica ↓</span></button>`).join("")}</div>`:""}
+    ${(x.docs||[]).length?`<div class="docs">${x.docs.map(d=>isImg(d)&&d.size<3e6?`<img class="doc-img" data-img="${d.id}" alt="${esc(d.name)}">`:"").join("")}${x.docs.map(d=>`<button type="button" class="doc" data-doc="${d.id}"><span class="ext">${esc(fext(d.name))}</span><span><b>${esc(d.name)}</b><small>${fsize(d.size)}</small></span><span class="go">Apri →</span></button>`).join("")}</div>`:""}
     <div class="nw-f">${authCard(x.author)}<span>${x.author?"firmato "+esc(x.author):"il COS"}</span></div></article>`).join(""):'<p class="empty-res">Nessun atto pubblicato, per ora. Il COS lavora in silenzio.</p>';
-  L.querySelectorAll("[data-doc]").forEach(b=>b.addEventListener("click",()=>downloadDoc(+b.dataset.doc,b)));
+  L.querySelectorAll(".nw[data-atto]").forEach(a=>a.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target===a)openAtto(+a.dataset.atto);}));
+  L.querySelectorAll(".nw[data-atto]").forEach(a=>a.addEventListener("click",e=>{const d=e.target.closest("[data-doc]");openAtto(+a.dataset.atto,d?+d.dataset.doc:null);}));
   L.querySelectorAll("[data-img]").forEach(async im=>{try{im.src=(await getDoc(+im.dataset.img)).url;}catch(e){im.remove();}});
   const pin=news.find(x=>x.pinned)||news[0],tk=$("#ticker");tk.hidden=!pin;if(pin)$("#ticker-t").textContent=pin.title+(pin.body?"  ·  "+pin.body.replace(/\s+/g," ").slice(0,140):"");
   $$(".nbadge").forEach(b=>{b.hidden=!news.length;b.textContent=news.length;});
-  const ln=$("#ld-news");if(ln&&!newsErr&&news.length){ln.innerHTML=news.slice(0,3).map(x=>`<button type="button" class="ld-ni" data-go2="news"><small>N. ${nums[x.id]} · ${esc((KINDS.find(k=>k[0]===x.kind)||KINDS[0])[1])}${(x.docs||[]).length?` · <em>${x.docs.length} allegat${x.docs.length===1?"o":"i"}</em>`:""}</small><b>${esc(x.title)}</b></button>`).join("");
-    ln.querySelectorAll("[data-go2]").forEach(b=>b.addEventListener("click",()=>show(NEWSN)));}
+  const ln=$("#ld-news");if(ln&&!newsErr&&news.length){ln.innerHTML=news.slice(0,3).map(x=>`<button type="button" class="ld-ni" data-go2="${x.id}"><small>N. ${nums[x.id]} · ${esc((KINDS.find(k=>k[0]===x.kind)||KINDS[0])[1])}${(x.docs||[]).length?` · <em>${x.docs.length} allegat${x.docs.length===1?"o":"i"}</em>`:""}</small><b>${esc(x.title)}</b></button>`).join("");
+    ln.querySelectorAll("[data-go2]").forEach(b=>b.addEventListener("click",()=>openAtto(+b.dataset.go2)));}
   renderNewsAdmin();}
 const naKind=$("#na-kind"),naAuth=$("#na-author");let naK="comunicato",naA="";
 function pills(el,opts,get,set){el.innerHTML="";opts.forEach(([v,l])=>{const b=document.createElement("button");b.type="button";b.className="choice";b.innerHTML=`<i></i>${l}`;b.setAttribute("aria-pressed",String(get()===v));
