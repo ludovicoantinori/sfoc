@@ -1127,20 +1127,91 @@ footer .sig span{font-size:20px;font-weight:400}
 .site-nav{display:flex;gap:4px;margin:0 auto;background:rgba(0,0,0,.55);padding:4px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .site-nav button,.gb-nav button{position:relative;font:700 13px/1 var(--f-body);text-transform:uppercase;letter-spacing:-.01em;color:#fff;background:transparent;border:0;padding:10px 14px;cursor:pointer}
 .site-nav button:hover,.gb-nav button:hover{background:#fff;color:var(--blk)}
-.site-nav button[data-go="checkin"]{background:var(--hot)}
-.site-nav button[data-go="checkin"]:hover{background:#fff}
+.site-nav button[data-go="home"]{box-shadow:inset 0 -3px 0 var(--hot)}
 .nbadge{position:relative;top:-1px;margin-left:6px;display:inline-block;vertical-align:middle;min-width:16px;height:16px;padding:0 4px;background:var(--hot);color:#fff;font:800 10px/16px var(--f-body);font-style:normal;text-align:center}
 .gb-nav{display:flex;gap:2px;margin-left:18px}
 .gb-nav button{color:rgba(255,255,255,.75);font-size:12px;padding:8px 10px}
 .gb-nav button.on{color:#fff;box-shadow:inset 0 -2px 0 var(--hot)}
-@media (max-width:860px){.gb-nav{display:none}}
-@media (max-width:700px){.intro .top{flex-wrap:wrap}.site-nav{order:3;width:100%;margin:10px 0 0}.site-nav button{flex:1;padding:11px 6px;font-size:12px}}
+
+@media (max-width:860px){.intro .top{flex-wrap:wrap}.site-nav{order:3;width:100%;margin:10px 0 0;overflow-x:auto;scrollbar-width:none}.site-nav button{flex:1 0 auto;padding:11px 9px;font-size:12px}}
 .ticker{display:flex;align-items:stretch;width:100%;margin:14px 0 0;border:0;padding:0;background:#fff;color:var(--blk);cursor:pointer;overflow:hidden;font:inherit;text-align:left}
-.ticker b{flex:none;background:var(--hot);color:#fff;font:800 12px/1 var(--f-body);text-transform:uppercase;padding:11px 12px;display:flex;align-items:center}
+.ticker b{flex:none;white-space:nowrap;background:var(--hot);color:#fff;font:800 12px/1 var(--f-body);text-transform:uppercase;padding:11px 12px;display:flex;align-items:center}
 .ticker .tk{flex:1;overflow:hidden;white-space:nowrap;display:flex;align-items:center;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 92%,transparent)}
 .ticker #ticker-t{display:inline-block;padding-left:100%;font:700 14px/1 var(--f-body);text-transform:uppercase;letter-spacing:-.01em;animation:tick 22s linear infinite}
 @keyframes tick{to{transform:translateX(-100%)}}
 @media (prefers-reduced-motion:reduce){.ticker #ticker-t{animation:none;padding-left:12px}}
+/* ===== gazzetta ufficiale ===== */
+.gu-mast{text-align:center;border-top:6px double var(--blk);border-bottom:6px double var(--blk);padding:14px 0 18px;margin-top:6px}
+.gu-top{display:flex;justify-content:space-between;gap:10px;font:800 11px/1 var(--f-body);text-transform:uppercase;margin:0 0 12px;padding-bottom:10px;border-bottom:1px solid var(--blk)}
+.gu-t{font:800 clamp(40px,9vw,128px)/.85 var(--f-display);letter-spacing:-.065em;text-transform:uppercase;margin:0}
+.gu-s{margin:12px 0 0;font:italic 400 clamp(22px,2.6vw,34px)/1.1 var(--goth)}
+.gu-s span{display:block;margin:10px auto 0;max-width:52ch;font:400 15px/1.45 var(--f-body);font-style:normal;color:rgba(10,10,10,.7)}
+.docs{display:grid;gap:8px;margin-top:4px}
+.doc{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;align-items:center;padding:10px 12px;border:2px solid var(--blk);background:#fff;color:var(--blk);font:inherit;text-align:left;cursor:pointer;width:100%}
+.doc:hover{background:var(--blk);color:#fff}
+.doc .ext{width:42px;height:50px;display:grid;place-items:center;background:var(--hot);color:#fff;font:800 11px/1 var(--f-body);text-transform:uppercase;clip-path:polygon(0 0,70% 0,100% 22%,100% 100%,0 100%)}
+.doc b{display:block;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.doc small{font-size:12px;opacity:.65;font-weight:700;text-transform:uppercase}
+.doc .go{font:800 12px/1 var(--f-body);text-transform:uppercase}
+.doc-img{display:block;max-width:100%;max-height:440px;border:2px solid var(--blk)}
+.drop{position:relative;display:grid;place-items:center;gap:4px;padding:26px 16px;border:2px dashed rgba(255,255,255,.45);text-align:center;cursor:pointer;color:#fff;margin-top:8px}
+.drop:hover,.drop.over{border-color:var(--hot);background:rgba(255,43,28,.1)}
+.drop input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%}
+.drop b{font-size:16px;text-transform:uppercase}.drop span{font-size:13px;color:rgba(255,255,255,.6)}
+.na-files{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px}
+.na-files li{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:8px 10px;border:1px solid rgba(255,255,255,.3);font-size:14px}
+.na-files li span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.na-files li small{color:rgba(255,255,255,.55);margin-left:8px}
+.na-files li.old{border-style:dashed}
+/* ===== landing ===== */
+.landing{background:#fff;color:var(--blk)}
+.ld-tabs{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(14px,2vw,24px);padding-top:clamp(36px,6vw,80px)}
+.ld-card{display:flex;flex-direction:column;gap:18px;padding:clamp(22px,3.4vw,44px);border:2px solid var(--blk)}
+.ld-checkin{background:var(--hot);color:#fff;border-color:var(--hot)}
+.ld-k{display:flex;justify-content:space-between;gap:10px;font:800 12px/1 var(--f-body);text-transform:uppercase;margin:0;padding-bottom:12px;border-bottom:2px solid currentColor}
+.ld-card h2{font:800 clamp(46px,7vw,104px)/.84 var(--f-display);letter-spacing:-.065em;text-transform:uppercase;margin:0}
+.ld-p{font-size:clamp(16px,1.4vw,18px);line-height:1.45;margin:0;max-width:40ch}
+.ld-count{display:flex;align-items:flex-end;gap:12px}
+.ld-count b{font:800 clamp(64px,8vw,110px)/.8 var(--f-display);letter-spacing:-.07em}
+.ld-count span{font:800 13px/1.1 var(--f-body);text-transform:uppercase;padding-bottom:6px}
+.ld-seats i{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.6)}.ld-seats i.on{background:#fff;box-shadow:none}
+.ld-card .btn{margin-top:auto;align-self:flex-start}
+.ld-checkin .btn{background:#fff;color:var(--blk)}
+.ld-checkin .btn:hover{background:var(--blk);color:#fff}
+.ld-news{display:grid}
+.ld-ni{display:grid;gap:6px;padding:12px 0;border:0;border-bottom:1px solid rgba(10,10,10,.2);cursor:pointer;background:none;text-align:left;font:inherit;color:inherit}
+.ld-ni small{font:800 11px/1 var(--f-body);text-transform:uppercase;color:rgba(10,10,10,.55)}
+.ld-ni small em{font-style:normal;color:var(--hot)}
+.ld-ni b{font:800 clamp(19px,1.8vw,24px)/1.05 var(--f-display);letter-spacing:-.03em;text-transform:uppercase}
+.ld-ni:hover b{color:var(--hot)}
+.ld-sec{padding-top:clamp(56px,8vw,110px)}
+.ld-h{font:800 clamp(40px,6vw,88px)/.88 var(--f-display);letter-spacing:-.06em;text-transform:uppercase;margin:0 0 26px;padding-top:14px;border-top:3px solid var(--blk)}
+.ld-h em{font:italic 400 .62em/1 var(--goth);letter-spacing:-.01em;text-transform:none;color:var(--hot);margin-left:.15em}
+.ld-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.ld-steps li{display:grid;gap:10px;align-content:start;padding:0 20px 0 0}
+.ld-steps li+li{padding-left:20px;border-left:2px solid var(--blk)}
+.ld-steps b{font:800 clamp(56px,7vw,96px)/.8 var(--f-display);letter-spacing:-.07em;color:var(--hot)}
+.ld-steps span{font:800 clamp(22px,2.2vw,30px)/1 var(--f-display);letter-spacing:-.04em;text-transform:uppercase}
+.ld-steps small{font-size:15px;line-height:1.4;color:rgba(10,10,10,.72)}
+.ld-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(10px,2vw,22px);padding-bottom:34px}
+.pcard{margin:0;aspect-ratio:5/7;border:2px solid var(--blk);background:#fff;position:relative;display:grid;place-items:center;transition:transform .25s}
+.pcard:hover{transform:rotate(-3deg) translateY(-6px)}
+.pcard.rd{color:var(--hot)}
+.pcard .cr{position:absolute;display:grid;justify-items:center;font:800 clamp(18px,2.4vw,30px)/.95 var(--f-display)}
+.pcard .cr.tl{top:7%;left:9%}.pcard .cr.br{bottom:7%;right:9%;transform:rotate(180deg)}
+.pcard .big{font-size:clamp(60px,10vw,140px);line-height:1}
+.pcard figcaption{position:absolute;bottom:-32px;left:0;right:0;text-align:center;font:italic 400 clamp(17px,1.6vw,22px)/1 var(--goth);color:var(--blk)}
+.albo{list-style:none;margin:0;padding:0}
+.albo li{display:grid;grid-template-columns:minmax(0,9em) minmax(0,1fr) auto;gap:16px;align-items:baseline;padding:16px 0;border-bottom:2px solid var(--blk)}
+.albo b{font:800 clamp(22px,2.4vw,32px)/1 var(--f-display);letter-spacing:-.04em}
+.albo span{font:800 clamp(28px,4vw,56px)/.95 var(--f-display);letter-spacing:-.05em;text-transform:uppercase}
+.albo i{font:800 12px/1 var(--f-body);font-style:normal;text-transform:uppercase;color:rgba(10,10,10,.55)}
+.albo li.now span{color:var(--hot);font-family:var(--goth);font-style:italic;font-weight:400;text-transform:none;letter-spacing:-.02em}
+.albo li.now i{background:var(--hot);color:#fff;padding:6px 8px}
+.ld-foot{padding-block:clamp(70px,9vw,120px) 40px;font-weight:700;font-size:14px}
+@media (max-width:860px){.ld-tabs{grid-template-columns:1fr}.ld-steps{grid-template-columns:1fr}.ld-steps li,.ld-steps li+li{padding:18px 0;border-left:0;border-top:2px solid var(--blk)}.ld-cards{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:56px}
+  .gatebar .wrap{flex-wrap:wrap}.gb-nav{display:flex!important;order:9;width:100%;margin:6px 0 0;overflow-x:auto;scrollbar-width:none}.gb-nav button{flex:none}}
+@media (max-width:560px){.albo li{grid-template-columns:1fr auto;gap:6px 12px}.albo li span{grid-column:1/-1;order:3}.gu-top span:nth-child(3){display:none}}
 /* ===== comunicati ===== */
 .news-list{display:grid;gap:18px;margin-top:30px}
 .nw{border:2px solid var(--blk);padding:clamp(18px,3vw,32px);display:grid;gap:12px;position:relative;background:#fff}
@@ -1262,6 +1333,9 @@ footer .sig span{font-size:20px;font-weight:400}
   .bm{grid-template-columns:minmax(0,7.5em) repeat(5,minmax(0,1fr)) 2.6em 2.2em;font-size:12.5px}.dv{grid-template-columns:minmax(0,1fr) 7.5em minmax(0,1fr)}.dv .nm{font-size:11px}}
 .heat .hc.win-d{box-shadow:inset 0 0 0 2px #fff}
 @media (max-width:520px){.tabs{gap:0}.tabs .tab{flex:1;padding-left:4px;padding-right:4px;font-size:12px;min-width:0}}
+.step .gu-mast h2.gu-t{font:800 clamp(40px,9vw,128px)/.85 var(--f-display);letter-spacing:-.065em;text-transform:uppercase;margin:0;max-width:none;color:var(--blk)}
+.ld-card h2{font-size:clamp(38px,4.4vw,74px)}
+.ld-checkin .seats i{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.6)}.ld-checkin .seats i.on{background:#fff;box-shadow:none}
 </style>
 </head>
 <body>
@@ -1276,7 +1350,7 @@ footer .sig span{font-size:20px;font-weight:400}
   <div class="wrap iwrap">
     <div class="top">
       <div class="brand"><img src="logo.png" alt="Logo del COS"><span>Comitato Organizzativo dello Sfo®<small>Sondaggio conoscitivo VE2027</small></span></div>
-      <nav class="site-nav" aria-label="Sezioni del sito"><button type="button" data-go="checkin">Check-in</button><button type="button" data-go="news">Comunicati<i class="nbadge" hidden></i></button><button type="button" data-go="cos">Area COS</button></nav>
+      <nav class="site-nav" aria-label="Sezioni del sito"><button type="button" data-go="home">Home</button><button type="button" data-go="checkin">Check-in</button><button type="button" data-go="news">Gazzetta Ufficiale<i class="nbadge" hidden></i></button><button type="button" data-go="cos">Area COS</button></nav>
       <div class="clock"><span class="clk-date">MAR 03 NOV 2026</span><b class="clk-time">15:50</b></div>
     </div>
     <div class="board-zone">
@@ -1289,7 +1363,7 @@ footer .sig span{font-size:20px;font-weight:400}
           </div>
           <div class="board-foot"><span class="live"><span class="blink" aria-hidden="true"></span><span id="b-status">CHECK-IN APERTO</span></span><span class="crew" id="crew">EQUIPAGGIO&nbsp;</span></div>
         </div>
-        <button class="ticker" id="ticker" type="button" data-go="news" hidden><b>Annuncio</b><span class="tk"><span id="ticker-t"></span></span></button>
+        <button class="ticker" id="ticker" type="button" data-go="news" hidden><b>Gazzetta Ufficiale</b><span class="tk"><span id="ticker-t"></span></span></button>
         <div class="ibottom">
           <div class="ib-text">
             <p class="warn bl-goth">ogni tentativo di corruzione sarà punito con disagi</p>
@@ -1303,6 +1377,46 @@ footer .sig span{font-size:20px;font-weight:400}
     </div>
   </div>
 </header>
+<div class="landing" id="landing">
+  <section class="wrap ld-tabs">
+    <article class="ld-card ld-checkin">
+      <p class="ld-k"><span>Scheda 01</span><span id="ld-status">Check-in aperto</span></p>
+      <h2>Check-in<br>VE2027</h2>
+      <p class="ld-p">Il sondaggio per decidere il viaggio dell'estate 2027. Le tue risposte le legge solo il COS, e puoi tornare a cambiarle quando vuoi.</p>
+      <div class="ld-count"><b id="ld-n">–</b><span>su 15<br>a bordo</span></div>
+      <div class="seats ld-seats" id="ld-seats"></div>
+      <button class="btn" type="button" data-go="checkin">Fai il check-in</button>
+    </article>
+    <article class="ld-card ld-gaz">
+      <p class="ld-k"><span>Scheda 02</span><span>Atti del COS</span></p>
+      <h2>Gazzetta<br>Ufficiale</h2>
+      <div class="ld-news" id="ld-news"><p class="ld-p">Nessun atto pubblicato, per ora.</p></div>
+      <button class="btn" type="button" data-go="news">Leggi la Gazzetta</button>
+    </article>
+  </section>
+  <section class="wrap ld-sec">
+    <h2 class="ld-h">Come funziona</h2>
+    <ol class="ld-steps">
+      <li><b>01</b><span>Fai il check-in.</span><small>Nome, PIN e qualche domanda su date, budget, attività e alloggi.</small></li>
+      <li><b>02</b><span>Il COS decide.</span><small>Quattro persone, quindici opinioni, un viaggio solo.</small></li>
+      <li><b>03</b><span>Lo scopri al gate.</span><small>Per undici di voi la destinazione resta segreta fino all'aeroporto.</small></li>
+    </ol>
+  </section>
+  <section class="wrap ld-sec">
+    <h2 class="ld-h">L'equipaggio <em>eletto dal popolo</em></h2>
+    <div class="ld-cards" id="ld-cards"></div>
+  </section>
+  <section class="wrap ld-sec">
+    <h2 class="ld-h">Albo dei viaggi</h2>
+    <ol class="albo">
+      <li class="now"><b>VE2027</b><span>Destinazione ignota</span><i>In partenza</i></li>
+      <li><b>VE2026</b><span>Marocco</span><i>Atterrato</i></li>
+      <li><b>VE2025</b><span>Balcani</span><i>Atterrato</i></li>
+      <li><b>VE2024</b><span>Croazia</span><i>Atterrato</i></li>
+    </ol>
+  </section>
+  <footer class="wrap ld-foot">Comitato Organizzativo dello Sfo®, VE2027.</footer>
+</div>
 
 <!-- GATE BAR -->
 <div class="gatebar" id="gatebar" hidden>
@@ -1310,7 +1424,7 @@ footer .sig span{font-size:20px;font-weight:400}
     <img src="logo.png" alt="Torna all'inizio" id="home" title="Torna all'inizio">
     <div class="flaps gnum" id="g-num"></div>
     <div class="flaps gname" id="g-name"></div>
-    <nav class="gb-nav" aria-label="Sezioni del sito"><button type="button" data-go="checkin">Check-in</button><button type="button" data-go="news">Comunicati<i class="nbadge" hidden></i></button><button type="button" data-go="cos">COS</button></nav>
+    <nav class="gb-nav" aria-label="Sezioni del sito"><button type="button" data-go="home">Home</button><button type="button" data-go="checkin">Check-in</button><button type="button" data-go="news">Gazzetta Ufficiale<i class="nbadge" hidden></i></button><button type="button" data-go="cos">Area COS</button></nav>
     <div class="clock"><span class="clk-date"></span><b class="clk-time"></b></div>
   </div>
   <div class="track" id="track"></div>
@@ -1537,7 +1651,7 @@ footer .sig span{font-size:20px;font-weight:400}
     <div id="cos-area" hidden>
       <p class="help" id="res-sub"></p>
       <div class="cos-tools"><button class="btn-line" type="button" id="cos-refresh">Aggiorna</button><button class="btn-line" type="button" id="cos-csv">Scarica CSV</button><button class="btn-line" type="button" id="cos-json">Scarica JSON</button><button class="link" type="button" id="cos-close" style="color:var(--board-mute)">Chiudi area COS</button></div>
-      <div class="tabs" role="tablist"><button type="button" role="tab" class="tab" data-tab="sum" aria-selected="true">Riepilogo</button><button type="button" role="tab" class="tab" data-tab="people" aria-selected="false">Passeggeri</button><button type="button" role="tab" class="tab" data-tab="news" aria-selected="false">Comunicati</button></div>
+      <div class="tabs" role="tablist"><button type="button" role="tab" class="tab" data-tab="sum" aria-selected="true">Riepilogo</button><button type="button" role="tab" class="tab" data-tab="people" aria-selected="false">Passeggeri</button><button type="button" role="tab" class="tab" data-tab="news" aria-selected="false">Gazzetta</button></div>
       <div id="res-body"></div>
       <div id="people-body" hidden></div>
       <div id="news-admin" hidden>
@@ -1545,8 +1659,11 @@ footer .sig span{font-size:20px;font-weight:400}
           <input type="hidden" id="na-id">
           <div class="field"><label for="na-title">Titolo</label><input class="txt dark-in" id="na-title" maxlength="120" placeholder="Prima rata entro il 15 dicembre"></div>
           <div class="field"><label>Tipo</label><div class="choices" id="na-kind"></div></div>
-          <div class="field"><label for="na-body">Testo</label><textarea class="txt dark-in" id="na-body" maxlength="4000" placeholder="Scrivi il comunicato. Gli a capo restano."></textarea></div>
+          <div class="field"><label for="na-body">Testo</label><textarea class="txt dark-in" id="na-body" maxlength="4000" placeholder="Scrivi il testo. Gli a capo restano."></textarea></div>
           <div class="field"><label>Firmato da</label><div class="choices" id="na-author"></div></div>
+          <div class="field"><label for="na-files">Documenti allegati</label><small style="color:rgba(255,255,255,.6)">PDF, immagini, fogli di calcolo: fino a 8 MB l'uno. Li può scaricare chiunque apra la Gazzetta.</small>
+            <label class="drop" id="na-drop"><input type="file" id="na-files" multiple><b>Trascina qui i file</b><span>oppure tocca per sceglierli</span></label>
+            <ul class="na-files" id="na-filelist"></ul></div>
           <label class="na-pin"><input type="checkbox" id="na-pinned"> Fissa in cima e mostra nel tabellone</label>
           <div class="na-act"><button class="btn" type="submit" id="na-save">Pubblica</button><button class="link" type="button" id="na-reset" hidden>Annulla modifica</button><span class="na-note" id="na-note"></span></div>
         </form>
@@ -1556,9 +1673,11 @@ footer .sig span{font-size:20px;font-weight:400}
   </section>
 
   <section class="step news" data-s="15" hidden>
-    <p class="step-k">Bacheca del COS</p>
-    <h2><span class="w">Comunicati</span> <span class="g">Dal Comitato, con affetto.</span></h2>
-    <p class="help">Rate, scadenze, regole d'imbarco e annunci vari. Quello che è scritto qui vale come ufficiale.</p>
+    <header class="gu-mast">
+      <p class="gu-top"><span>Serie generale</span><span id="gu-n">Anno I</span><span>Distribuzione gratuita</span></p>
+      <h2 class="gu-t">Gazzetta Ufficiale</h2>
+      <p class="gu-s">del Comitato Organizzativo dello Sfo<span>Atti, scadenze, bilanci e documenti del VE2027. Quello che è pubblicato qui vale come ufficiale.</span></p>
+    </header>
     <div class="news-list" id="news-list"><p class="empty-res">Caricamento…</p></div>
     <div class="news-cta"><button class="btn" type="button" data-go="checkin">Vai al check-in</button></div>
   </section>
@@ -1640,7 +1759,7 @@ const PP=[
   {k:"altro",n:"Gite, magliette e straforo",v:(225+169.93+167.63)/15,c:"#d6d6d6",paid:1},
   {k:"posto",n:"Spese sul posto (stima)",v:25*11,c:"url(#hatch)",paid:0}];
 const PER_NIGHT=40,PER_DAY=25,REF=Math.round(PP.reduce((a,b)=>a+b.v,0));
-const GATES=["PASSEGGERO","ROTTA","ATTIVITÀ","BAGAGLIO","SCALI","ALLOGGIO","DATE","NOTTI","BUDGET","DOCUMENTI","ESTERNI","NOTE","IMBARCO","AREA COS","COMUNICATI"];
+const GATES=["PASSEGGERO","ROTTA","ATTIVITÀ","BAGAGLIO","SCALI","ALLOGGIO","DATE","NOTTI","BUDGET","DOCUMENTI","ESTERNI","NOTE","IMBARCO","AREA COS","GAZZETTA"];
 const NG=12,REV=13,COSN=14,NEWSN=15;
 const EXT_OK=[["si","Sì, nessun problema"],["dip","Dipende da chi"],["no","Preferirei di no"]],EXT_BRING=[["si","Sì"],["no","No"]];
 
@@ -1700,7 +1819,9 @@ function tick(){const d=new Date(),hh=String(d.getHours()).padStart(2,"0"),mm=St
 tick();setInterval(tick,15000);
 $("#crew").insertAdjacentHTML("beforeend",CREW.map(c=>miniCard(c[0],c[1],c[2],c[3])).join(""));
 $("#sig").innerHTML=CREW.map(c=>miniCard(c[0],c[1],c[2],c[3])).join("")+"<span>Seguono le firme</span>";
-async function refreshCount(){try{const r=await rpc("ve_count");$("#b-status").textContent=`CHECK-IN APERTO, ${String(r.count||0).padStart(2,"0")}/${TOTAL} A BORDO`;}catch(e){}}
+async function refreshCount(){try{const r=await rpc("ve_count"),c=r.count||0;$("#b-status").textContent=`CHECK-IN APERTO, ${String(c).padStart(2,"0")}/${TOTAL} A BORDO`;
+  $("#ld-n").textContent=c;$("#ld-seats").innerHTML=Array.from({length:TOTAL},(_,i)=>`<i class="${i<c?"on":""}"></i>`).join("");}catch(e){}}
+$("#ld-cards").innerHTML=CREW.map(c=>`<figure class="pcard${c[2]?" rd":""}"><span class="cr tl">${c[0]}<br>${c[1]}</span><span class="big">${c[1]}</span><span class="cr br">${c[0]}<br>${c[1]}</span><figcaption>${c[3]}</figcaption></figure>`).join("");
 
 /* ---------- meter ---------- */
 function meter(el,get,set){
@@ -1973,13 +2094,13 @@ function show(n){
   if(n>=2&&n<=REV&&!me){n=1;setTimeout(()=>note("Prima entra con il tuo nome e il PIN.",true),50);}
   cur=n;
   const intro=n===0,cos=n===COSN,info=n===NEWSN;
-  $("#intro").hidden=!intro;{const v=$("#bgvid");if(v){if(intro){const p=v.play();if(p&&p.catch)p.catch(()=>{});}else v.pause();}}if(intro){const f=$("#flash");if(f)f.style.transition="";setTimeout(()=>startCam&&startCam(),30);}document.documentElement.classList.toggle("on-intro",intro);
+  $("#intro").hidden=!intro;$("#landing").hidden=!intro;{const v=$("#bgvid");if(v){if(intro){const p=v.play();if(p&&p.catch)p.catch(()=>{});}else v.pause();}}if(intro){const f=$("#flash");if(f)f.style.transition="";setTimeout(()=>startCam&&startCam(),30);}document.documentElement.classList.toggle("on-intro",intro);
   const tc=document.querySelector('meta[name="theme-color"]');if(tc)tc.content=intro?"#0b0b0c":"#0b0b0c";$("#gatebar").hidden=intro;$("#main").hidden=intro;$("#navbar").hidden=intro||cos||info;
   $("#track").hidden=cos||info;
   $$(".gb-nav button").forEach(b=>b.classList.toggle("on",b.dataset.go===(info?"news":cos?"cos":"checkin")));
   $$(".step").forEach(s=>s.hidden=+s.dataset.s!==n);
   if(!intro){
-    flaps($("#g-num"),n<=NG?"G"+String(n).padStart(2,"0"):(n===REV?"G--":info?"INF":"COS"),3,"y");
+    flaps($("#g-num"),n<=NG?"G"+String(n).padStart(2,"0"):(n===REV?"G--":info?"GU ":"COS"),3,"y");
     flaps($("#g-name"),GATES[n-1],10);
     $("#nav-count").textContent=n<=NG?`GATE ${String(n).padStart(2,"0")} DI ${NG}`:"";
     navNext.hidden=n>=REV||(n===1&&!me);navTxt.textContent=n===NG?"Vai all'imbarco":"Avanti";
@@ -2081,34 +2202,68 @@ $$(".tab").forEach(t=>t.addEventListener("click",()=>{cosTab=t.dataset.tab;$$(".
 
 /* ---------- navigazione tra le sezioni del sito ---------- */
 $$("[data-go]").forEach(b=>b.addEventListener("click",()=>{const g=b.dataset.go;
-  if(g==="news")show(NEWSN);else if(g==="cos")show(COSN);else if(cur===0)$("#start").click();else show(me?(savedAt?REV:2):1);}));
+  if(g==="home"){show(0);scrollTo(0,0);}else if(g==="news")show(NEWSN);else if(g==="cos")show(COSN);else if(cur===0&&scrollY<200)$("#start").click();else show(me?(savedAt?REV:2):1);}));
 
-/* ---------- comunicati ---------- */
-const KINDS=[["comunicato","Comunicato"],["avviso","Avviso"],["scadenza","Scadenza"],["bilancio","Bilancio"]];
+/* ---------- gazzetta ufficiale ---------- */
+const KINDS=[["comunicato","Comunicato"],["avviso","Avviso"],["scadenza","Scadenza"],["bilancio","Bilancio"],["documento","Documento"]];
 const AUTH=[["","COS"],...CREW.map(c=>[c[0]+c[1],c[0]+c[1]])];
 let news=[],newsErr=false;
-const fmtDay=t=>{const d=new Date(t);return d.toLocaleDateString("it-IT",{day:"numeric",month:"long"}).toUpperCase();};
+const fmtDay=t=>{const d=new Date(t);return d.toLocaleDateString("it-IT",{day:"numeric",month:"long",year:"numeric"}).toUpperCase();};
 const authCard=a=>{const c=CREW.find(c=>c[0]+c[1]===a);return c?miniCard(c[0],c[1],c[2],c[3]):"";};
-async function loadNews(){try{const r=await rpc("ve_news_list",{});news=Array.isArray(r)?r:[];newsErr=false;}catch(e){newsErr=true;}renderNews();}
+const fsize=n=>n>=1048576?(n/1048576).toFixed(1).replace(".",",")+" MB":Math.max(1,Math.round(n/1024))+" KB";
+const fext=n=>{const m=/\.([a-z0-9]{1,5})$/i.exec(n||"");return m?m[1]:"file";};
+const isImg=d=>/^image\/(png|jpe?g|gif|webp)$/i.test(d.mime);
+const docCache={};
+async function getDoc(id){if(docCache[id])return docCache[id];const r=await rpc("ve_doc_get",{p_id:id});if(!r.ok)throw new Error(r.error);
+  const bin=atob(r.b64),u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);
+  return docCache[id]={name:r.name,url:URL.createObjectURL(new Blob([u],{type:r.mime}))};}
+async function downloadDoc(id,btn){const g=btn&&btn.querySelector(".go"),t=g&&g.textContent;if(g)g.textContent="…";
+  try{const d=await getDoc(id),a=document.createElement("a");a.href=d.url;a.download=d.name;document.body.appendChild(a);a.click();a.remove();if(g)g.textContent=t;}
+  catch(e){if(g)g.textContent="Errore";}}
+const nums={};
+async function loadNews(){try{const r=await rpc("ve_news_list",{});news=Array.isArray(r)?r:[];newsErr=false;}catch(e){newsErr=true;}
+  news.slice().sort((a,b)=>new Date(a.at)-new Date(b.at)).forEach((x,i)=>nums[x.id]=i+1);renderNews();}
 function renderNews(){
-  const L=$("#news-list");
-  L.innerHTML=newsErr?'<p class="empty-res">La bacheca non è raggiungibile in questo momento.</p>':news.length?news.map(x=>`<article class="nw${x.pinned?" pin":""}" data-k="${esc(x.kind)}">
-    <div class="nw-h"><span class="nw-k">${esc((KINDS.find(k=>k[0]===x.kind)||KINDS[0])[1])}</span><span class="nw-d">${fmtDay(x.at)}</span>${x.pinned?'<span class="nw-p">In evidenza</span>':""}</div>
+  const L=$("#news-list");$("#gu-n").textContent=`Anno I, n. ${news.length}`;
+  L.innerHTML=newsErr?'<p class="empty-res">La Gazzetta non è raggiungibile in questo momento.</p>':news.length?news.map(x=>`<article class="nw${x.pinned?" pin":""}" data-k="${esc(x.kind)}">
+    <div class="nw-h"><span class="nw-k">${esc((KINDS.find(k=>k[0]===x.kind)||KINDS[0])[1])}</span><span class="nw-d">N. ${nums[x.id]} · ${fmtDay(x.at)}</span>${x.pinned?'<span class="nw-p">In evidenza</span>':""}</div>
     <h3>${esc(x.title)}</h3>${x.body?`<div class="nw-b">${esc(x.body)}</div>`:""}
-    <div class="nw-f">${authCard(x.author)}<span>${x.author?"firmato "+esc(x.author):"il COS"}</span></div></article>`).join(""):'<p class="empty-res">Nessun comunicato, per ora. Il COS lavora in silenzio.</p>';
+    ${(x.docs||[]).length?`<div class="docs">${x.docs.map(d=>isImg(d)&&d.size<3e6?`<img class="doc-img" data-img="${d.id}" alt="${esc(d.name)}">`:"").join("")}${x.docs.map(d=>`<button type="button" class="doc" data-doc="${d.id}"><span class="ext">${esc(fext(d.name))}</span><span><b>${esc(d.name)}</b><small>${fsize(d.size)}</small></span><span class="go">Scarica ↓</span></button>`).join("")}</div>`:""}
+    <div class="nw-f">${authCard(x.author)}<span>${x.author?"firmato "+esc(x.author):"il COS"}</span></div></article>`).join(""):'<p class="empty-res">Nessun atto pubblicato, per ora. Il COS lavora in silenzio.</p>';
+  L.querySelectorAll("[data-doc]").forEach(b=>b.addEventListener("click",()=>downloadDoc(+b.dataset.doc,b)));
+  L.querySelectorAll("[data-img]").forEach(async im=>{try{im.src=(await getDoc(+im.dataset.img)).url;}catch(e){im.remove();}});
   const pin=news.find(x=>x.pinned)||news[0],tk=$("#ticker");tk.hidden=!pin;if(pin)$("#ticker-t").textContent=pin.title+(pin.body?"  ·  "+pin.body.replace(/\s+/g," ").slice(0,140):"");
   $$(".nbadge").forEach(b=>{b.hidden=!news.length;b.textContent=news.length;});
+  const ln=$("#ld-news");if(ln&&!newsErr&&news.length){ln.innerHTML=news.slice(0,3).map(x=>`<button type="button" class="ld-ni" data-go2="news"><small>N. ${nums[x.id]} · ${esc((KINDS.find(k=>k[0]===x.kind)||KINDS[0])[1])}${(x.docs||[]).length?` · <em>${x.docs.length} allegat${x.docs.length===1?"o":"i"}</em>`:""}</small><b>${esc(x.title)}</b></button>`).join("");
+    ln.querySelectorAll("[data-go2]").forEach(b=>b.addEventListener("click",()=>show(NEWSN)));}
   renderNewsAdmin();}
 const naKind=$("#na-kind"),naAuth=$("#na-author");let naK="comunicato",naA="";
 function pills(el,opts,get,set){el.innerHTML="";opts.forEach(([v,l])=>{const b=document.createElement("button");b.type="button";b.className="choice";b.innerHTML=`<i></i>${l}`;b.setAttribute("aria-pressed",String(get()===v));
   b.addEventListener("click",()=>{set(v);[...el.children].forEach((x,i)=>x.setAttribute("aria-pressed",String(opts[i][0]===get())));});el.appendChild(b);});}
-function naFill(x){$("#na-id").value=x?x.id:"";$("#na-title").value=x?x.title:"";$("#na-body").value=x?x.body:"";$("#na-pinned").checked=!!(x&&x.pinned);
+let naQueue=[],naEditing=null;
+function naFiles(){const L=$("#na-filelist");
+  L.innerHTML=(naEditing&&naEditing.docs||[]).map(d=>`<li class="old"><span>${esc(d.name)}<small>${fsize(d.size)}, già pubblicato</small></span><button type="button" class="mini-btn danger" data-dd="${d.id}">Elimina</button></li>`).join("")
+   +naQueue.map((f,i)=>`<li><span>${esc(f.name)}<small>${fsize(f.size)}${f.size>8388608?", troppo grande":""}</small></span><button type="button" class="mini-btn" data-rq="${i}">Togli</button></li>`).join("");
+  L.querySelectorAll("[data-rq]").forEach(b=>b.addEventListener("click",()=>{naQueue.splice(+b.dataset.rq,1);naFiles();}));
+  L.querySelectorAll("[data-dd]").forEach(b=>armDelete(b,"Sicuro?",async()=>{const r=await rpc("ve_doc_delete",{p_pass:cosPass,p_id:+b.dataset.dd});if(!r.ok)throw new Error(r.error);
+    naEditing.docs=naEditing.docs.filter(d=>d.id!==+b.dataset.dd);naFiles();loadNews();}));}
+const addFiles=fl=>{[...fl].forEach(f=>naQueue.push(f));naFiles();};
+$("#na-files").addEventListener("change",e=>{addFiles(e.target.files);e.target.value="";});
+{const dz=$("#na-drop");["dragenter","dragover"].forEach(t=>dz.addEventListener(t,e=>{e.preventDefault();dz.classList.add("over");}));
+ ["dragleave","drop"].forEach(t=>dz.addEventListener(t,e=>{e.preventDefault();dz.classList.remove("over");}));dz.addEventListener("drop",e=>addFiles(e.dataTransfer.files));}
+function b64chunk(buf){let s="";const u=new Uint8Array(buf);for(let i=0;i<u.length;i+=32768)s+=String.fromCharCode.apply(null,u.subarray(i,i+32768));return btoa(s);}
+async function uploadFile(newsId,f,onp){const CH=524288,buf=await f.arrayBuffer();let id=null;
+  for(let o=0;o<Math.max(1,buf.byteLength);o+=CH){const part=b64chunk(buf.slice(o,o+CH));
+    const r=id===null?await rpc("ve_doc_add",{p_pass:cosPass,p_news_id:newsId,p_name:f.name,p_mime:f.type||"application/octet-stream",p_b64:part}):await rpc("ve_doc_append",{p_pass:cosPass,p_id:id,p_b64:part});
+    if(!r.ok){if(id!==null)rpc("ve_doc_delete",{p_pass:cosPass,p_id:id}).catch(()=>{});throw new Error(r.error);}
+    if(id===null)id=r.id;onp&&onp(Math.min(1,(o+CH)/buf.byteLength));}}
+function naFill(x){naEditing=x?JSON.parse(JSON.stringify(x)):null;naQueue=[];naFiles();$("#na-id").value=x?x.id:"";$("#na-title").value=x?x.title:"";$("#na-body").value=x?x.body:"";$("#na-pinned").checked=!!(x&&x.pinned);
   naK=x?x.kind:"comunicato";naA=x?x.author:"";pills(naKind,KINDS,()=>naK,v=>naK=v);pills(naAuth,AUTH,()=>naA,v=>naA=v);
   $("#na-save").textContent=x?"Salva modifiche":"Pubblica";$("#na-reset").hidden=!x;}
 naFill(null);
 function renderNewsAdmin(){const L=$("#na-list");if(!L)return;
-  L.innerHTML=news.length?news.map(x=>`<div class="na-it" data-id="${x.id}"><div><small>${esc(x.kind)} · ${fmtDay(x.at)}${x.pinned?" · in evidenza":""}</small><b>${esc(x.title)}</b></div>
-    <div class="ops"><button type="button" class="mini-btn" data-op="edit">Modifica</button><button type="button" class="mini-btn danger" data-op="del">Elimina</button></div></div>`).join(""):'<p class="na-note">Nessun comunicato pubblicato.</p>';
+  L.innerHTML=news.length?news.map(x=>`<div class="na-it" data-id="${x.id}"><div><small>N. ${nums[x.id]} · ${esc(x.kind)} · ${fmtDay(x.at)}${x.pinned?" · in evidenza":""}${(x.docs||[]).length?` · ${x.docs.length} allegat${x.docs.length===1?"o":"i"}`:""}</small><b>${esc(x.title)}</b></div>
+    <div class="ops"><button type="button" class="mini-btn" data-op="edit">Modifica</button><button type="button" class="mini-btn danger" data-op="del">Elimina</button></div></div>`).join(""):'<p class="na-note">Nessun atto pubblicato.</p>';
   L.querySelectorAll(".na-it").forEach(it=>{const x=news.find(n=>String(n.id)===it.dataset.id);
     it.querySelector('[data-op="edit"]').addEventListener("click",()=>{naFill(x);$("#na-title").focus();});
     armDelete(it.querySelector('[data-op="del"]'),"Sicuro? Elimina",async()=>{const r=await rpc("ve_news_delete",{p_pass:cosPass,p_id:x.id});if(!r.ok)throw new Error(r.error);await loadNews();});});}
@@ -2120,8 +2275,11 @@ $("#na-form").addEventListener("submit",async e=>{e.preventDefault();const note=
   note.textContent="Pubblicazione…";
   try{const id=$("#na-id").value,r=await rpc("ve_news_save",{p_pass:cosPass,p_id:id?+id:null,p_title:t,p_body:$("#na-body").value,p_kind:naK,p_author:naA,p_pinned:$("#na-pinned").checked});
     if(!r.ok){note.textContent=r.error==="locked"?"Area COS bloccata per troppi tentativi.":"Non salvato: "+r.error;return;}
-    note.textContent=id?"Modifiche salvate.":"Pubblicato. Lo vedono tutti nella bacheca.";naFill(null);await loadNews();}
-  catch(err){note.textContent=/404/.test(err.message)?"La bacheca non è ancora attiva sul database.":"Connessione non riuscita.";}});
+    const q=naQueue.filter(f=>f.size<=8388608),skipped=naQueue.length-q.length,fails=[];
+    for(let i=0;i<q.length;i++){try{await uploadFile(r.id,q[i],p=>note.textContent=`Carico ${q[i].name} (${i+1} di ${q.length}): ${Math.round(p*100)}%`);}catch(e){fails.push(q[i].name);}}
+    note.textContent=(id?"Modifiche salvate.":"Pubblicato in Gazzetta.")+(q.length-fails.length?` ${q.length-fails.length} document${q.length-fails.length===1?"o caricato":"i caricati"}.`:"")+(fails.length?` Non caricati: ${fails.join(", ")}.`:"")+(skipped?` ${skipped} oltre gli 8 MB, saltat${skipped===1?"o":"i"}.`:"");
+    naFill(null);await loadNews();}
+  catch(err){note.textContent=/404/.test(err.message)?"La Gazzetta non è ancora attiva sul database.":"Connessione non riuscita.";}});
 loadNews();
 function rangesOf(keys){const idx=keys.map(k=>DAYS.findIndex(d=>d.k===k)).filter(i=>i>=0).sort((a,b)=>a-b),out=[];
   for(let i=0;i<idx.length;i++){let j=i;while(j+1<idx.length&&idx[j+1]===idx[j]+1)j++;const a=DAYS[idx[i]],b=DAYS[idx[j]];
