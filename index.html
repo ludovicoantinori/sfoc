@@ -1370,6 +1370,22 @@ html.atto-on,html.atto-on body{overflow:hidden}
 .loading i{width:16px;height:16px;border:3px solid rgba(10,10,10,.2);border-top-color:var(--hot);border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 @media (max-width:560px){.at-dh{grid-template-columns:auto minmax(0,1fr) auto}.at-dh small{display:none}}
+/* ===== tabellone completo anche su telefono ===== */
+@media (max-width:600px){
+  .board-stack{--pad:10px}
+  .intro .board{padding:14px 12px}
+  .intro .bgrid{grid-template-columns:auto auto auto auto!important;justify-content:space-between;gap:9px 6px!important;--fs:calc((100vw - 140px)/20.9)}
+  .intro .bgrid .flaps.dim{opacity:.55}.intro .bgrid .state.dim{opacity:.7}
+  .intro .bgrid .flaps{gap:1.5px}
+  .intro .bgrid .flap{border-radius:2px;width:1.02em;height:1.42em}
+  .intro .bgrid .bl{display:block!important;font:800 8.5px/1 var(--f-body);letter-spacing:.02em;text-transform:uppercase}
+  .intro .bgrid .flaps.dim{display:flex!important}
+  .intro .bgrid .c-s{display:flex!important}
+  .intro .bgrid .state{font:800 8px/1 var(--f-body);letter-spacing:0;gap:3px}
+  .intro .bgrid .state .blink{width:5px;height:5px}
+  #b-flight,#b-gate,#b-dest{grid-column:auto!important;grid-row:auto!important;justify-self:start!important}
+  .board-foot{gap:10px;flex-wrap:wrap}
+}
 </style>
 </head>
 <body>
@@ -1841,16 +1857,22 @@ function flaps(el,str,len,cls){
     if(reduce){s.textContent=ch;return;}
     setTimeout(()=>{s.classList.remove("go");void s.offsetWidth;s.classList.add("go");setTimeout(()=>{s.textContent=ch;},80);},i*38);});
 }
-const DLEN=11;
-flaps($("#b-flight"),"VE2027",6);flaps($("#b-gate"),"COS",3,"y");flaps($("#b-dest"),"???????????",DLEN,"y");
+const DLEN=matchMedia("(max-width:600px)").matches?10:11,QM="?".repeat(DLEN);
+flaps($("#b-flight"),"VE2027",6);flaps($("#b-gate"),"COS",3,"y");flaps($("#b-dest"),QM,DLEN,"y");
 [["VE2026","MAROCCO"],["VE2025","BALCANI"],["VE2024","CROAZIA"]].forEach(([f,d])=>{
   const g=$("#bgrid"),mk=(cls)=>{const e=document.createElement("div");e.className="flaps dim"+(cls?" "+cls:"");g.appendChild(e);return e;};
   flaps(mk(),f,6);flaps(mk(),d,DLEN);flaps(mk(),"COS",3);
   const st=document.createElement("span");st.className="state dim c-s";st.textContent="Atterrato";g.appendChild(st);});
+/* su telefono il tabellone resta completo: le palette si rimpiccioliscono quanto basta per stare in larghezza */
+function fitBoard(){const g=$("#bgrid");if(!g)return;g.style.removeProperty("--fs");if(!matchMedia("(max-width:600px)").matches)return;
+  let fs=Math.min(18,(g.clientWidth-90)/19);
+  for(let k=0;k<6;k++){g.style.setProperty("--fs",fs.toFixed(2)+"px");const over=g.scrollWidth-g.clientWidth;if(over<=0)break;fs=Math.max(8,fs-over/19-.05);}}
+addEventListener("resize",()=>{clearTimeout(fitBoard.t);fitBoard.t=setTimeout(fitBoard,120);});
+requestAnimationFrame(fitBoard);if(document.fonts)document.fonts.ready.then(fitBoard);
 const CITIES=["LISBONA","TOKYO","ZANZIBAR","REYKJAVIK","BALI","L'AVANA","ATENE","OAXACA","SRI LANKA","CAPO VERDE","LOFOTEN","HANOI","SANTORINI","CARTAGENA","TBILISI","MAURITIUS"];
 if(!reduce){let ci=Math.floor(Math.random()*CITIES.length);
   const cycle=()=>{const seq=[0,1,2].map(()=>CITIES[(ci++)%CITIES.length]);let i=0;
-    const step=()=>{if(i<seq.length){flaps($("#b-dest"),seq[i++],DLEN,"y");setTimeout(step,1300);}else{flaps($("#b-dest"),"???????????",DLEN,"y");setTimeout(cycle,4200);}};step();};
+    const step=()=>{if(i<seq.length){flaps($("#b-dest"),seq[i++],DLEN,"y");setTimeout(step,1300);}else{flaps($("#b-dest"),QM,DLEN,"y");setTimeout(cycle,4200);}};step();};
   setTimeout(cycle,1500);}
 function tick(){const d=new Date(),hh=String(d.getHours()).padStart(2,"0"),mm=String(d.getMinutes()).padStart(2,"0");
   $$(".clk-date").forEach(e=>e.textContent=`${GIORNI[d.getDay()]} ${String(d.getDate()).padStart(2,"0")} ${MESI[d.getMonth()]} ${d.getFullYear()}`);
