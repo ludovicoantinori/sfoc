@@ -1470,7 +1470,7 @@ html.atto-on,html.atto-on body{overflow:hidden}
   <div class="wrap iwrap">
     <div class="top">
       <div class="brand"><img src="logo.png" alt="Logo del COS"><span>Comitato Organizzativo dello Sfo®<small>Sondaggio conoscitivo VE2027</small></span></div>
-      <nav class="site-nav" aria-label="Sezioni del sito"><button type="button" data-go="home">Home</button><button type="button" data-go="checkin">Check-in</button><button type="button" data-go="news">Gazzetta Ufficiale<i class="nbadge" hidden></i></button><button type="button" data-go="wall">Bacheca</button><button type="button" data-go="cos">Area COS</button></nav>
+      <nav class="site-nav" aria-label="Sezioni del sito"><button type="button" data-go="home">Home</button><button type="button" data-go="checkin">Check-in</button><button type="button" data-go="news">Gazzetta Ufficiale<i class="nbadge" hidden></i></button><button type="button" data-go="wall">Infopoint</button><button type="button" data-go="cos">Area COS</button></nav>
       <div class="clock"><span class="clk-date">MAR 03 NOV 2026</span><b class="clk-time">15:50</b></div>
     </div>
     <div class="board-zone">
@@ -1517,9 +1517,9 @@ html.atto-on,html.atto-on body{overflow:hidden}
   <section class="wrap">
     <article class="ld-card ld-bach">
       <div class="ld-bl"><p class="ld-k"><span>Scheda 03</span><span>Voce dei passeggeri</span></p>
-      <h2>Bacheca</h2>
+      <h2>Infopoint</h2>
       <p class="ld-p">Annunci per tutto il gruppo o richieste private al COS. Con il tuo nome e PIN del check-in.</p>
-      <button class="btn" type="button" data-go="wall">Scrivi in bacheca</button></div>
+      <button class="btn" type="button" data-go="wall">Vai all'infopoint</button></div>
       <div class="ld-wall" id="ld-wall"><p class="ld-p" style="opacity:.6">Ancora nessun annuncio. Il primo è tuo.</p></div>
     </article>
   </section>
@@ -1532,7 +1532,7 @@ html.atto-on,html.atto-on body{overflow:hidden}
     </ol>
   </section>
   <section class="wrap ld-sec">
-    <h2 class="ld-h">L'equipaggio <em>eletto dal popolo</em></h2>
+    <h2 class="ld-h">L'equipaggio</h2>
     <div class="ld-cards" id="ld-cards"></div>
   </section>
   <section class="wrap ld-sec">
@@ -1558,7 +1558,7 @@ html.atto-on,html.atto-on body{overflow:hidden}
     <img src="logo.png" alt="Torna all'inizio" id="home" title="Torna all'inizio">
     <div class="flaps gnum" id="g-num"></div>
     <div class="flaps gname" id="g-name"></div>
-    <nav class="gb-nav" aria-label="Sezioni del sito"><button type="button" data-go="home">Home</button><button type="button" data-go="checkin">Check-in</button><button type="button" data-go="news">Gazzetta Ufficiale<i class="nbadge" hidden></i></button><button type="button" data-go="wall">Bacheca</button><button type="button" data-go="cos">Area COS</button></nav>
+    <nav class="gb-nav" aria-label="Sezioni del sito"><button type="button" data-go="home">Home</button><button type="button" data-go="checkin">Check-in</button><button type="button" data-go="news">Gazzetta Ufficiale<i class="nbadge" hidden></i></button><button type="button" data-go="wall">Infopoint</button><button type="button" data-go="cos">Area COS</button></nav>
     <div class="clock"><span class="clk-date"></span><b class="clk-time"></b></div>
   </div>
   <div class="track" id="track"></div>
@@ -1822,7 +1822,7 @@ html.atto-on,html.atto-on body{overflow:hidden}
 
   <section class="step wall" data-s="16" hidden>
     <p class="step-k">Scheda 03</p>
-    <h2><span class="w">Bacheca</span> <span class="g">La voce dei passeggeri.</span></h2>
+    <h2><span class="w">Infopoint</span> <span class="g">La voce dei passeggeri.</span></h2>
     <p class="help">Un annuncio per tutto il gruppo, oppure una richiesta riservata ai quattro del COS. Entri con il nome e il PIN del check-in, così si sa sempre chi scrive.</p>
     <div class="wl-compose" id="wl-compose">
       <div class="wl-login" id="wl-login">
@@ -1839,7 +1839,7 @@ html.atto-on,html.atto-on body{overflow:hidden}
           <button type="button" role="radio" class="wl-kind" data-k="privato" aria-checked="false"><b>Richiesta privata al COS</b><span>La leggono solo i quattro del COS. Ti rispondono qui.</span></button>
         </div>
         <textarea class="txt" id="wl-body" maxlength="800" placeholder="Cerco compagno di stanza, vendo crema solare, chiedo di non partire di lunedì…"></textarea>
-        <div class="wl-act"><button class="btn" type="submit" id="wl-send">Pubblica in bacheca</button><span class="wl-note" id="wl-snote"></span><span class="wl-cnt" id="wl-cnt">0/800</span></div>
+        <div class="wl-act"><button class="btn" type="submit" id="wl-send">Pubblica l'annuncio</button><span class="wl-note" id="wl-snote"></span><span class="wl-cnt" id="wl-cnt">0/800</span></div>
       </form>
     </div>
     <div class="wl-mine" id="wl-mine" hidden><h3 class="wl-h">I tuoi messaggi</h3><div id="wl-mine-list"></div></div>
@@ -1924,7 +1924,7 @@ const PP=[
   {k:"altro",n:"Gite, magliette e straforo",v:(225+169.93+167.63)/15,c:"#d6d6d6",paid:1},
   {k:"posto",n:"Spese sul posto (stima)",v:25*11,c:"url(#hatch)",paid:0}];
 const PER_NIGHT=40,PER_DAY=25,REF=Math.round(PP.reduce((a,b)=>a+b.v,0));
-const GATES=["PASSEGGERO","ROTTA","ATTIVITÀ","BAGAGLIO","SCALI","ALLOGGIO","DATE","NOTTI","BUDGET","DOCUMENTI","ESTERNI","NOTE","IMBARCO","AREA COS","GAZZETTA","BACHECA"];
+const GATES=["PASSEGGERO","ROTTA","ATTIVITÀ","BAGAGLIO","SCALI","ALLOGGIO","DATE","NOTTI","BUDGET","DOCUMENTI","ESTERNI","NOTE","IMBARCO","AREA COS","GAZZETTA","INFOPOINT"];
 const NG=12,REV=13,COSN=14,NEWSN=15,WALLN=16;
 const EXT_OK=[["si","Sì, nessun problema"],["dip","Dipende da chi"],["no","Preferirei di no"]],EXT_BRING=[["si","Sì"],["no","No"]];
 
@@ -2272,7 +2272,7 @@ function show(n){
   {const on=document.querySelector(".gb-nav button.on");if(on&&on.parentElement.scrollWidth>on.parentElement.clientWidth)on.parentElement.scrollLeft=on.offsetLeft-16;}
   $$(".step").forEach(s=>s.hidden=+s.dataset.s!==n);
   if(!intro){
-    flaps($("#g-num"),n<=NG?"G"+String(n).padStart(2,"0"):(n===REV?"G--":info?"GU ":wall?"BCH":"COS"),3,"y");
+    flaps($("#g-num"),n<=NG?"G"+String(n).padStart(2,"0"):(n===REV?"G--":info?"GU ":wall?"INF":"COS"),3,"y");
     flaps($("#g-name"),GATES[n-1],10);
     $("#nav-count").textContent=n<=NG?`GATE ${String(n).padStart(2,"0")} DI ${NG}`:"";
     navNext.hidden=n>=REV||(n===1&&!me);navTxt.textContent=n===NG?"Vai all'imbarco":"Avanti";
@@ -2511,12 +2511,12 @@ const missingDb=e=>/404|PGRST202|Could not find/.test(String(e&&e.message||e));
 async function loadWall(){try{const r=await rpc("ve_wall",{});wallPosts=Array.isArray(r)?r:[];}catch(e){wallPosts=null;}renderWall();}
 function repHTML(x,cls){return x.reply?`<div class="${cls}"><small>Il COS risponde${x.reply_by?", "+esc(x.reply_by):""}</small><p>${esc(x.reply)}</p></div>`:"";}
 function renderWall(){const W=$("#wl-wall"),L=$("#ld-wall");
-  if(wallPosts===null){W.innerHTML='<p class="empty-res">La bacheca non è raggiungibile in questo momento.</p>';return;}
+  if(wallPosts===null){W.innerHTML='<p class="empty-res">L'infopoint non è raggiungibile in questo momento.</p>';return;}
   W.innerHTML=wallPosts.length?wallPosts.map((x,i)=>`<article class="wl-post" style="--r:${tilt(i)}"><div class="wl-ph"><b>${esc(x.name)}</b><span>${ago(x.at)}</span></div><p>${esc(x.body)}</p>${repHTML(x,"wl-rep")}</article>`).join(""):'<p class="empty-res">Ancora nessun annuncio. Il primo è tuo.</p>';
   if(L&&wallPosts.length)L.innerHTML=wallPosts.slice(0,3).map((x,i)=>`<div class="ld-post" style="--r:${tilt(i+1)}"><small>${esc(x.name)}</small><p>${esc(x.body)}</p></div>`).join("");}
 function wallAuth(){const ok=!!me;$("#wl-login").hidden=ok;$("#wl-form").hidden=!ok;$("#wl-mine").hidden=!ok;if(ok){$("#wl-me").textContent=me.name;loadMine();}}
 function openWall(){wallAuth();loadWall();}
-function setKind(k){wallKind=k;$$(".wl-kind").forEach(b=>b.setAttribute("aria-checked",String(b.dataset.k===k)));$("#wl-send").textContent=k==="privato"?"Invia al COS":"Pubblica in bacheca";}
+function setKind(k){wallKind=k;$$(".wl-kind").forEach(b=>b.setAttribute("aria-checked",String(b.dataset.k===k)));$("#wl-send").textContent=k==="privato"?"Invia al COS":"Pubblica l'annuncio";}
 $$(".wl-kind").forEach(b=>b.addEventListener("click",()=>setKind(b.dataset.k)));
 $("#wl-body").addEventListener("input",e=>$("#wl-cnt").textContent=e.target.value.length+"/800");
 function wlNote(el,t,err){el.textContent=t;el.classList.toggle("err",!!err);}
@@ -2534,8 +2534,8 @@ $("#wl-form").addEventListener("submit",async e=>{e.preventDefault();const N=$("
   const btn=$("#wl-send");btn.disabled=true;wlNote(N,"Invio…");
   try{const r=await rpc("ve_post_add",{p_name:me.name,p_pin:me.pin,p_kind:wallKind,p_body:body});
     if(!r.ok){wlNote(N,r.error==="too_many"?"Hai scritto tanto nell'ultima ora. Riprova più tardi.":r.error==="wrong_pin"||r.error==="not_found"?"Sessione scaduta: rientra con nome e PIN.":"Non inviato: "+r.error,true);return;}
-    $("#wl-body").value="";$("#wl-cnt").textContent="0/800";wlNote(N,wallKind==="privato"?"Inviato. Solo il COS lo legge: la risposta comparirà qui sotto.":"Pubblicato in bacheca.");loadWall();loadMine();}
-  catch(err){wlNote(N,missingDb(err)?"La bacheca non è ancora attiva sul database.":"Connessione non riuscita.",true);}
+    $("#wl-body").value="";$("#wl-cnt").textContent="0/800";wlNote(N,wallKind==="privato"?"Inviato. Solo il COS lo legge: la risposta comparirà qui sotto.":"Pubblicato all'infopoint.");loadWall();loadMine();}
+  catch(err){wlNote(N,missingDb(err)?"L'infopoint non è ancora attivo sul database.":"Connessione non riuscita.",true);}
   finally{btn.disabled=false;}});
 async function loadMine(){if(!me)return;const L=$("#wl-mine-list");
   try{const r=await rpc("ve_post_mine",{p_name:me.name,p_pin:me.pin});if(!r.ok)return;
@@ -2561,7 +2561,7 @@ function renderMail(){const L=$("#mail-list"),nu=mail.filter(x=>x.kind==="privat
     <div class="ml-ops"><select aria-label="Firma">${AUTH.map(a=>`<option value="${esc(a[0])}"${(x.reply_by||"")===a[0]?" selected":""}>${a[1]==="COS"?"Firma: COS":"Firma: "+a[1]}</option>`).join("")}</select>
       <button type="button" class="mini-btn" data-op="reply">${x.reply?"Aggiorna risposta":"Rispondi"}</button>
       ${x.kind==="privato"&&!x.seen&&!x.reply?'<button type="button" class="mini-btn" data-op="seen">Segna come letta</button>':""}
-      ${x.kind==="pubblico"?`<button type="button" class="mini-btn" data-op="hide">${x.hidden?"Rendi visibile":"Nascondi dalla bacheca"}</button>`:""}
+      ${x.kind==="pubblico"?`<button type="button" class="mini-btn" data-op="hide">${x.hidden?"Rendi visibile":"Nascondi dall'infopoint"}</button>`:""}
       <button type="button" class="mini-btn danger" data-op="del">Elimina</button></div></div></article>`).join(""):'<p class="empty-res">Nessun messaggio, per ora.</p>';
   L.querySelectorAll(".ml").forEach(el=>{const id=+el.dataset.id,x=mail.find(m=>m.id===id),up=async(o)=>{const r=await rpc("ve_cos_post_update",Object.assign({p_pass:cosPass,p_id:id,p_reply:null,p_by:null,p_hidden:null,p_seen:null},o));if(!r.ok)throw new Error(r.error);await loadMail();loadWall();};
     el.querySelector('[data-op="reply"]').addEventListener("click",async e=>{e.target.disabled=true;e.target.textContent="…";try{await up({p_reply:el.querySelector("textarea").value,p_by:el.querySelector("select").value});}catch(err){e.target.disabled=false;e.target.textContent="Errore, riprova";}});
