@@ -2,6 +2,7 @@
 <html lang="it">
 <head>
 <meta charset="utf-8">
+<base href="/">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>COS · VE2027</title>
 <meta name="description" content="Il sito del COS per il Viaggio Estivo 2027: check-in, Gazzetta Ufficiale e infopoint.">
@@ -2419,7 +2420,7 @@ let pdfLib=null;
 function loadPdfJs(){if(pdfLib)return pdfLib;pdfLib=new Promise((ok,ko)=>{const s=document.createElement("script");s.src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js";
   s.onload=()=>{window.pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";ok(window.pdfjsLib);};s.onerror=()=>{pdfLib=null;ko(new Error("pdfjs"));};document.head.appendChild(s);});return pdfLib;}
 const ATT=$("#atto"),ATB=$("#atto-body");let attoOpen=false;
-function closeAtto(fromPop){if(!attoOpen)return;attoOpen=false;ATT.hidden=true;document.documentElement.classList.remove("atto-on");if(!fromPop&&history.state&&history.state.atto)history.back();}
+function closeAtto(fromPop){if(!attoOpen)return;attoOpen=false;ATT.hidden=true;document.documentElement.classList.remove("atto-on");if(fromPop)return;if(history.state&&history.state.atto&&history.state.back)history.back();else history.replaceState(null,"","/");}
 addEventListener("popstate",()=>closeAtto(true));
 addEventListener("keydown",e=>{if(e.key==="Escape")closeAtto();});
 $("#atto-x").addEventListener("click",()=>closeAtto());
@@ -2466,7 +2467,8 @@ function openAtto(id,docId){const x=news.find(n=>n.id===id);if(!x)return;
     <div class="nw-f">${authCard(x.author)}<span>${x.author?"firmato "+esc(crewName(x.author)):"il COS"}</span></div></header>
     ${(x.docs||[]).map(dm=>`<section class="at-doc" id="atdoc-${dm.id}"><div class="at-dh"><span class="ext">${esc(fext(dm.name))}</span><b>${esc(dm.name)}</b><small>${fsize(dm.size)}</small><button type="button" class="mini-dl" data-dl="${dm.id}">Scarica</button></div><div class="at-view"><div class="loading"><i></i>Apro il documento…</div></div></section>`).join("")}`;
   ATT.hidden=false;ATT.scrollTop=0;document.documentElement.classList.add("atto-on");
-  if(!attoOpen){attoOpen=true;history.pushState({atto:id},"",location.pathname+location.search+"#gu-"+x.id);}
+  /* nella barra degli indirizzi va il link che ha l'anteprima su WhatsApp: copiandolo si condivide l'atto */
+  if(!attoOpen){attoOpen=true;const u=`/gu/${x.id}/`;if(/^\/gu\/\d+\/?$/.test(location.pathname))history.replaceState({atto:id},"",u);else history.pushState({atto:id,back:1},"",u);}
   ATT.dataset.id=x.id;
   ATB.querySelectorAll("[data-dl]").forEach(b=>b.addEventListener("click",async()=>{const t=b.textContent;b.textContent="…";try{const d=await getDoc(+b.dataset.dl),a=document.createElement("a");a.href=d.url;a.download=d.name;document.body.appendChild(a);a.click();a.remove();b.textContent=t;}catch(e){b.textContent="Errore";}}));
   const jobs=(x.docs||[]).map(dm=>renderDocInto(ATB.querySelector(`#atdoc-${dm.id} .at-view`),dm));
@@ -2474,9 +2476,10 @@ function openAtto(id,docId){const x=news.find(n=>n.id===id);if(!x)return;
   if(docId){const el=$("#atdoc-"+docId);if(el)setTimeout(()=>el.scrollIntoView({block:"start"}),60);}}
 
 let deep=/^#(gu|atto)-(\d+)$/.exec(location.hash);
+addEventListener("hashchange",()=>{const m=/^#(gu|atto)-(\d+)$/.exec(location.hash);if(m){deep=m;loadNews();}});
 async function loadNews(){try{const r=await rpc("ve_news_list",{});news=Array.isArray(r)?r:[];newsErr=false;}catch(e){newsErr=true;}
   news.slice().sort((a,b)=>new Date(a.at)-new Date(b.at)).forEach((x,i)=>nums[x.id]=i+1);renderNews();
-  if(deep){const n=+deep[2],x=deep[1]==="gu"?news.find(y=>y.id===n):news.find(y=>nums[y.id]===n);deep=null;if(x){history.replaceState(null,"",location.pathname+location.search);openAtto(x.id);}}}
+  if(deep){const n=+deep[2],x=deep[1]==="gu"?news.find(y=>y.id===n):news.find(y=>nums[y.id]===n);deep=null;if(x){history.replaceState(null,"","/gu/"+x.id+"/");openAtto(x.id);}else history.replaceState(null,"","/");}}
 function renderNews(){
   const L=$("#news-list");$("#gu-n").textContent=`Anno I, n. ${news.length}`;
   L.innerHTML=newsErr?'<p class="empty-res">La Gazzetta non è raggiungibile in questo momento.</p>':news.length?news.map(x=>`<article class="nw${x.pinned?" pin":""}" data-k="${esc(x.kind)}" data-atto="${x.id}" tabindex="0" role="button" aria-label="Apri ${esc(x.title)}">
