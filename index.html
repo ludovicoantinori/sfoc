@@ -1887,7 +1887,8 @@ async function rpc(fn,args){
 }
 
 const SUITS={H:{s:"♥",n:"Godersela",r:1},S:{s:"♠",n:"Avventura",r:0},D:{s:"♦",n:"Cultura",r:1},C:{s:"♣",n:"Natura",r:0}};
-const CREW=[["K","♦",1,"Re di quadri"],["J","♣",0,"Jack di fiori"],["Q","♥",1,"Regina di cuori"],["J","♠",0,"Jack di picche"]];
+const CREW=[["K","♦",1,"Oliviero Massaccesi"],["J","♣",0,"Federico De Martino"],["Q","♥",1,"Irene Ferri"],["J","♠",0,"Ludovico Antinori"]];
+const crewName=code=>{const c=CREW.find(c=>c[0]+c[1]===code);return c?c[3]:code;};
 const CONTS=[{k:"N",n:"Nord America",lx:30,ly:12},{k:"S",n:"America Latina",lx:47,ly:41},{k:"E",n:"Europa",lx:82,ly:10},{k:"F",n:"Africa",lx:76,ly:31},{k:"A",n:"Asia",lx:112,ly:13},{k:"O",n:"Oceania",lx:131,ly:46}];
 const ACTS=[
   {c:"SPG",n:"Spiaggia",d:"Ombrellone, tuffi, zero sveglie.",u:"H"},
@@ -2392,7 +2393,7 @@ $$("[data-go]").forEach(b=>b.addEventListener("click",()=>{const g=b.dataset.go;
 
 /* ---------- gazzetta ufficiale ---------- */
 const KINDS=[["comunicato","Comunicato"],["avviso","Avviso"],["scadenza","Scadenza"],["bilancio","Bilancio"],["documento","Documento"]];
-const AUTH=[["","COS"],...CREW.map(c=>[c[0]+c[1],c[0]+c[1]])];
+const AUTH=[["","COS"],...CREW.map(c=>[c[0]+c[1],c[3]])];
 let news=[],newsErr=false;
 const fmtDay=t=>{const d=new Date(t);return d.toLocaleDateString("it-IT",{day:"numeric",month:"long",year:"numeric"}).toUpperCase();};
 const authCard=a=>{const c=CREW.find(c=>c[0]+c[1]===a);return c?miniCard(c[0],c[1],c[2],c[3]):"";};
@@ -2441,7 +2442,7 @@ function openAtto(id,docId){const x=news.find(n=>n.id===id);if(!x)return;
   const k=(KINDS.find(k=>k[0]===x.kind)||KINDS[0])[1];
   $("#atto-k").textContent=`Gazzetta Ufficiale · N. ${nums[x.id]}`;
   ATB.innerHTML=`<header class="at-h"><div class="nw-h"><span class="nw-k">${esc(k)}</span><span class="nw-d">${fmtDay(x.at)}</span></div><h2>${esc(x.title)}</h2>${x.body?`<div class="nw-b">${esc(x.body)}</div>`:""}
-    <div class="nw-f">${authCard(x.author)}<span>${x.author?"firmato "+esc(x.author):"il COS"}</span></div></header>
+    <div class="nw-f">${authCard(x.author)}<span>${x.author?"firmato "+esc(crewName(x.author)):"il COS"}</span></div></header>
     ${(x.docs||[]).map(dm=>`<section class="at-doc" id="atdoc-${dm.id}"><div class="at-dh"><span class="ext">${esc(fext(dm.name))}</span><b>${esc(dm.name)}</b><small>${fsize(dm.size)}</small><button type="button" class="mini-dl" data-dl="${dm.id}">Scarica</button></div><div class="at-view"><div class="loading"><i></i>Apro il documento…</div></div></section>`).join("")}`;
   ATT.hidden=false;ATT.scrollTop=0;document.documentElement.classList.add("atto-on");
   if(!attoOpen){attoOpen=true;history.pushState({atto:id},"",location.pathname+location.search+"#gu-"+x.id);}
@@ -2461,7 +2462,7 @@ function renderNews(){
     <div class="nw-h"><span class="nw-k">${esc((KINDS.find(k=>k[0]===x.kind)||KINDS[0])[1])}</span><span class="nw-d">N. ${nums[x.id]} · ${fmtDay(x.at)}</span>${x.pinned?'<span class="nw-p">In evidenza</span>':""}</div>
     <h3>${esc(x.title)}</h3>${x.body?`<div class="nw-b">${esc(x.body)}</div>`:""}
     ${(x.docs||[]).length?`<div class="docs">${x.docs.map(d=>isImg(d)&&d.size<3e6?`<img class="doc-img" data-img="${d.id}" alt="${esc(d.name)}">`:"").join("")}${x.docs.map(d=>`<button type="button" class="doc" data-doc="${d.id}"><span class="ext">${esc(fext(d.name))}</span><span><b>${esc(d.name)}</b><small>${fsize(d.size)}</small></span><span class="go">Apri →</span></button>`).join("")}</div>`:""}
-    <div class="nw-f">${authCard(x.author)}<span>${x.author?"firmato "+esc(x.author):"il COS"}</span></div></article>`).join(""):'<p class="empty-res">Nessun atto pubblicato, per ora. Il COS lavora in silenzio.</p>';
+    <div class="nw-f">${authCard(x.author)}<span>${x.author?"firmato "+esc(crewName(x.author)):"il COS"}</span></div></article>`).join(""):'<p class="empty-res">Nessun atto pubblicato, per ora. Il COS lavora in silenzio.</p>';
   L.querySelectorAll(".nw[data-atto]").forEach(a=>a.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target===a)openAtto(+a.dataset.atto);}));
   L.querySelectorAll(".nw[data-atto]").forEach(a=>a.addEventListener("click",e=>{const d=e.target.closest("[data-doc]");openAtto(+a.dataset.atto,d?+d.dataset.doc:null);}));
   L.querySelectorAll("[data-img]").forEach(async im=>{try{im.src=(await getDoc(+im.dataset.img)).url;}catch(e){im.remove();}});
@@ -2522,7 +2523,7 @@ const ago=t=>{const d=new Date(t);return d.toLocaleDateString("it-IT",{day:"nume
 const tilt=i=>[-.6,.4,-.2,.7,-.5,.3][i%6]+"deg";
 const missingDb=e=>/404|PGRST202|Could not find/.test(String(e&&e.message||e));
 async function loadWall(){try{const r=await rpc("ve_wall",{});wallPosts=Array.isArray(r)?r:[];}catch(e){wallPosts=null;}renderWall();}
-function repHTML(x,cls){return x.reply?`<div class="${cls}"><small>Il COS risponde${x.reply_by?", "+esc(x.reply_by):""}</small><p>${esc(x.reply)}</p></div>`:"";}
+function repHTML(x,cls){return x.reply?`<div class="${cls}"><small>Il COS risponde${x.reply_by?", "+esc(crewName(x.reply_by)):""}</small><p>${esc(x.reply)}</p></div>`:"";}
 function renderWall(){const W=$("#wl-wall"),L=$("#ld-wall");
   if(wallPosts===null){W.innerHTML='<p class="empty-res">L\'infopoint non è raggiungibile in questo momento.</p>';return;}
   W.innerHTML=wallPosts.length?wallPosts.map((x,i)=>`<article class="wl-post" style="--r:${tilt(i)}"><div class="wl-ph"><b>${esc(x.name)}</b><span>${ago(x.at)}</span></div><p>${esc(x.body)}</p>${repHTML(x,"wl-rep")}</article>`).join(""):'<p class="empty-res">Ancora nessun annuncio. Il primo è tuo.</p>';
@@ -2569,7 +2570,7 @@ function renderMail(){const L=$("#mail-list"),nu=mail.filter(x=>x.kind==="privat
   L.innerHTML=R.length?R.map(x=>`<article class="ml${x.kind==="privato"&&!x.seen?" new":""}${x.hidden?" hid":""}" data-id="${x.id}">
     <div class="ml-h"><b>${esc(x.name)}</b><span class="tg${x.kind==="privato"?" p":""}">${x.kind==="privato"?"Privato":"Pubblico"}</span><span class="dt">${ago(x.at)}</span>${x.kind==="privato"&&!x.seen?'<span class="nw2">Da leggere</span>':""}${x.hidden?'<span class="dt">Nascosto</span>':""}</div>
     <p>${esc(x.body)}</p>
-    ${x.reply?`<div class="ml-done"><small>Risposta${x.reply_by?" di "+esc(x.reply_by):""}${x.kind==="pubblico"?", visibile a tutti":", visibile solo a "+esc(x.name)}</small>${esc(x.reply)}</div>`:""}
+    ${x.reply?`<div class="ml-done"><small>Risposta${x.reply_by?" di "+esc(crewName(x.reply_by)):""}${x.kind==="pubblico"?", visibile a tutti":", visibile solo a "+esc(x.name)}</small>${esc(x.reply)}</div>`:""}
     <div class="ml-r"><textarea class="txt dark-in" maxlength="1500" placeholder="${x.reply?"Modifica la risposta":"Rispondi a "+esc(x.name)}${x.kind==="pubblico"?" (la risposta sarà pubblica)":""}">${x.reply?esc(x.reply):""}</textarea>
     <div class="ml-ops"><select aria-label="Firma">${AUTH.map(a=>`<option value="${esc(a[0])}"${(x.reply_by||"")===a[0]?" selected":""}>${a[1]==="COS"?"Firma: COS":"Firma: "+a[1]}</option>`).join("")}</select>
       <button type="button" class="mini-btn" data-op="reply">${x.reply?"Aggiorna risposta":"Rispondi"}</button>
