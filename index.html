@@ -1468,6 +1468,12 @@ footer .sig img.mini-card,.nw-f img.mini-card{width:28px}
 .ld-cards{padding-bottom:0}
 @media (max-width:860px){.ld-cards{row-gap:26px}}
 .board-title .ve-mark{margin-left:auto;width:clamp(30px,3vw,42px);height:auto;flex:none}
+.share-pop{position:fixed;z-index:400;background:#fff;color:var(--blk);border:2px solid var(--blk);box-shadow:8px 8px 0 var(--blk);padding:14px;display:grid;gap:8px;animation:attoIn .18s ease-out}
+.share-pop .sp-prev{margin:0 0 4px;font-size:13.5px;line-height:1.4;padding:10px 12px;background:#e7f8e4;border-radius:8px 8px 8px 0;overflow-wrap:anywhere}
+.share-pop a,.share-pop button{display:block;text-align:left;font:800 13px/1 var(--f-body);text-transform:uppercase;padding:12px;border:2px solid var(--blk);background:#fff;color:var(--blk);text-decoration:none;cursor:pointer}
+.share-pop .sp-wa{background:#25d366;border-color:#25d366;color:#fff}
+.share-pop a:hover,.share-pop button:hover{background:var(--blk);border-color:var(--blk);color:#fff}
+.share-pop .sp-warn{margin:0;font-size:12.5px;line-height:1.35;padding:9px 11px;border:2px dashed var(--hot);color:var(--blk)}
 </style>
 </head>
 <body>
@@ -2419,11 +2425,26 @@ addEventListener("keydown",e=>{if(e.key==="Escape")closeAtto();});
 $("#atto-x").addEventListener("click",()=>closeAtto());
 /* condividi: ogni atto ha il suo indirizzo sfoc.it/gu/<id>/ con anteprima propria per WhatsApp */
 const guUrl=id=>`https://sfoc.it/gu/${id}/`;
-async function shareAtto(id,btn){const x=news.find(n=>n.id===id);if(!x)return;const url=guUrl(id),t=btn.textContent;
-  try{if(navigator.share&&matchMedia("(pointer:coarse)").matches){await navigator.share({title:x.title,text:`Gazzetta Ufficiale n. ${nums[id]}: ${x.title}`,url});return;}
-    await navigator.clipboard.writeText(url);btn.textContent="Link copiato";}
-  catch(e){if(e&&e.name==="AbortError")return;prompt("Copia il link",url);}
-  setTimeout(()=>btn.textContent=t,1800);}
+const ANN={comunicato:["📢","Nuovo comunicato del COS in Gazzetta Ufficiale"],avviso:["⚠️","Avviso ufficiale del COS"],scadenza:["⏰","Nuova scadenza fissata dal COS"],bilancio:["📊","Il COS ha pubblicato il bilancio"],documento:["📎","Nuovo documento in Gazzetta Ufficiale"]};
+function shareMsg(x){const a=ANN[x.kind]||ANN.comunicato;return `${a[0]} ${a[1]} (n. ${nums[x.id]}): «${x.title}».\nLeggilo qui 👉 ${guUrl(x.id)}`;}
+let sharePop=null;
+function closeShare(){if(sharePop){sharePop.remove();sharePop=null;}}
+document.addEventListener("click",e=>{if(sharePop&&!sharePop.contains(e.target)&&!e.target.closest("[data-sharer]"))closeShare();});
+async function copyTxt(t){try{await navigator.clipboard.writeText(t);return true;}catch(e){prompt("Copia qui",t);return false;}}
+const ready={};
+async function previewReady(id){if(ready[id])return true;if(location.protocol==="file:")return true;
+  try{const r=await fetch(`/gu/${id}/`,{method:"HEAD",cache:"no-store"});return ready[id]=r.ok;}catch(e){return true;}}
+const NOTREADY="L'anteprima per WhatsApp di questo atto non è ancora pronta: ci vogliono fino a 10 minuti dalla pubblicazione. Se lo mandi adesso, WhatsApp mostrerà un'anteprima generica e se la ricorderà.";
+async function shareAtto(id,btn){const x=news.find(n=>n.id===id);if(!x)return;const msg=shareMsg(x),ok=await previewReady(id);
+  if(navigator.share&&matchMedia("(pointer:coarse)").matches){if(!ok&&!confirm(NOTREADY+"\n\nCondividere lo stesso?"))return;try{await navigator.share({text:msg});}catch(e){}return;}
+  if(sharePop){closeShare();return;}
+  btn.setAttribute("data-sharer","");
+  const r=btn.getBoundingClientRect(),pop=document.createElement("div");pop.className="share-pop";
+  pop.innerHTML=`${ok?"":`<p class="sp-warn">${NOTREADY}</p>`}<p class="sp-prev">${esc(msg).replace("\n","<br>")}</p><a class="sp-wa" href="https://wa.me/?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">Manda su WhatsApp</a><button type="button" data-c="msg">Copia messaggio</button><button type="button" data-c="url">Copia solo il link</button>`;
+  document.body.appendChild(pop);sharePop=pop;
+  const W=Math.min(340,innerWidth-24);pop.style.width=W+"px";pop.style.top=(r.bottom+8)+"px";pop.style.left=Math.max(12,Math.min(innerWidth-W-12,r.right-W))+"px";
+  pop.querySelector(".sp-wa").addEventListener("click",()=>setTimeout(closeShare,50));
+  pop.querySelectorAll("[data-c]").forEach(b=>b.addEventListener("click",async()=>{await copyTxt(b.dataset.c==="msg"?msg:guUrl(id));b.textContent="Copiato ✓";setTimeout(closeShare,900);}));}
 $("#atto-share").addEventListener("click",e=>shareAtto(+ATT.dataset.id,e.currentTarget));
 async function renderPdf(box,d){const lib=await loadPdfJs(),pdf=await lib.getDocument({data:d.bytes.slice()}).promise,W=Math.min(box.clientWidth||800,1100),dpr=Math.min(2,devicePixelRatio||1);
   box.innerHTML="";for(let i=1;i<=pdf.numPages;i++){const pg=await pdf.getPage(i),v0=pg.getViewport({scale:1}),sc=W/v0.width,vp=pg.getViewport({scale:sc*dpr}),c=document.createElement("canvas");
@@ -2497,7 +2518,7 @@ function naFill(x){naEditing=x?JSON.parse(JSON.stringify(x)):null;naQueue=[];naF
 naFill(null);
 function renderNewsAdmin(){const L=$("#na-list");if(!L)return;
   L.innerHTML=news.length?news.map(x=>`<div class="na-it" data-id="${x.id}"><div><small>N. ${nums[x.id]} · ${esc(x.kind)} · ${fmtDay(x.at)}${x.pinned?" · in evidenza":""}${(x.docs||[]).length?` · ${x.docs.length} allegat${x.docs.length===1?"o":"i"}`:""}</small><b>${esc(x.title)}</b></div>
-    <div class="ops"><button type="button" class="mini-btn" data-op="link">Copia link</button><button type="button" class="mini-btn" data-op="edit">Modifica</button><button type="button" class="mini-btn danger" data-op="del">Elimina</button></div></div>`).join(""):'<p class="na-note">Nessun atto pubblicato.</p>';
+    <div class="ops"><button type="button" class="mini-btn" data-op="link">Condividi</button><button type="button" class="mini-btn" data-op="edit">Modifica</button><button type="button" class="mini-btn danger" data-op="del">Elimina</button></div></div>`).join(""):'<p class="na-note">Nessun atto pubblicato.</p>';
   L.querySelectorAll(".na-it").forEach(it=>{const x=news.find(n=>String(n.id)===it.dataset.id);
     it.querySelector('[data-op="edit"]').addEventListener("click",()=>{naFill(x);$("#na-title").focus();});
     it.querySelector('[data-op="link"]').addEventListener("click",e=>shareAtto(x.id,e.currentTarget));

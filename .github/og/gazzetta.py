@@ -9,6 +9,9 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, "gu")
 SITE = "https://sfoc.it"
+# frase con cui l'atto viene annunciato nell'anteprima di WhatsApp
+ANN = {"comunicato": "Nuovo comunicato del COS", "avviso": "Avviso ufficiale del COS", "scadenza": "Nuova scadenza fissata dal COS",
+       "bilancio": "Il COS ha pubblicato il bilancio", "documento": "Nuovo documento in Gazzetta Ufficiale"}
 KINDS = {"comunicato": "Comunicato", "avviso": "Avviso", "scadenza": "Scadenza", "bilancio": "Bilancio", "documento": "Documento"}
 MESI = ["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"]
 HOT, BLK = (255, 43, 28), (10, 10, 10)
@@ -22,6 +25,10 @@ def fetch():
     req = urllib.request.Request(url + "/rest/v1/rpc/ve_news_list", data=b"{}", method="POST",
         headers={"apikey": key, "Authorization": "Bearer " + key, "Content-Type": "application/json"})
     return json.load(urllib.request.urlopen(req, timeout=30))
+
+def del_(t):
+    d = datetime.fromisoformat(t.replace("Z", "+00:00")).astimezone(timezone(timedelta(hours=1)))
+    return ("dell'" if d.day in (8, 11) else "del ") + day(t)
 
 def day(t):
     d = datetime.fromisoformat(t.replace("Z", "+00:00")).astimezone(timezone(timedelta(hours=1)))
@@ -87,7 +94,7 @@ def image(x, n, path):
 PAGE = """<!doctype html>
 <html lang="it"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{title} · Gazzetta Ufficiale VE2027</title>
+<title>{title}</title>
 <meta name="description" content="{desc}">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Gazzetta Ufficiale del COS">
@@ -120,8 +127,11 @@ def main():
             open(stamp, "w").write(sig)
         body = re.sub(r"\s+", " ", x.get("body") or "").strip()
         docs = len(x.get("docs") or [])
-        desc = f"Gazzetta Ufficiale n. {n}, {day(x['at'])}. " + (body[:150] + ("…" if len(body) > 150 else "") if body else "") + (f" {docs} allegat{'o' if docs == 1 else 'i'}." if docs else "")
-        page = PAGE.format(title=html.escape(x["title"]), desc=html.escape(desc.strip()), url=f"{SITE}/gu/{i}/", img=f"{SITE}/gu/{i}/og.png?v={sig}", id=i)
+        ann = ANN.get(x.get("kind"), ANN["comunicato"])
+        og_title = f"{ann}: «{x['title']}»"
+        desc = (f"Gazzetta Ufficiale n. {n} {del_(x['at'])}. " + (body[:140] + ("…" if len(body) > 140 else "") + " " if body else "")
+                + (f"Con {docs} allegat{'o' if docs == 1 else 'i'}. " if docs else "") + "Tocca per leggerlo sul sito del COS.")
+        page = PAGE.format(title=html.escape(og_title), desc=html.escape(desc.strip()), url=f"{SITE}/gu/{i}/", img=f"{SITE}/gu/{i}/og.png?v={sig}", id=i)
         open(os.path.join(folder, "index.html"), "w", encoding="utf-8").write(page)
     for name in os.listdir(OUT):
         if name not in keep and os.path.isdir(os.path.join(OUT, name)):
