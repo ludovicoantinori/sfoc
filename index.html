@@ -2511,7 +2511,7 @@ const missingDb=e=>/404|PGRST202|Could not find/.test(String(e&&e.message||e));
 async function loadWall(){try{const r=await rpc("ve_wall",{});wallPosts=Array.isArray(r)?r:[];}catch(e){wallPosts=null;}renderWall();}
 function repHTML(x,cls){return x.reply?`<div class="${cls}"><small>Il COS risponde${x.reply_by?", "+esc(x.reply_by):""}</small><p>${esc(x.reply)}</p></div>`:"";}
 function renderWall(){const W=$("#wl-wall"),L=$("#ld-wall");
-  if(wallPosts===null){W.innerHTML='<p class="empty-res">L'infopoint non è raggiungibile in questo momento.</p>';return;}
+  if(wallPosts===null){W.innerHTML='<p class="empty-res">L\'infopoint non è raggiungibile in questo momento.</p>';return;}
   W.innerHTML=wallPosts.length?wallPosts.map((x,i)=>`<article class="wl-post" style="--r:${tilt(i)}"><div class="wl-ph"><b>${esc(x.name)}</b><span>${ago(x.at)}</span></div><p>${esc(x.body)}</p>${repHTML(x,"wl-rep")}</article>`).join(""):'<p class="empty-res">Ancora nessun annuncio. Il primo è tuo.</p>';
   if(L&&wallPosts.length)L.innerHTML=wallPosts.slice(0,3).map((x,i)=>`<div class="ld-post" style="--r:${tilt(i+1)}"><small>${esc(x.name)}</small><p>${esc(x.body)}</p></div>`).join("");}
 function wallAuth(){const ok=!!me;$("#wl-login").hidden=ok;$("#wl-form").hidden=!ok;$("#wl-mine").hidden=!ok;if(ok){$("#wl-me").textContent=me.name;loadMine();}}
