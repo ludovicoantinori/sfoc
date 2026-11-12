@@ -1475,6 +1475,14 @@ footer .sig img.mini-card,.nw-f img.mini-card{width:28px}
 .share-pop .sp-wa{background:#25d366;border-color:#25d366;color:#fff}
 .share-pop a:hover,.share-pop button:hover{background:var(--blk);border-color:var(--blk);color:#fff}
 .share-pop .sp-warn{margin:0;font-size:12.5px;line-height:1.35;padding:9px 11px;border:2px dashed var(--hot);color:var(--blk)}
+.gh-box{margin-top:36px;border:2px solid rgba(255,255,255,.25);padding:14px 18px}
+.gh-box summary{cursor:pointer;font:800 14px/1.2 var(--f-body);text-transform:uppercase}
+.gh-box summary span{margin-left:8px;font-size:11px;padding:4px 6px;background:rgba(255,255,255,.15)}
+.gh-box summary span.on{background:#25d366;color:var(--blk)}
+.gh-box p,.gh-box li{font-size:14px;line-height:1.5;color:rgba(255,255,255,.82)}
+.gh-box a{color:#fff}
+.gh-box ol{padding-left:20px;display:grid;gap:4px}
+.gh-row{display:flex;gap:8px;flex-wrap:wrap}.gh-row input{flex:1;min-width:200px}
 </style>
 </head>
 <body>
@@ -1825,6 +1833,19 @@ footer .sig img.mini-card,.nw-f img.mini-card{width:28px}
           <div class="na-act"><button class="btn" type="submit" id="na-save">Pubblica</button><button class="link" type="button" id="na-reset" hidden>Annulla modifica</button><span class="na-note" id="na-note"></span></div>
         </form>
         <div class="na-list" id="na-list"></div>
+        <details class="gh-box" id="gh-box">
+          <summary>Anteprime WhatsApp istantanee <span id="gh-state">…</span></summary>
+          <p>Senza questo collegamento, l'anteprima di un atto nuovo arriva quando GitHub fa partire il suo aggiornamento automatico: di solito qualche minuto, a volte di più. Con un token di GitHub, il sito avvisa GitHub appena pubblicate e l'anteprima è pronta in circa un minuto.</p>
+          <ol>
+            <li>Apri <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a> con l'account che ha il sito.</li>
+            <li>Nome: <b>sfoc anteprime</b>. Scadenza: 1 anno.</li>
+            <li>Repository access: <b>Only select repositories</b>, scegli <b>sfoc</b>.</li>
+            <li>Permissions, Repository permissions: <b>Actions</b> su <b>Read and write</b>. Nient'altro.</li>
+            <li>Genera il token, copialo e incollalo qui sotto. Resta nel database: nessuno lo vede dal sito.</li>
+          </ol>
+          <div class="gh-row"><input class="txt dark-in" id="gh-token" type="password" autocomplete="off" placeholder="github_pat_…"><button class="mini-btn" type="button" id="gh-save">Salva token</button><button class="mini-btn danger" type="button" id="gh-del" hidden>Scollega</button></div>
+          <p class="na-note" id="gh-note"></p>
+        </details>
       </div>
     </div>
   </section>
@@ -2540,6 +2561,16 @@ $("#na-form").addEventListener("submit",async e=>{e.preventDefault();const note=
     naFill(null);await loadNews();}
   catch(err){note.textContent=/404/.test(err.message)?"La Gazzetta non è ancora attiva sul database.":"Connessione non riuscita.";}});
 loadNews();
+/* collegamento con GitHub per generare subito le anteprime */
+async function ghStatus(tok){const st=$("#gh-state"),n=$("#gh-note");
+  try{const r=await rpc("ve_cos_gh",{p_pass:cosPass,p_token:tok===undefined?null:tok});if(!r.ok){st.textContent="—";return;}
+    st.textContent=r.set?"collegate":"non collegate";st.classList.toggle("on",!!r.set);$("#gh-del").hidden=!r.set;
+    if(tok!==undefined)n.textContent=tok?"Token salvato. Dalla prossima pubblicazione l'anteprima è pronta in circa un minuto.":"Collegamento rimosso.";
+    else if(r.set&&r.last_status)n.textContent=r.last_status<300?"Ultimo avviso a GitHub andato a buon fine.":`Ultimo avviso a GitHub rifiutato (codice ${r.last_status}): il token potrebbe essere scaduto o senza il permesso Actions.`;}
+  catch(e){st.textContent="—";if(missingDb(e))n.textContent="Funzione non ancora attiva sul database.";}}
+$("#gh-save").addEventListener("click",()=>{const t=$("#gh-token").value.trim();if(!/^(github_pat_|ghp_)/.test(t)){$("#gh-note").textContent="Non sembra un token di GitHub: inizia con github_pat_.";return;}$("#gh-token").value="";ghStatus(t);});
+$("#gh-del").addEventListener("click",()=>ghStatus(""));
+$("#gh-box").addEventListener("toggle",e=>{if(e.target.open)ghStatus();});
 
 /* ---------- bacheca dei passeggeri ---------- */
 let wallPosts=[],wallKind="pubblico";
