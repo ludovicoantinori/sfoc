@@ -1386,6 +1386,72 @@ html.atto-on,html.atto-on body{overflow:hidden}
   #b-flight,#b-gate,#b-dest{grid-column:auto!important;grid-row:auto!important;justify-self:start!important}
   .board-foot{gap:10px;flex-wrap:wrap}
 }
+
+/* ===== bacheca dei passeggeri ===== */
+.ld-bach{margin-top:clamp(14px,2vw,24px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:clamp(18px,3vw,40px);background:var(--blk);color:#fff;border-color:var(--blk)}
+.ld-bl{display:flex;flex-direction:column;gap:18px}
+.ld-bach .btn{background:var(--hot);color:#fff;margin-top:auto;align-self:flex-start}
+.ld-bach .btn:hover{background:#fff;color:var(--blk)}
+.ld-wall{display:grid;gap:10px;align-content:start}
+.ld-post{background:#fff;color:var(--blk);padding:14px 16px;display:grid;gap:6px;transform:rotate(var(--r,0deg))}
+.ld-post p{margin:0;font-size:15px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.ld-post small{font:800 11px/1 var(--f-body);text-transform:uppercase;color:var(--hot)}
+.wall .wl-compose{margin-top:28px;border:2px solid var(--blk);padding:clamp(18px,3vw,32px);display:grid;gap:16px;background:#fff}
+.wl-lt{margin:0;font:800 clamp(26px,3.4vw,40px)/1 var(--f-display);letter-spacing:-.05em;text-transform:uppercase}
+.wl-lf{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,.8fr) auto;gap:12px;align-items:end;margin-top:14px}
+.wl-note{font-size:14px;color:rgba(10,10,10,.7);margin:10px 0 0}
+.wl-note.err{color:var(--hot);font-weight:700}
+.wl-form{display:grid;gap:14px}
+.wl-who{margin:0;font-size:15px}.wl-who .link{margin-left:8px;text-transform:none;font-weight:600}.wl-who b{font-weight:800;text-transform:uppercase}
+.wl-kinds{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.wl-kind{display:grid;gap:6px;text-align:left;padding:16px;border:2px solid var(--blk);background:#fff;color:var(--blk);font:inherit;cursor:pointer}
+.wl-kind b{font:800 clamp(17px,1.6vw,20px)/1.05 var(--f-display);letter-spacing:-.03em;text-transform:uppercase}
+.wl-kind span{font-size:13.5px;line-height:1.35;opacity:.75}
+.wl-kind[aria-checked="true"]{background:var(--blk);color:#fff}
+.wl-kind[data-k="privato"][aria-checked="true"]{background:var(--hot);border-color:var(--hot)}
+.wl-form textarea{min-height:130px}
+.wl-act{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.wl-act .wl-note{margin:0;flex:1}
+.wl-cnt{font:700 12px/1 var(--f-body);color:rgba(10,10,10,.5)}
+.wl-h{font:800 clamp(28px,3.6vw,48px)/.95 var(--f-display);letter-spacing:-.05em;text-transform:uppercase;margin:44px 0 16px;padding-top:12px;border-top:3px solid var(--blk)}
+.wl-wall{columns:3 250px;column-gap:14px}
+.wl-post{break-inside:avoid;margin:0 0 14px;background:#fff;border:2px solid var(--blk);padding:18px;display:grid;gap:10px;transform:rotate(var(--r,0deg))}
+.wl-post:nth-child(3n+1){background:#fff8f7}
+.wl-ph{display:flex;justify-content:space-between;gap:10px;font:800 12px/1 var(--f-body);text-transform:uppercase}
+.wl-ph b{color:var(--hot)}.wl-ph span{color:rgba(10,10,10,.55)}
+.wl-post p{margin:0;font-size:16px;line-height:1.45;white-space:pre-line;overflow-wrap:anywhere}
+.wl-rep{background:var(--blk);color:#fff;padding:12px 14px;display:grid;gap:6px}
+.wl-rep small{font:800 11px/1 var(--f-body);text-transform:uppercase;color:var(--hot)}
+.wl-rep p{font-size:15px;color:#fff}
+.wl-mine #wl-mine-list{display:grid;gap:10px}
+.wl-mi{display:grid;gap:10px;padding:16px;border:2px solid var(--blk)}
+.wl-mi.priv{border-color:var(--hot)}
+.wl-mi .st{font:800 11px/1 var(--f-body);text-transform:uppercase;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.wl-tag{background:var(--blk);color:#fff;padding:5px 7px}.wl-mi.priv .wl-tag{background:var(--hot)}
+.wl-mi .wait{color:rgba(10,10,10,.55)}
+.wl-mi p{margin:0;white-space:pre-line;overflow-wrap:anywhere}
+.wl-mi .del{justify-self:start;font:700 12px/1 var(--f-body);background:none;border:0;padding:0;text-decoration:underline;cursor:pointer;color:rgba(10,10,10,.6)}
+.wl-mi .del.arm{color:var(--hot)}
+.mail-f{display:flex;gap:8px;flex-wrap:wrap;margin-top:28px}
+.mail-list{display:grid;gap:12px;margin-top:20px}
+.ml{border:2px solid rgba(255,255,255,.25);padding:16px 18px;display:grid;gap:12px}
+.ml.new{border-color:var(--hot);box-shadow:inset 4px 0 0 var(--hot)}
+.ml.hid{opacity:.55}
+.ml-h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font:800 12px/1 var(--f-body);text-transform:uppercase}
+.ml-h b{font-size:16px;letter-spacing:-.02em}
+.ml-h .tg{padding:5px 7px;background:#fff;color:var(--blk)}.ml-h .tg.p{background:var(--hot);color:#fff}
+.ml-h .dt{color:rgba(255,255,255,.55)}
+.ml-h .nw2{color:var(--hot)}
+.ml>p{margin:0;font-size:16px;line-height:1.45;white-space:pre-line;overflow-wrap:anywhere}
+.ml-r{display:grid;gap:8px}
+.ml-r textarea{min-height:70px}
+.ml-ops{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.ml-ops select{font:700 13px/1 var(--f-body);padding:8px;background:var(--blk);color:#fff;border:2px solid rgba(255,255,255,.5)}
+.ml-done{background:rgba(255,255,255,.08);padding:10px 12px;font-size:14px}
+.ml-done small{display:block;font:800 11px/1 var(--f-body);text-transform:uppercase;color:var(--hot);margin-bottom:6px}
+#mail-badge{position:relative;top:-1px;margin-left:6px;display:inline-block}
+@media (max-width:860px){.ld-bach{grid-template-columns:1fr}}
+@media (max-width:640px){.wl-act .wl-note{flex:1 1 100%;order:3}.wl-lf{grid-template-columns:1fr 1fr}.wl-lf .btn{grid-column:1/-1}.wl-kinds{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -1400,7 +1466,7 @@ html.atto-on,html.atto-on body{overflow:hidden}
   <div class="wrap iwrap">
     <div class="top">
       <div class="brand"><img src="logo.png" alt="Logo del COS"><span>Comitato Organizzativo dello Sfo®<small>Sondaggio conoscitivo VE2027</small></span></div>
-      <nav class="site-nav" aria-label="Sezioni del sito"><button type="button" data-go="home">Home</button><button type="button" data-go="checkin">Check-in</button><button type="button" data-go="news">Gazzetta Ufficiale<i class="nbadge" hidden></i></button><button type="button" data-go="cos">Area COS</button></nav>
+      <nav class="site-nav" aria-label="Sezioni del sito"><button type="button" data-go="home">Home</button><button type="button" data-go="checkin">Check-in</button><button type="button" data-go="news">Gazzetta Ufficiale<i class="nbadge" hidden></i></button><button type="button" data-go="wall">Bacheca</button><button type="button" data-go="cos">Area COS</button></nav>
       <div class="clock"><span class="clk-date">MAR 03 NOV 2026</span><b class="clk-time">15:50</b></div>
     </div>
     <div class="board-zone">
@@ -1444,6 +1510,15 @@ html.atto-on,html.atto-on body{overflow:hidden}
       <button class="btn" type="button" data-go="news">Leggi la Gazzetta</button>
     </article>
   </section>
+  <section class="wrap">
+    <article class="ld-card ld-bach">
+      <div class="ld-bl"><p class="ld-k"><span>Scheda 03</span><span>Voce dei passeggeri</span></p>
+      <h2>Bacheca</h2>
+      <p class="ld-p">Annunci per tutto il gruppo o richieste private al COS. Con il tuo nome e PIN del check-in.</p>
+      <button class="btn" type="button" data-go="wall">Scrivi in bacheca</button></div>
+      <div class="ld-wall" id="ld-wall"><p class="ld-p" style="opacity:.6">Ancora nessun annuncio. Il primo è tuo.</p></div>
+    </article>
+  </section>
   <section class="wrap ld-sec">
     <h2 class="ld-h">Come funziona</h2>
     <ol class="ld-steps">
@@ -1479,7 +1554,7 @@ html.atto-on,html.atto-on body{overflow:hidden}
     <img src="logo.png" alt="Torna all'inizio" id="home" title="Torna all'inizio">
     <div class="flaps gnum" id="g-num"></div>
     <div class="flaps gname" id="g-name"></div>
-    <nav class="gb-nav" aria-label="Sezioni del sito"><button type="button" data-go="home">Home</button><button type="button" data-go="checkin">Check-in</button><button type="button" data-go="news">Gazzetta Ufficiale<i class="nbadge" hidden></i></button><button type="button" data-go="cos">Area COS</button></nav>
+    <nav class="gb-nav" aria-label="Sezioni del sito"><button type="button" data-go="home">Home</button><button type="button" data-go="checkin">Check-in</button><button type="button" data-go="news">Gazzetta Ufficiale<i class="nbadge" hidden></i></button><button type="button" data-go="wall">Bacheca</button><button type="button" data-go="cos">Area COS</button></nav>
     <div class="clock"><span class="clk-date"></span><b class="clk-time"></b></div>
   </div>
   <div class="track" id="track"></div>
@@ -1706,9 +1781,13 @@ html.atto-on,html.atto-on body{overflow:hidden}
     <div id="cos-area" hidden>
       <p class="help" id="res-sub"></p>
       <div class="cos-tools"><button class="btn-line" type="button" id="cos-refresh">Aggiorna</button><button class="btn-line" type="button" id="cos-csv">Scarica CSV</button><button class="btn-line" type="button" id="cos-json">Scarica JSON</button><button class="link" type="button" id="cos-close" style="color:var(--board-mute)">Chiudi area COS</button></div>
-      <div class="tabs" role="tablist"><button type="button" role="tab" class="tab" data-tab="sum" aria-selected="true">Riepilogo</button><button type="button" role="tab" class="tab" data-tab="people" aria-selected="false">Passeggeri</button><button type="button" role="tab" class="tab" data-tab="news" aria-selected="false">Gazzetta</button></div>
+      <div class="tabs" role="tablist"><button type="button" role="tab" class="tab" data-tab="sum" aria-selected="true">Riepilogo</button><button type="button" role="tab" class="tab" data-tab="people" aria-selected="false">Passeggeri</button><button type="button" role="tab" class="tab" data-tab="news" aria-selected="false">Gazzetta</button><button type="button" role="tab" class="tab" data-tab="mail" aria-selected="false">Posta<i class="nbadge" id="mail-badge" hidden></i></button></div>
       <div id="res-body"></div>
       <div id="people-body" hidden></div>
+      <div id="mail-admin" hidden>
+        <div class="mail-f choices" id="mail-f" role="group" aria-label="Filtro"><button type="button" class="choice" data-f="all" aria-pressed="true"><i></i>Tutto</button><button type="button" class="choice" data-f="privato" aria-pressed="false"><i></i>Richieste private</button><button type="button" class="choice" data-f="pubblico" aria-pressed="false"><i></i>Annunci pubblici</button></div>
+        <div class="mail-list" id="mail-list"><p class="empty-res">Caricamento…</p></div>
+      </div>
       <div id="news-admin" hidden>
         <form class="na-form" id="na-form" autocomplete="off">
           <input type="hidden" id="na-id">
@@ -1735,6 +1814,33 @@ html.atto-on,html.atto-on body{overflow:hidden}
     </header>
     <div class="news-list" id="news-list"><p class="empty-res">Caricamento…</p></div>
     <div class="news-cta"><button class="btn" type="button" data-go="checkin">Vai al check-in</button></div>
+  </section>
+
+  <section class="step wall" data-s="16" hidden>
+    <p class="step-k">Scheda 03</p>
+    <h2><span class="w">Bacheca</span> <span class="g">La voce dei passeggeri.</span></h2>
+    <p class="help">Un annuncio per tutto il gruppo, oppure una richiesta riservata ai quattro del COS. Entri con il nome e il PIN del check-in, così si sa sempre chi scrive.</p>
+    <div class="wl-compose" id="wl-compose">
+      <div class="wl-login" id="wl-login">
+        <p class="wl-lt">Chi scrive?</p>
+        <div class="wl-lf"><div class="field"><label for="wl-name">Nome</label><input class="txt" id="wl-name" maxlength="16" autocomplete="off" autocapitalize="characters" placeholder="Come al check-in"></div>
+        <div class="field"><label for="wl-pin">PIN</label><input class="txt" id="wl-pin" inputmode="numeric" maxlength="4" pattern="\d{4}" autocomplete="off" placeholder="••••" type="password"></div>
+        <button class="btn" type="button" id="wl-enter">Entra</button></div>
+        <p class="wl-note" id="wl-lnote">Non hai ancora un PIN? Fai prima il <button type="button" class="link" data-go="checkin">check-in</button>.</p>
+      </div>
+      <form class="wl-form" id="wl-form" hidden>
+        <p class="wl-who">Scrivi come <b id="wl-me"></b> <button type="button" class="link" id="wl-out">Non sei tu?</button></p>
+        <div class="wl-kinds" role="radiogroup" aria-label="Tipo di messaggio">
+          <button type="button" role="radio" class="wl-kind" data-k="pubblico" aria-checked="true"><b>Annuncio pubblico</b><span>Lo vede tutto il gruppo, con il tuo nome.</span></button>
+          <button type="button" role="radio" class="wl-kind" data-k="privato" aria-checked="false"><b>Richiesta privata al COS</b><span>La leggono solo i quattro del COS. Ti rispondono qui.</span></button>
+        </div>
+        <textarea class="txt" id="wl-body" maxlength="800" placeholder="Cerco compagno di stanza, vendo crema solare, chiedo di non partire di lunedì…"></textarea>
+        <div class="wl-act"><button class="btn" type="submit" id="wl-send">Pubblica in bacheca</button><span class="wl-note" id="wl-snote"></span><span class="wl-cnt" id="wl-cnt">0/800</span></div>
+      </form>
+    </div>
+    <div class="wl-mine" id="wl-mine" hidden><h3 class="wl-h">I tuoi messaggi</h3><div id="wl-mine-list"></div></div>
+    <h3 class="wl-h">Annunci del gruppo</h3>
+    <div class="wl-wall" id="wl-wall"><p class="empty-res">Caricamento…</p></div>
   </section>
 
   <footer>VE2027, sondaggio a cura del Comitato Organizzativo dello Sfo®.<div class="sig" id="sig" aria-hidden="true"></div></footer>
@@ -1814,8 +1920,8 @@ const PP=[
   {k:"altro",n:"Gite, magliette e straforo",v:(225+169.93+167.63)/15,c:"#d6d6d6",paid:1},
   {k:"posto",n:"Spese sul posto (stima)",v:25*11,c:"url(#hatch)",paid:0}];
 const PER_NIGHT=40,PER_DAY=25,REF=Math.round(PP.reduce((a,b)=>a+b.v,0));
-const GATES=["PASSEGGERO","ROTTA","ATTIVITÀ","BAGAGLIO","SCALI","ALLOGGIO","DATE","NOTTI","BUDGET","DOCUMENTI","ESTERNI","NOTE","IMBARCO","AREA COS","GAZZETTA"];
-const NG=12,REV=13,COSN=14,NEWSN=15;
+const GATES=["PASSEGGERO","ROTTA","ATTIVITÀ","BAGAGLIO","SCALI","ALLOGGIO","DATE","NOTTI","BUDGET","DOCUMENTI","ESTERNI","NOTE","IMBARCO","AREA COS","GAZZETTA","BACHECA"];
+const NG=12,REV=13,COSN=14,NEWSN=15,WALLN=16;
 const EXT_OK=[["si","Sì, nessun problema"],["dip","Dipende da chi"],["no","Preferirei di no"]],EXT_BRING=[["si","Sì"],["no","No"]];
 
 /* ---------- state ---------- */
@@ -2154,20 +2260,22 @@ const navBack=$("#nav-back"),navNext=$("#nav-next"),navTxt=$("#nav-next-txt");
 function show(n){
   if(n>=2&&n<=REV&&!me){n=1;setTimeout(()=>note("Prima entra con il tuo nome e il PIN.",true),50);}
   cur=n;
-  const intro=n===0,cos=n===COSN,info=n===NEWSN;
+  const intro=n===0,cos=n===COSN,info=n===NEWSN,wall=n===WALLN;
   $("#intro").hidden=!intro;$("#landing").hidden=!intro;{const v=$("#bgvid");if(v){if(intro){const p=v.play();if(p&&p.catch)p.catch(()=>{});}else v.pause();}}if(intro){const f=$("#flash");if(f)f.style.transition="";setTimeout(()=>startCam&&startCam(),30);}document.documentElement.classList.toggle("on-intro",intro);
-  const tc=document.querySelector('meta[name="theme-color"]');if(tc)tc.content=intro?"#0b0b0c":"#0b0b0c";$("#gatebar").hidden=intro;$("#main").hidden=intro;$("#navbar").hidden=intro||cos||info;
-  $("#track").hidden=cos||info;
-  $$(".gb-nav button").forEach(b=>b.classList.toggle("on",b.dataset.go===(info?"news":cos?"cos":"checkin")));
+  const tc=document.querySelector('meta[name="theme-color"]');if(tc)tc.content=intro?"#0b0b0c":"#0b0b0c";$("#gatebar").hidden=intro;$("#main").hidden=intro;$("#navbar").hidden=intro||cos||info||wall;
+  $("#track").hidden=cos||info||wall;
+  $$(".gb-nav button").forEach(b=>b.classList.toggle("on",b.dataset.go===(info?"news":wall?"wall":cos?"cos":"checkin")));
+  {const on=document.querySelector(".gb-nav button.on");if(on&&on.parentElement.scrollWidth>on.parentElement.clientWidth)on.parentElement.scrollLeft=on.offsetLeft-16;}
   $$(".step").forEach(s=>s.hidden=+s.dataset.s!==n);
   if(!intro){
-    flaps($("#g-num"),n<=NG?"G"+String(n).padStart(2,"0"):(n===REV?"G--":info?"GU ":"COS"),3,"y");
+    flaps($("#g-num"),n<=NG?"G"+String(n).padStart(2,"0"):(n===REV?"G--":info?"GU ":wall?"BCH":"COS"),3,"y");
     flaps($("#g-name"),GATES[n-1],10);
     $("#nav-count").textContent=n<=NG?`GATE ${String(n).padStart(2,"0")} DI ${NG}`:"";
     navNext.hidden=n>=REV||(n===1&&!me);navTxt.textContent=n===NG?"Vai all'imbarco":"Avanti";
     if(n===3)renderDeck();if(n===4)renderCarry();if(n===REV)renderReview();
     if(cos)openCos();
     if(info)loadNews();
+    if(wall)openWall();
   }
   updateTrack();
   try{window.scrollTo({top:0,behavior:"auto"});}catch(e){window.scrollTo(0,0);}
@@ -2252,18 +2360,18 @@ async function loadCos(pass){
   const p=pass||cosPass,n=$("#cos-note");n.textContent="";
   try{const r=await rpc("ve_results",{p_pass:p});
     if(!r.ok){cosPass="";ss.del("ve-cos");$("#cos-gate").hidden=false;$("#cos-area").hidden=true;n.textContent=r.error==="locked"?"Troppi tentativi sbagliati. Riprova tra qualche minuto.":"Parola d'ordine sbagliata.";return;}
-    cosPass=p;ss.set("ve-cos",p);people=r.people||[];$("#cos-gate").hidden=true;$("#cos-area").hidden=false;$("#cos-pass").value="";renderCos();
+    cosPass=p;ss.set("ve-cos",p);people=r.people||[];$("#cos-gate").hidden=true;$("#cos-area").hidden=false;$("#cos-pass").value="";renderCos();loadMail();
   }catch(e){n.textContent="Connessione non riuscita. Riprova.";}
 }
 $("#cos-go").addEventListener("click",()=>{const v=$("#cos-pass").value.trim();if(v)loadCos(v);});
 $("#cos-pass").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();$("#cos-go").click();}});
 $("#cos-refresh").addEventListener("click",()=>loadCos());
 $("#cos-close").addEventListener("click",()=>{cosPass="";ss.del("ve-cos");people=[];$("#res-body").textContent="";$("#people-body").textContent="";show(0);});
-$$(".tab").forEach(t=>t.addEventListener("click",()=>{cosTab=t.dataset.tab;$$(".tab").forEach(x=>x.setAttribute("aria-selected",String(x===t)));$("#res-body").hidden=cosTab!=="sum";$("#people-body").hidden=cosTab!=="people";$("#news-admin").hidden=cosTab!=="news";if(cosTab==="news")loadNews();}));
+$$(".tab").forEach(t=>t.addEventListener("click",()=>{cosTab=t.dataset.tab;$$(".tab").forEach(x=>x.setAttribute("aria-selected",String(x===t)));$("#res-body").hidden=cosTab!=="sum";$("#people-body").hidden=cosTab!=="people";$("#news-admin").hidden=cosTab!=="news";$("#mail-admin").hidden=cosTab!=="mail";if(cosTab==="mail")loadMail();if(cosTab==="news")loadNews();}));
 
 /* ---------- navigazione tra le sezioni del sito ---------- */
 $$("[data-go]").forEach(b=>b.addEventListener("click",()=>{const g=b.dataset.go;
-  if(g==="home"){show(0);scrollTo(0,0);}else if(g==="news")show(NEWSN);else if(g==="cos")show(COSN);else if(cur===0&&scrollY<200)$("#start").click();else show(me?(savedAt?REV:2):1);}));
+  if(g==="home"){show(0);scrollTo(0,0);}else if(g==="news")show(NEWSN);else if(g==="wall")show(WALLN);else if(g==="cos")show(COSN);else if(cur===0&&scrollY<200)$("#start").click();else show(me?(savedAt?REV:2):1);}));
 
 /* ---------- gazzetta ufficiale ---------- */
 const KINDS=[["comunicato","Comunicato"],["avviso","Avviso"],["scadenza","Scadenza"],["bilancio","Bilancio"],["documento","Documento"]];
@@ -2380,6 +2488,72 @@ $("#na-form").addEventListener("submit",async e=>{e.preventDefault();const note=
     naFill(null);await loadNews();}
   catch(err){note.textContent=/404/.test(err.message)?"La Gazzetta non è ancora attiva sul database.":"Connessione non riuscita.";}});
 loadNews();
+
+/* ---------- bacheca dei passeggeri ---------- */
+let wallPosts=[],wallKind="pubblico";
+const ago=t=>{const d=new Date(t);return d.toLocaleDateString("it-IT",{day:"numeric",month:"short"})+", "+String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0");};
+const tilt=i=>[-.6,.4,-.2,.7,-.5,.3][i%6]+"deg";
+const missingDb=e=>/404|PGRST202|Could not find/.test(String(e&&e.message||e));
+async function loadWall(){try{const r=await rpc("ve_wall",{});wallPosts=Array.isArray(r)?r:[];}catch(e){wallPosts=null;}renderWall();}
+function repHTML(x,cls){return x.reply?`<div class="${cls}"><small>Il COS risponde${x.reply_by?", "+esc(x.reply_by):""}</small><p>${esc(x.reply)}</p></div>`:"";}
+function renderWall(){const W=$("#wl-wall"),L=$("#ld-wall");
+  if(wallPosts===null){W.innerHTML='<p class="empty-res">La bacheca non è raggiungibile in questo momento.</p>';return;}
+  W.innerHTML=wallPosts.length?wallPosts.map((x,i)=>`<article class="wl-post" style="--r:${tilt(i)}"><div class="wl-ph"><b>${esc(x.name)}</b><span>${ago(x.at)}</span></div><p>${esc(x.body)}</p>${repHTML(x,"wl-rep")}</article>`).join(""):'<p class="empty-res">Ancora nessun annuncio. Il primo è tuo.</p>';
+  if(L&&wallPosts.length)L.innerHTML=wallPosts.slice(0,3).map((x,i)=>`<div class="ld-post" style="--r:${tilt(i+1)}"><small>${esc(x.name)}</small><p>${esc(x.body)}</p></div>`).join("");}
+function wallAuth(){const ok=!!me;$("#wl-login").hidden=ok;$("#wl-form").hidden=!ok;$("#wl-mine").hidden=!ok;if(ok){$("#wl-me").textContent=me.name;loadMine();}}
+function openWall(){wallAuth();loadWall();}
+function setKind(k){wallKind=k;$$(".wl-kind").forEach(b=>b.setAttribute("aria-checked",String(b.dataset.k===k)));$("#wl-send").textContent=k==="privato"?"Invia al COS":"Pubblica in bacheca";}
+$$(".wl-kind").forEach(b=>b.addEventListener("click",()=>setKind(b.dataset.k)));
+$("#wl-body").addEventListener("input",e=>$("#wl-cnt").textContent=e.target.value.length+"/800");
+function wlNote(el,t,err){el.textContent=t;el.classList.toggle("err",!!err);}
+$("#wl-enter").addEventListener("click",async()=>{const n=$("#wl-name").value.trim().replace(/\s+/g," ").toUpperCase(),pin=$("#wl-pin").value,N=$("#wl-lnote");
+  if(!n||!/^\d{4}$/.test(pin)){wlNote(N,"Scrivi il nome e il PIN di 4 cifre.",true);return;}
+  try{const r=await rpc("ve_login",{p_name:n,p_pin:pin,p_create:false});
+    if(!r.ok){if(r.error==="not_found"){N.innerHTML=`Nessun check-in a nome ${esc(n)}. Fai prima il <button type="button" class="link" id="wl-goci">check-in</button> per scegliere il PIN.`;N.classList.add("err");$("#wl-goci").addEventListener("click",()=>show(1));}
+      else if(r.error==="wrong_pin")wlNote(N,`PIN sbagliato. Ti restano ${r.left} tentativi.`,true);
+      else if(r.error==="locked")wlNote(N,"Troppi tentativi sbagliati. Riprova tra qualche minuto.",true);else wlNote(N,"Nome o PIN non validi.",true);return;}
+    me={name:r.name,pin};ss.set("ve-sess",JSON.stringify(me));applyLogin(r);wallAuth();}
+  catch(e){wlNote(N,"Connessione non riuscita.",true);}});
+$("#wl-pin").addEventListener("keydown",e=>{if(e.key==="Enter")$("#wl-enter").click();});
+$("#wl-out").addEventListener("click",()=>{$("#logout").click();show(WALLN);});
+$("#wl-form").addEventListener("submit",async e=>{e.preventDefault();const N=$("#wl-snote"),body=$("#wl-body").value.trim();if(!body){wlNote(N,"Scrivi qualcosa.",true);return;}
+  const btn=$("#wl-send");btn.disabled=true;wlNote(N,"Invio…");
+  try{const r=await rpc("ve_post_add",{p_name:me.name,p_pin:me.pin,p_kind:wallKind,p_body:body});
+    if(!r.ok){wlNote(N,r.error==="too_many"?"Hai scritto tanto nell'ultima ora. Riprova più tardi.":r.error==="wrong_pin"||r.error==="not_found"?"Sessione scaduta: rientra con nome e PIN.":"Non inviato: "+r.error,true);return;}
+    $("#wl-body").value="";$("#wl-cnt").textContent="0/800";wlNote(N,wallKind==="privato"?"Inviato. Solo il COS lo legge: la risposta comparirà qui sotto.":"Pubblicato in bacheca.");loadWall();loadMine();}
+  catch(err){wlNote(N,missingDb(err)?"La bacheca non è ancora attiva sul database.":"Connessione non riuscita.",true);}
+  finally{btn.disabled=false;}});
+async function loadMine(){if(!me)return;const L=$("#wl-mine-list");
+  try{const r=await rpc("ve_post_mine",{p_name:me.name,p_pin:me.pin});if(!r.ok)return;
+    $("#wl-mine").hidden=!r.posts.length;
+    L.innerHTML=r.posts.map(x=>`<div class="wl-mi${x.kind==="privato"?" priv":""}"><div class="st"><span class="wl-tag">${x.kind==="privato"?"Privato al COS":"Pubblico"}</span><span>${ago(x.at)}</span>${x.kind==="privato"&&!x.reply?'<span class="wait">In attesa di risposta</span>':""}${x.hidden?'<span class="wait">Nascosto dal COS</span>':""}</div>
+      <p>${esc(x.body)}</p>${repHTML(x,"wl-rep")}<button type="button" class="del" data-id="${x.id}">Elimina</button></div>`).join("");
+    L.querySelectorAll(".del").forEach(b=>armDelete(b,"Sicuro? Tocca di nuovo",async()=>{const r=await rpc("ve_post_delete_own",{p_name:me.name,p_pin:me.pin,p_id:+b.dataset.id});if(!r.ok)throw new Error(r.error);loadMine();loadWall();}));}
+  catch(e){$("#wl-mine").hidden=true;}}
+loadWall();
+
+/* ---------- area COS: posta ---------- */
+let mail=[],mailF="all";
+$$("#mail-f .choice").forEach(b=>b.addEventListener("click",()=>{mailF=b.dataset.f;$$("#mail-f .choice").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));renderMail();}));
+async function loadMail(){if(!cosPass)return;try{const r=await rpc("ve_cos_posts",{p_pass:cosPass});if(!r.ok){$("#mail-list").innerHTML='<p class="empty-res">Accesso negato.</p>';return;}mail=r.posts;renderMail();}
+  catch(e){$("#mail-list").innerHTML=`<p class="empty-res">${missingDb(e)?"La posta non è ancora attiva sul database.":"Connessione non riuscita."}</p>`;}}
+function renderMail(){const L=$("#mail-list"),nu=mail.filter(x=>x.kind==="privato"&&!x.seen).length,mb=$("#mail-badge");mb.hidden=!nu;mb.textContent=nu;
+  const R=mail.filter(x=>mailF==="all"||x.kind===mailF);
+  L.innerHTML=R.length?R.map(x=>`<article class="ml${x.kind==="privato"&&!x.seen?" new":""}${x.hidden?" hid":""}" data-id="${x.id}">
+    <div class="ml-h"><b>${esc(x.name)}</b><span class="tg${x.kind==="privato"?" p":""}">${x.kind==="privato"?"Privato":"Pubblico"}</span><span class="dt">${ago(x.at)}</span>${x.kind==="privato"&&!x.seen?'<span class="nw2">Da leggere</span>':""}${x.hidden?'<span class="dt">Nascosto</span>':""}</div>
+    <p>${esc(x.body)}</p>
+    ${x.reply?`<div class="ml-done"><small>Risposta${x.reply_by?" di "+esc(x.reply_by):""}${x.kind==="pubblico"?", visibile a tutti":", visibile solo a "+esc(x.name)}</small>${esc(x.reply)}</div>`:""}
+    <div class="ml-r"><textarea class="txt dark-in" maxlength="1500" placeholder="${x.reply?"Modifica la risposta":"Rispondi a "+esc(x.name)}${x.kind==="pubblico"?" (la risposta sarà pubblica)":""}">${x.reply?esc(x.reply):""}</textarea>
+    <div class="ml-ops"><select aria-label="Firma">${AUTH.map(a=>`<option value="${esc(a[0])}"${(x.reply_by||"")===a[0]?" selected":""}>${a[1]==="COS"?"Firma: COS":"Firma: "+a[1]}</option>`).join("")}</select>
+      <button type="button" class="mini-btn" data-op="reply">${x.reply?"Aggiorna risposta":"Rispondi"}</button>
+      ${x.kind==="privato"&&!x.seen&&!x.reply?'<button type="button" class="mini-btn" data-op="seen">Segna come letta</button>':""}
+      ${x.kind==="pubblico"?`<button type="button" class="mini-btn" data-op="hide">${x.hidden?"Rendi visibile":"Nascondi dalla bacheca"}</button>`:""}
+      <button type="button" class="mini-btn danger" data-op="del">Elimina</button></div></div></article>`).join(""):'<p class="empty-res">Nessun messaggio, per ora.</p>';
+  L.querySelectorAll(".ml").forEach(el=>{const id=+el.dataset.id,x=mail.find(m=>m.id===id),up=async(o)=>{const r=await rpc("ve_cos_post_update",Object.assign({p_pass:cosPass,p_id:id,p_reply:null,p_by:null,p_hidden:null,p_seen:null},o));if(!r.ok)throw new Error(r.error);await loadMail();loadWall();};
+    el.querySelector('[data-op="reply"]').addEventListener("click",async e=>{e.target.disabled=true;e.target.textContent="…";try{await up({p_reply:el.querySelector("textarea").value,p_by:el.querySelector("select").value});}catch(err){e.target.disabled=false;e.target.textContent="Errore, riprova";}});
+    const s=el.querySelector('[data-op="seen"]');if(s)s.addEventListener("click",()=>up({p_seen:true}).catch(()=>{}));
+    const h=el.querySelector('[data-op="hide"]');if(h)h.addEventListener("click",()=>up({p_hidden:!x.hidden}).catch(()=>{}));
+    armDelete(el.querySelector('[data-op="del"]'),"Sicuro? Elimina",async()=>{const r=await rpc("ve_cos_post_delete",{p_pass:cosPass,p_id:id});if(!r.ok)throw new Error(r.error);await loadMail();loadWall();});});}
 function rangesOf(keys){const idx=keys.map(k=>DAYS.findIndex(d=>d.k===k)).filter(i=>i>=0).sort((a,b)=>a-b),out=[];
   for(let i=0;i<idx.length;i++){let j=i;while(j+1<idx.length&&idx[j+1]===idx[j]+1)j++;const a=DAYS[idx[i]],b=DAYS[idx[j]];
     out.push(i===j?`${a.d} ${mesi[a.m]}`:(a.m===b.m?`${a.d}–${b.d} ${mesi[a.m]}`:`${a.d} ${mesi[a.m]}–${b.d} ${mesi[b.m]}`));i=j;}return out.join(", ");}
