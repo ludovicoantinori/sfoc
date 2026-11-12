@@ -1452,6 +1452,10 @@ html.atto-on,html.atto-on body{overflow:hidden}
 #mail-badge{position:relative;top:-1px;margin-left:6px;display:inline-block}
 @media (max-width:860px){.ld-bach{grid-template-columns:1fr}}
 @media (max-width:640px){.wl-act .wl-note{flex:1 1 100%;order:3}.wl-lf{grid-template-columns:1fr 1fr}.wl-lf .btn{grid-column:1/-1}.wl-kinds{grid-template-columns:1fr}}
+.atto-ops{display:flex;gap:8px}
+.atto-bar button.ghost{background:transparent;box-shadow:inset 0 0 0 2px #fff}
+.atto-bar button.ghost:hover{background:#fff;color:var(--blk)}
+.atto-bar #atto-k{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
 </style>
 </head>
 <body>
@@ -1544,7 +1548,7 @@ html.atto-on,html.atto-on body{overflow:hidden}
 </div>
 
 <div class="atto" id="atto" hidden role="dialog" aria-modal="true" aria-labelledby="atto-k">
-  <div class="atto-bar"><span id="atto-k">Gazzetta Ufficiale</span><button type="button" id="atto-x" aria-label="Chiudi">Chiudi ✕</button></div>
+  <div class="atto-bar"><span id="atto-k">Gazzetta Ufficiale</span><span class="atto-ops"><button type="button" id="atto-share" class="ghost">Condividi</button><button type="button" id="atto-x" aria-label="Chiudi">Chiudi ✕</button></span></div>
   <div class="atto-body" id="atto-body"></div>
 </div>
 
@@ -2399,6 +2403,14 @@ function closeAtto(fromPop){if(!attoOpen)return;attoOpen=false;ATT.hidden=true;d
 addEventListener("popstate",()=>closeAtto(true));
 addEventListener("keydown",e=>{if(e.key==="Escape")closeAtto();});
 $("#atto-x").addEventListener("click",()=>closeAtto());
+/* condividi: ogni atto ha il suo indirizzo sfoc.it/gu/<id>/ con anteprima propria per WhatsApp */
+const guUrl=id=>`https://sfoc.it/gu/${id}/`;
+async function shareAtto(id,btn){const x=news.find(n=>n.id===id);if(!x)return;const url=guUrl(id),t=btn.textContent;
+  try{if(navigator.share&&matchMedia("(pointer:coarse)").matches){await navigator.share({title:x.title,text:`Gazzetta Ufficiale n. ${nums[id]}: ${x.title}`,url});return;}
+    await navigator.clipboard.writeText(url);btn.textContent="Link copiato";}
+  catch(e){if(e&&e.name==="AbortError")return;prompt("Copia il link",url);}
+  setTimeout(()=>btn.textContent=t,1800);}
+$("#atto-share").addEventListener("click",e=>shareAtto(+ATT.dataset.id,e.currentTarget));
 async function renderPdf(box,d){const lib=await loadPdfJs(),pdf=await lib.getDocument({data:d.bytes.slice()}).promise,W=Math.min(box.clientWidth||800,1100),dpr=Math.min(2,devicePixelRatio||1);
   box.innerHTML="";for(let i=1;i<=pdf.numPages;i++){const pg=await pdf.getPage(i),v0=pg.getViewport({scale:1}),sc=W/v0.width,vp=pg.getViewport({scale:sc*dpr}),c=document.createElement("canvas");
     c.width=vp.width;c.height=vp.height;c.style.width=W+"px";c.style.maxWidth="100%";c.style.height="auto";c.className="pg";box.appendChild(c);
@@ -2419,16 +2431,17 @@ function openAtto(id,docId){const x=news.find(n=>n.id===id);if(!x)return;
     <div class="nw-f">${authCard(x.author)}<span>${x.author?"firmato "+esc(x.author):"il COS"}</span></div></header>
     ${(x.docs||[]).map(dm=>`<section class="at-doc" id="atdoc-${dm.id}"><div class="at-dh"><span class="ext">${esc(fext(dm.name))}</span><b>${esc(dm.name)}</b><small>${fsize(dm.size)}</small><button type="button" class="mini-dl" data-dl="${dm.id}">Scarica</button></div><div class="at-view"><div class="loading"><i></i>Apro il documento…</div></div></section>`).join("")}`;
   ATT.hidden=false;ATT.scrollTop=0;document.documentElement.classList.add("atto-on");
-  if(!attoOpen){attoOpen=true;history.pushState({atto:id},"",location.pathname+location.search+"#atto-"+nums[x.id]);}
+  if(!attoOpen){attoOpen=true;history.pushState({atto:id},"",location.pathname+location.search+"#gu-"+x.id);}
+  ATT.dataset.id=x.id;
   ATB.querySelectorAll("[data-dl]").forEach(b=>b.addEventListener("click",async()=>{const t=b.textContent;b.textContent="…";try{const d=await getDoc(+b.dataset.dl),a=document.createElement("a");a.href=d.url;a.download=d.name;document.body.appendChild(a);a.click();a.remove();b.textContent=t;}catch(e){b.textContent="Errore";}}));
   const jobs=(x.docs||[]).map(dm=>renderDocInto(ATB.querySelector(`#atdoc-${dm.id} .at-view`),dm));
   if(docId)Promise.all(jobs).then(()=>{const el=$("#atdoc-"+docId);if(attoOpen&&el)el.scrollIntoView({block:"start",behavior:"smooth"});});
   if(docId){const el=$("#atdoc-"+docId);if(el)setTimeout(()=>el.scrollIntoView({block:"start"}),60);}}
 
-let deep=/^#atto-(\d+)$/.exec(location.hash);
+let deep=/^#(gu|atto)-(\d+)$/.exec(location.hash);
 async function loadNews(){try{const r=await rpc("ve_news_list",{});news=Array.isArray(r)?r:[];newsErr=false;}catch(e){newsErr=true;}
   news.slice().sort((a,b)=>new Date(a.at)-new Date(b.at)).forEach((x,i)=>nums[x.id]=i+1);renderNews();
-  if(deep){const n=+deep[1],x=news.find(y=>nums[y.id]===n);deep=null;if(x){history.replaceState(null,"",location.pathname+location.search);openAtto(x.id);}}}
+  if(deep){const n=+deep[2],x=deep[1]==="gu"?news.find(y=>y.id===n):news.find(y=>nums[y.id]===n);deep=null;if(x){history.replaceState(null,"",location.pathname+location.search);openAtto(x.id);}}}
 function renderNews(){
   const L=$("#news-list");$("#gu-n").textContent=`Anno I, n. ${news.length}`;
   L.innerHTML=newsErr?'<p class="empty-res">La Gazzetta non è raggiungibile in questo momento.</p>':news.length?news.map(x=>`<article class="nw${x.pinned?" pin":""}" data-k="${esc(x.kind)}" data-atto="${x.id}" tabindex="0" role="button" aria-label="Apri ${esc(x.title)}">
@@ -2470,9 +2483,10 @@ function naFill(x){naEditing=x?JSON.parse(JSON.stringify(x)):null;naQueue=[];naF
 naFill(null);
 function renderNewsAdmin(){const L=$("#na-list");if(!L)return;
   L.innerHTML=news.length?news.map(x=>`<div class="na-it" data-id="${x.id}"><div><small>N. ${nums[x.id]} · ${esc(x.kind)} · ${fmtDay(x.at)}${x.pinned?" · in evidenza":""}${(x.docs||[]).length?` · ${x.docs.length} allegat${x.docs.length===1?"o":"i"}`:""}</small><b>${esc(x.title)}</b></div>
-    <div class="ops"><button type="button" class="mini-btn" data-op="edit">Modifica</button><button type="button" class="mini-btn danger" data-op="del">Elimina</button></div></div>`).join(""):'<p class="na-note">Nessun atto pubblicato.</p>';
+    <div class="ops"><button type="button" class="mini-btn" data-op="link">Copia link</button><button type="button" class="mini-btn" data-op="edit">Modifica</button><button type="button" class="mini-btn danger" data-op="del">Elimina</button></div></div>`).join(""):'<p class="na-note">Nessun atto pubblicato.</p>';
   L.querySelectorAll(".na-it").forEach(it=>{const x=news.find(n=>String(n.id)===it.dataset.id);
     it.querySelector('[data-op="edit"]').addEventListener("click",()=>{naFill(x);$("#na-title").focus();});
+    it.querySelector('[data-op="link"]').addEventListener("click",e=>shareAtto(x.id,e.currentTarget));
     armDelete(it.querySelector('[data-op="del"]'),"Sicuro? Elimina",async()=>{const r=await rpc("ve_news_delete",{p_pass:cosPass,p_id:x.id});if(!r.ok)throw new Error(r.error);await loadNews();});});}
 function armDelete(btn,armTxt,fn){const orig=btn.textContent;let t;btn.addEventListener("click",async()=>{
   if(!btn.classList.contains("arm")){btn.classList.add("arm");btn.textContent=armTxt;t=setTimeout(()=>{btn.classList.remove("arm");btn.textContent=orig;},4000);return;}
@@ -2484,7 +2498,7 @@ $("#na-form").addEventListener("submit",async e=>{e.preventDefault();const note=
     if(!r.ok){note.textContent=r.error==="locked"?"Area COS bloccata per troppi tentativi.":"Non salvato: "+r.error;return;}
     const q=naQueue.filter(f=>f.size<=8388608),skipped=naQueue.length-q.length,fails=[];
     for(let i=0;i<q.length;i++){try{await uploadFile(r.id,q[i],p=>note.textContent=`Carico ${q[i].name} (${i+1} di ${q.length}): ${Math.round(p*100)}%`);}catch(e){fails.push(q[i].name);}}
-    note.textContent=(id?"Modifiche salvate.":"Pubblicato in Gazzetta.")+(q.length-fails.length?` ${q.length-fails.length} document${q.length-fails.length===1?"o caricato":"i caricati"}.`:"")+(fails.length?` Non caricati: ${fails.join(", ")}.`:"")+(skipped?` ${skipped} oltre gli 8 MB, saltat${skipped===1?"o":"i"}.`:"");
+    note.textContent=(id?"Modifiche salvate.":"Pubblicato in Gazzetta. L'anteprima per WhatsApp è pronta entro una decina di minuti: usa \"Copia link\".")+(q.length-fails.length?` ${q.length-fails.length} document${q.length-fails.length===1?"o caricato":"i caricati"}.`:"")+(fails.length?` Non caricati: ${fails.join(", ")}.`:"")+(skipped?` ${skipped} oltre gli 8 MB, saltat${skipped===1?"o":"i"}.`:"");
     naFill(null);await loadNews();}
   catch(err){note.textContent=/404/.test(err.message)?"La Gazzetta non è ancora attiva sul database.":"Connessione non riuscita.";}});
 loadNews();
