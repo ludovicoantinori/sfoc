@@ -48,9 +48,8 @@ def wrap(draw, text, font, width, max_lines):
 def image(x, n, path):
     W, H, M = 1200, 630, 72
     im = Image.new("RGB", (W, H), "white"); d = ImageDraw.Draw(im)
-    logo = Image.open(os.path.join(ROOT, "logo.png")).convert("RGBA").resize((58, 58))
-    black = Image.new("RGBA", logo.size, BLK + (255,)); black.putalpha(logo.getchannel("A"))
-    im.paste(black, (M, 52), black)
+    logo = Image.open(os.path.join(ROOT, "logo.png")).convert("RGBA").resize((62, 62), Image.LANCZOS)
+    im.paste(logo, (M, 50), logo)
     d.text((M + 76, 54), "GAZZETTA UFFICIALE", font=F("inter-800.woff", 30), fill=BLK)
     d.text((M + 76, 88), "del Comitato Organizzativo dello Sfo", font=F("serif-italic.woff", 26), fill=HOT)
     d.rectangle((M, 134, W - M, 138), fill=BLK); d.rectangle((M, 143, W - M, 145), fill=BLK)
