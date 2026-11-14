@@ -1492,6 +1492,58 @@ footer .sig img.mini-card,.nw-f img.mini-card{width:28px}
 .nw-sig .firma{height:54px;width:auto;max-width:220px;object-fit:contain;object-position:left center}
 .nw-sig small{font:700 10.5px/1 var(--f-body);font-style:normal;text-transform:uppercase;letter-spacing:.02em;color:rgba(10,10,10,.55)}
 .board-title .ve-mark{border-radius:50%;box-shadow:0 0 0 2px #fff;width:clamp(36px,3.4vw,48px)}
+/* ===== carta d'imbarco ===== */
+#pass-slot{overflow:hidden;padding:4px 16px 18px 2px;margin-top:26px}
+.pass-wrap{position:relative;filter:drop-shadow(10px 10px 0 var(--hot));--stub:210px}
+.pass{display:grid;grid-template-columns:minmax(0,1fr) var(--stub);margin:0!important;border:0!important;border-radius:14px!important;background:#fff!important;box-shadow:inset 0 0 0 2px var(--blk)!important;overflow:hidden;
+  -webkit-mask:radial-gradient(circle 13px at calc(100% - var(--stub)) 0,#0000 97%,#000),radial-gradient(circle 13px at calc(100% - var(--stub)) 100%,#0000 97%,#000);-webkit-mask-composite:source-in;
+  mask:radial-gradient(circle 13px at calc(100% - var(--stub)) 0,#0000 97%,#000),radial-gradient(circle 13px at calc(100% - var(--stub)) 100%,#0000 97%,#000);mask-composite:intersect}
+.pass .pass-main{padding:0;display:block}
+.pass .pass-head{display:flex;align-items:center;gap:12px;background:var(--blk);color:#fff;padding:12px 20px;font:inherit;letter-spacing:0}
+.pass-head img{width:34px;height:34px;flex:none}
+.pass-head b{display:block;font:800 15px/1.1 var(--f-display);text-transform:uppercase;letter-spacing:-.02em}
+.pass-head small{display:block;font:italic 400 15px/1.1 var(--goth);color:rgba(255,255,255,.75)}
+.pass-head .ph-r{margin-left:auto;font:800 22px/1 var(--f-display);letter-spacing:-.04em;color:var(--hot)}
+.pass-route{display:grid;grid-template-columns:auto minmax(40px,1fr) auto;align-items:center;gap:16px;padding:20px 22px 16px;border-bottom:2px solid var(--blk)}
+.pass-route b{display:block;font:800 clamp(44px,8vw,78px)/.85 var(--f-display);letter-spacing:-.06em}
+.pass-route small{display:block;margin-top:6px;font:700 11px/1 var(--f-body);text-transform:uppercase;color:rgba(10,10,10,.55)}
+.pass-route .to{text-align:right}.pass-route .to b{color:var(--hot)}
+.pass-route i{color:var(--blk);display:block}.pass-route svg{width:100%;height:24px;display:block}
+.pass-fields{padding:18px 22px 22px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px 14px}
+.pass-fields .pf.w2{grid-column:span 2}
+.pass-fields .pf div{font:800 17px/1.2 var(--f-display);letter-spacing:-.02em;text-transform:uppercase}
+.pass-fields .pf .big{font:800 clamp(30px,5.4vw,52px)/.9 var(--f-display);letter-spacing:-.055em}
+.pass .stub{border-left:2px dashed var(--blk)!important;border-top:0!important;padding:18px 18px 14px;display:flex;flex-direction:column;gap:12px;justify-content:flex-start;background:#fff}
+.stub-top b{display:block;font:800 26px/1 var(--f-display);letter-spacing:-.05em}
+.stub-top small{font:700 11px/1 var(--f-body);text-transform:uppercase;color:var(--hot)}
+.stub .sl{font:700 10.5px/1 var(--f-body);text-transform:uppercase}
+.stub .sv{font:800 16px/1.15 var(--f-display);letter-spacing:-.02em;text-transform:uppercase;margin-top:4px;overflow-wrap:anywhere}
+.stub-2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stub .barcode{height:54px;margin-top:auto}
+.bc-n{font:700 10px/1 ui-monospace,Menlo,monospace;letter-spacing:.12em;color:rgba(10,10,10,.6);margin-top:-6px}
+.pass-stamp{position:absolute;right:calc(var(--stub) + 22px);bottom:26px;transform:rotate(-11deg);border:4px solid #c40000;color:#c40000;font:800 clamp(18px,2.4vw,26px)/1 var(--f-display);letter-spacing:.02em;text-transform:uppercase;text-align:center;padding:10px 14px;mix-blend-mode:multiply;pointer-events:none}
+.pass-stamp::after{content:"";position:absolute;inset:3px;border:1.5px solid #c40000}
+@media (max-width:640px){
+  .pass{grid-template-columns:1fr;
+    -webkit-mask:radial-gradient(circle 12px at 0 calc(100% - var(--stub)),#0000 97%,#000),radial-gradient(circle 12px at 100% calc(100% - var(--stub)),#0000 97%,#000);-webkit-mask-composite:source-in;
+    mask:radial-gradient(circle 12px at 0 calc(100% - var(--stub)),#0000 97%,#000),radial-gradient(circle 12px at 100% calc(100% - var(--stub)),#0000 97%,#000);mask-composite:intersect}
+  .pass-wrap{--stub:176px;filter:drop-shadow(7px 7px 0 var(--hot))}
+  .pass .stub{height:var(--stub);box-sizing:border-box;border-left:0!important;border-top:2px dashed var(--blk)!important;display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px 12px;align-content:start}
+  .stub>div:nth-child(5){display:none}.stub .barcode{grid-column:1/-1;height:40px;margin:0}.bc-n{grid-column:1/-1}
+  .pass-fields{grid-template-columns:repeat(2,minmax(0,1fr))}.pass-fields .pf.w2{grid-column:1/-1}
+  .pass-stamp{right:18px;bottom:calc(var(--stub) + 18px)}
+}
+@media (prefers-reduced-motion:no-preference){
+  .pass-wrap.print{animation:passPrint 1.5s steps(22,end) both}
+  .pass-wrap.print .pass-stamp{animation:passStamp .38s cubic-bezier(.2,1.4,.4,1) 1.65s both}
+  .pass-wrap.print .pass{animation:passThud .3s ease-out 1.95s}
+}
+@keyframes passPrint{from{transform:translateY(-104%)}to{transform:none}}
+@keyframes passStamp{from{transform:rotate(-24deg) scale(3.2);opacity:0}60%{opacity:1}to{transform:rotate(-11deg) scale(1);opacity:1}}
+@keyframes passThud{0%{transform:none}30%{transform:translate(2px,3px) rotate(.25deg)}100%{transform:none}}
+.pass-fields .pf{display:block;min-width:0}
+@media (max-width:640px){.pass-wrap{--stub:214px}.pass-fields{padding-bottom:84px}.pass-stamp{bottom:calc(var(--stub) + 14px)}}
+@media (min-width:641px){.pass-stamp{bottom:auto;top:204px;right:calc(var(--stub) + 30px)}}
 </style>
 </head>
 <body>
@@ -2346,37 +2398,46 @@ document.addEventListener("keydown",e=>{
 function mySuit(src){const sc={H:0,S:0,D:0,C:0},ct={H:0,S:0,D:0,C:0};
   ACTS.forEach(a=>{const v=src.acts&&src.acts[a.c];if(v){sc[a.u]+=v;ct[a.u]++;}});
   let best=null,bv=0;Object.keys(sc).forEach(k=>{const av=ct[k]?sc[k]/ct[k]:0;if(av>bv){bv=av;best=k;}});return best;}
-function passEl(stamped){
+function passEl(stamped,fresh){
   const top=S.top3.map(c=>ACT_BY[c]).filter(Boolean),yes=CONTS.filter(c=>S.continents[c.k]===1).map(c=>c.n);
   const nm=S.name||"PASSEGGERO";const seat=String(1+Math.abs([...nm].reduce((h,c)=>h*31+c.charCodeAt(0)|0,7))%29).padStart(2,"0")+"ABCDEF"[nm.length%6];
   const P=Object.values(S.days).filter(v=>v==="p").length,u=mySuit(S),su=u&&SUITS[u];
-  const el=document.createElement("div");el.className="pass";
-  el.innerHTML=`<div class="pass-head"><span>CARTA D'IMBARCO <span class="r">VE2027</span></span><span>OPERATO DA COS</span></div>
-  <div class="pass-main">
-    <div class="pf wide"><span>Passeggero</span><div class="big" data-f="name"></div></div>
-    <div class="pf wide"><span>Rotta</span><div class="route">FCO <i aria-hidden="true">✈</i> ???</div></div>
-    <div class="pf"><span>Notti</span><div data-f="n"></div></div>
-    <div class="pf"><span>Budget</span><div data-f="b"></div></div>
-    <div class="pf"><span>Posto</span><div data-f="seat"></div></div>
-    <div class="pf"><span>Continenti</span><div data-f="c"></div></div>
-    <div class="pf"><span>Giorni preferiti</span><div data-f="d"></div></div>
-    <div class="pf"><span>Seme</span><div data-f="s"></div></div>
-    <div class="pf wide"><span>Bagaglio a mano</span><div data-f="top"></div></div>
+  const wrap=document.createElement("div");wrap.className="pass-wrap"+(fresh?" print":"");
+  const el=document.createElement("div");el.className="pass";wrap.appendChild(el);
+  el.innerHTML=`<div class="pass-main">
+    <div class="pass-head"><img src="logo.png?v=3" alt="" width="34" height="34"><span><b>Carta d'imbarco</b><small>Boarding pass · COS Airlines</small></span><span class="ph-r">VE2027</span></div>
+    <div class="pass-route"><div><b>FCO</b><small>Roma</small></div><i aria-hidden="true"><svg viewBox="0 0 120 24"><path d="M0 12h92" stroke="currentColor" stroke-width="2" stroke-dasharray="3 6"/><path d="M118 12l-14-3-9-9h-4l5 9H84l-4-4h-3l2 7-2 7h3l4-4h12l-5 9h4l9-9z" fill="currentColor"/></svg></i><div class="to"><b>???</b><small>Destinazione ignota</small></div></div>
+    <div class="pass-fields">
+      <div class="pf wide"><span>Passeggero / Passenger</span><div class="big" data-f="name"></div></div>
+      <div class="pf"><span>Volo</span><div>VE2027</div></div>
+      <div class="pf"><span>Gate</span><div>COS</div></div>
+      <div class="pf"><span>Posto</span><div data-f="seat"></div></div>
+      <div class="pf"><span>Notti</span><div data-f="n"></div></div>
+      <div class="pf"><span>Budget</span><div data-f="b"></div></div>
+      <div class="pf"><span>Giorni preferiti</span><div data-f="d"></div></div>
+      <div class="pf w2"><span>Continenti</span><div data-f="c"></div></div>
+      <div class="pf"><span>Seme</span><div data-f="s"></div></div>
+      <div class="pf wide"><span>Bagaglio a mano</span><div data-f="top"></div></div>
+    </div>
   </div>
-  <div class="stub"><div><span class="sl">Gate</span><div style="font:600 32px/1 var(--f-mono);margin-top:4px">COS</div></div>
-    <div><span class="sl">Imbarco</span><div style="font:600 15px/1.2 var(--f-mono);margin-top:4px">ESTATE 2027</div></div>
+  <div class="stub">
+    <div class="stub-top"><b>VE2027</b><small>FCO → ???</small></div>
+    <div><span class="sl">Passeggero</span><div class="sv" data-f="name2"></div></div>
+    <div class="stub-2"><div><span class="sl">Gate</span><div class="sv">COS</div></div><div><span class="sl">Posto</span><div class="sv" data-f="seat2"></div></div></div>
+    <div><span class="sl">Imbarco</span><div class="sv">Estate 2027</div></div>
     <div><span class="sl">Equipaggio</span><div class="crew" style="margin-top:6px">${CREW.map(c=>miniCard(c[0],c[1],c[2],c[3])).join("")}</div></div>
-    <div class="barcode" aria-hidden="true"></div></div>`;
+    <div class="barcode" aria-hidden="true"></div><small class="bc-n">VE27 ${seat} ${String(Math.abs([...nm].reduce((h,c)=>h*33+c.charCodeAt(0)|0,5))).slice(0,8)}</small></div>`;
   const set=(f,v)=>{el.querySelector(`[data-f="${f}"]`).textContent=v;};
-  set("name",nm);set("n",S.nights[0]===S.nights[1]?S.nights[0]:S.nights[0]+"–"+S.nights[1]);set("b",eur(S.budget));set("seat",seat);
+  set("name",nm);set("name2",nm);set("n",S.nights[0]===S.nights[1]?S.nights[0]:S.nights[0]+"–"+S.nights[1]);set("b",eur(S.budget));set("seat",seat);set("seat2",seat);
   set("c",yes.join(", ")||"Ovunque");set("d",P||"–");set("s",su?su.s+" "+su.n:"–");set("top",top.map(a=>a.n).join(", ")||"Vuoto");
   if(su&&su.r)el.querySelector('[data-f="s"]').classList.add("r");
-  if(stamped){const st=document.createElement("div");st.className="stamp";st.textContent="CHECK-IN\nOK";el.appendChild(st);}
-  return el;
+  if(stamped){const st=document.createElement("div");st.className="pass-stamp";st.innerHTML="Check-in<br>OK";wrap.appendChild(st);}
+  return wrap;
 }
 const dirty=()=>JSON.stringify(payloadCore())!==lastSaved;
 function payloadCore(){return{name:S.name.slice(0,16),continents:S.continents,acts:S.acts,top3:S.top3.slice(0,3),move:S.move,stays:S.stays,days:S.days,nights:S.nights,budget:S.budget,
   drive:S.drive,night:S.night,extOk:S.extOk,extBring:S.extBring,extWho:S.extBring==="si"?S.extWho.slice(0,80):"",extWhy:S.extBring==="si"?S.extWhy.slice(0,600):"",veto:(S.veto||"").slice(0,400),pitch:(S.pitch||"").slice(0,600),more:(S.more||"").slice(0,200),touched:S.touched};}
+let justSaved=false;
 function renderReview(){
   const miss=[];for(let i=2;i<=NG;i++)if(!DONE[i]())miss.push(i);
   const m=$("#missing");m.textContent="";
@@ -2387,7 +2448,7 @@ function renderReview(){
   $("#board-help").textContent=done?"Il COS terrà la tua carta d'imbarco fino all'aeroporto. Puoi tornare ai gate per cambiare qualcosa e poi confermare di nuovo.":(savedAt?"Hai cambiato qualcosa rispetto al check-in salvato. Conferma per aggiornarlo.":"Controlla che sia tutto giusto, poi conferma il check-in.");
   $("#go-txt").textContent=done?"Torna all'inizio":(savedAt?"Aggiorna il check-in":"Conferma il check-in");
   $("#sub-note").textContent=done&&savedAt?"Ultimo salvataggio: "+fmtTime(savedAt)+".":"";$("#sub-note").classList.remove("err");
-  const slot=$("#pass-slot");slot.textContent="";slot.appendChild(passEl(done));
+  const slot=$("#pass-slot");slot.textContent="";slot.appendChild(passEl(done,done&&justSaved));if(done&&justSaved){justSaved=false;setTimeout(()=>{try{slot.scrollIntoView({behavior:"smooth",block:"center"});}catch(e){}},80);}
 }
 function fmtTime(t){const d=new Date(t);return `${d.getDate()} ${mesi[d.getMonth()]} alle ${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}`;}
 const subBtn=$("#submit"),subNote=$("#sub-note");
@@ -2398,7 +2459,7 @@ subBtn.addEventListener("click",async()=>{
   try{
     const core=payloadCore(),r=await rpc("ve_save",{p_name:me.name,p_pin:me.pin,p_payload:core});
     if(!r.ok){subNote.textContent=r.error==="locked"?"Accesso bloccato per troppi tentativi: riprova tra qualche minuto.":"Sessione non valida: rientra con nome e PIN.";subNote.classList.add("err");return;}
-    savedAt=r.updated_at;lastSaved=JSON.stringify(core);ls.del(draftKey());renderReview();refreshCount();renderLogin("back");
+    savedAt=r.updated_at;lastSaved=JSON.stringify(core);ls.del(draftKey());justSaved=true;renderReview();refreshCount();renderLogin("back");
   }catch(e){subNote.textContent="Salvataggio non riuscito. Controlla la connessione e riprova: le risposte restano su questo telefono.";subNote.classList.add("err");}
   finally{subBtn.disabled=false;}
 });
