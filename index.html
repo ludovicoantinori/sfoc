@@ -1544,6 +1544,58 @@ footer .sig img.mini-card,.nw-f img.mini-card{width:28px}
 .pass-fields .pf{display:block;min-width:0}
 @media (max-width:640px){.pass-wrap{--stub:214px}.pass-fields{padding-bottom:84px}.pass-stamp{bottom:calc(var(--stub) + 14px)}}
 @media (min-width:641px){.pass-stamp{bottom:auto;top:204px;right:calc(var(--stub) + 30px)}}
+/* ===== area COS: confronto ===== */
+.cos-filter{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:22px;padding:12px 14px;border:2px solid rgba(255,255,255,.2)}
+.cos-filter>span{font:800 11px/1.2 var(--f-body);text-transform:uppercase;color:rgba(255,255,255,.6);margin-right:6px}
+.cf{font:800 12px/1 var(--f-body);text-transform:uppercase;padding:8px 10px;border:2px solid #fff;background:#fff;color:var(--blk);cursor:pointer}
+.cf[aria-pressed="false"]{background:transparent;color:rgba(255,255,255,.45);border-color:rgba(255,255,255,.25);text-decoration:line-through}
+.cf.all{background:transparent;color:#fff;border-style:dashed}
+.cos-filter em{font:italic 400 17px/1 var(--goth);color:var(--hot);margin-left:auto}
+.gv{margin-top:26px}
+.gwrap{margin-top:18px;overflow-x:auto;border:2px solid rgba(255,255,255,.2);-webkit-overflow-scrolling:touch}
+.gt{border-collapse:separate;border-spacing:0;width:100%;font-size:14px}
+.gt th,.gt td{padding:10px 12px;text-align:left;white-space:nowrap;border-bottom:1px solid rgba(255,255,255,.1)}
+.gt thead th{position:sticky;top:0;background:#161616;font:800 11px/1.2 var(--f-body);text-transform:uppercase;color:rgba(255,255,255,.7);cursor:pointer;user-select:none;border-bottom:2px solid #fff}
+.gt thead th:hover{color:#fff}.gt thead th[data-dir]::after{content:" ▲";color:var(--hot)}.gt thead th[data-dir="-1"]::after{content:" ▼"}
+.gt th:first-child,.gt td:first-child{position:sticky;left:0;background:#0a0a0a;z-index:1;font-weight:800;text-transform:uppercase;box-shadow:inset -1px 0 0 rgba(255,255,255,.2)}
+.gt thead th:first-child{background:#161616;z-index:2}
+.gt tbody tr{cursor:pointer}.gt tbody tr:hover td{background:rgba(255,43,28,.14)}.gt tbody tr:hover td:first-child{background:#2a0d0a}
+.gt td.num{text-align:right;font:800 15px/1 var(--f-display);letter-spacing:-.02em}
+.gt td.hi{color:var(--hot)}.gt td.lo{color:rgba(255,255,255,.5)}
+.gt tfoot td{background:#161616;border-top:2px solid #fff;border-bottom:0;font-weight:800;vertical-align:top;white-space:normal}
+.gt tfoot td:first-child{background:#161616;color:var(--hot)}
+.gt tfoot small{display:block;font:700 10.5px/1.3 var(--f-body);text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:3px}
+.gt .pill{display:inline-block;padding:4px 7px;font:800 11px/1 var(--f-body);text-transform:uppercase;background:rgba(255,255,255,.12)}
+.gt .pill.y{background:var(--hot);color:#fff}.gt .pill.n{background:transparent;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.4);color:rgba(255,255,255,.7)}
+.gm th,.gm td{padding:0;text-align:center}
+.gm thead th{padding:8px 4px;min-width:40px;cursor:pointer}
+.gm thead th:first-child,.gm thead th:last-child{cursor:default}
+.gm td:first-child{padding:8px 12px;text-align:left;text-transform:none;font-weight:700}
+.gm td.gc{width:40px;height:36px;font:800 14px/36px var(--f-display);color:#fff;position:relative}
+.gm td.gc[data-v="1"]{background:rgba(255,255,255,.04);color:rgba(255,255,255,.4)}
+.gm td.gc[data-v="2"]{background:rgba(255,255,255,.1);color:rgba(255,255,255,.6)}
+.gm td.gc[data-v="3"]{background:rgba(255,255,255,.22)}
+.gm td.gc[data-v="4"]{background:rgba(255,43,28,.55)}
+.gm td.gc[data-v="5"]{background:var(--hot)}
+.gm td.gc.t3::after{content:"★";position:absolute;top:-9px;right:2px;font-size:9px;color:#fff}
+.gm td.gc.yes{background:var(--hot)}.gm td.gc.no{background:rgba(255,255,255,.14);color:rgba(255,255,255,.7)}
+.gm td.avg{padding:0 12px;text-align:right;font:800 16px/1 var(--f-display);border-left:2px solid #fff;white-space:nowrap}
+.gm td.avg i{display:inline-block;vertical-align:middle;height:8px;background:var(--hot);margin-right:8px;font-style:normal}
+.gm tr.sec td{background:#161616!important;font:800 12px/1 var(--f-body);text-transform:uppercase;color:var(--hot);padding:12px;text-align:left;border-top:2px solid #fff}
+.gm thead th.on{color:var(--hot)}
+.gm tbody tr{cursor:default}
+.gd td.gc{width:16px;min-width:16px;height:26px;font-size:0}
+.gd td.gc.p{background:var(--hot)}.gd td.gc.x{background:repeating-linear-gradient(45deg,rgba(255,255,255,.45) 0 2px,transparent 2px 5px)}
+.gd thead th{min-width:16px;padding:6px 0;font-size:9px;cursor:default}
+.gd thead th.m1{box-shadow:inset 2px 0 0 #fff}
+.gd td.gc.m1{box-shadow:inset 2px 0 0 rgba(255,255,255,.6)}
+.gd tfoot td.gc{font:800 10px/26px var(--f-body);color:#fff;background:#161616}
+.glegend{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;font-size:13px;color:rgba(255,255,255,.75)}
+.glegend i{display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:6px}
+.ghint{margin-top:10px;font-size:13px;color:rgba(255,255,255,.6)}
+.gt.gm{width:auto;min-width:0}
+.gm td:first-child{min-width:170px}
+@media (max-width:640px){.gm td:first-child{min-width:112px;padding:8px;font-size:12.5px;white-space:normal}.gt th,.gt td{padding:9px 9px}.gm td.gc{width:34px}.gm thead th{min-width:34px}}
 </style>
 </head>
 <body>
@@ -1865,8 +1917,13 @@ footer .sig img.mini-card,.nw-f img.mini-card{width:28px}
     <div id="cos-area" hidden>
       <p class="help" id="res-sub"></p>
       <div class="cos-tools"><button class="btn-line" type="button" id="cos-refresh">Aggiorna</button><button class="btn-line" type="button" id="cos-csv">Scarica CSV</button><button class="btn-line" type="button" id="cos-json">Scarica JSON</button><button class="link" type="button" id="cos-close" style="color:var(--board-mute)">Chiudi area COS</button></div>
-      <div class="tabs" role="tablist"><button type="button" role="tab" class="tab" data-tab="sum" aria-selected="true">Riepilogo</button><button type="button" role="tab" class="tab" data-tab="people" aria-selected="false">Passeggeri</button><button type="button" role="tab" class="tab" data-tab="news" aria-selected="false">Gazzetta</button><button type="button" role="tab" class="tab" data-tab="mail" aria-selected="false">Posta<i class="nbadge" id="mail-badge" hidden></i></button></div>
+      <div class="tabs" role="tablist"><button type="button" role="tab" class="tab" data-tab="sum" aria-selected="true">Riepilogo</button><button type="button" role="tab" class="tab" data-tab="grid" aria-selected="false">Confronto</button><button type="button" role="tab" class="tab" data-tab="people" aria-selected="false">Passeggeri</button><button type="button" role="tab" class="tab" data-tab="news" aria-selected="false">Gazzetta</button><button type="button" role="tab" class="tab" data-tab="mail" aria-selected="false">Posta<i class="nbadge" id="mail-badge" hidden></i></button></div>
+      <div class="cos-filter" id="cos-filter" hidden></div>
       <div id="res-body"></div>
+      <div id="grid-body" hidden>
+        <div class="gv choices" id="gv" role="group" aria-label="Vista"><button type="button" class="choice" data-v="ans" aria-pressed="true"><i></i>Risposte</button><button type="button" class="choice" data-v="votes" aria-pressed="false"><i></i>Voti</button><button type="button" class="choice" data-v="days" aria-pressed="false"><i></i>Date</button></div>
+        <div id="grid-view"></div>
+      </div>
       <div id="people-body" hidden></div>
       <div id="mail-admin" hidden>
         <div class="mail-f choices" id="mail-f" role="group" aria-label="Filtro"><button type="button" class="choice" data-f="all" aria-pressed="true"><i></i>Tutto</button><button type="button" class="choice" data-f="privato" aria-pressed="false"><i></i>Richieste private</button><button type="button" class="choice" data-f="pubblico" aria-pressed="false"><i></i>Annunci pubblici</button></div>
@@ -2478,7 +2535,7 @@ $("#cos-go").addEventListener("click",()=>{const v=$("#cos-pass").value.trim();i
 $("#cos-pass").addEventListener("keydown",e=>{if(e.key==="Enter"){e.preventDefault();$("#cos-go").click();}});
 $("#cos-refresh").addEventListener("click",()=>loadCos());
 $("#cos-close").addEventListener("click",()=>{cosPass="";ss.del("ve-cos");people=[];$("#res-body").textContent="";$("#people-body").textContent="";show(0);});
-$$(".tab").forEach(t=>t.addEventListener("click",()=>{cosTab=t.dataset.tab;$$(".tab").forEach(x=>x.setAttribute("aria-selected",String(x===t)));$("#res-body").hidden=cosTab!=="sum";$("#people-body").hidden=cosTab!=="people";$("#news-admin").hidden=cosTab!=="news";$("#mail-admin").hidden=cosTab!=="mail";if(cosTab==="mail")loadMail();if(cosTab==="news")loadNews();}));
+$$(".tab").forEach(t=>t.addEventListener("click",()=>{cosTab=t.dataset.tab;$$(".tab").forEach(x=>x.setAttribute("aria-selected",String(x===t)));$("#res-body").hidden=cosTab!=="sum";$("#people-body").hidden=cosTab!=="people";$("#grid-body").hidden=cosTab!=="grid";$("#cos-filter").hidden=!(cosTab==="sum"||cosTab==="grid")||!$("#cos-filter").children.length;$("#news-admin").hidden=cosTab!=="news";$("#mail-admin").hidden=cosTab!=="mail";if(cosTab==="mail")loadMail();if(cosTab==="news")loadNews();}));
 
 /* ---------- navigazione tra le sezioni del sito ---------- */
 $$("[data-go]").forEach(b=>b.addEventListener("click",()=>{const g=b.dataset.go;
@@ -2729,10 +2786,65 @@ function detailHTML(s){
     <dt>Vincolo</dt><dd>${esc(s.veto||"–")}</dd><dt>Convincici</dt><dd>${esc(s.pitch||"–")}</dd><dt>Altre attività</dt><dd>${esc(s.more||"–")}</dd>
   </dl>`;
 }
+const cosEx=new Set();let gView="ans",gSort={k:"name",d:1},gCol=null;
+$$("#gv .choice").forEach(b=>b.addEventListener("click",()=>{gView=b.dataset.v;$$("#gv .choice").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));renderCos();}));
+function openPerson(name){const t=document.querySelector('.tab[data-tab="people"]');if(t)t.click();const i=people.findIndex(p=>p.name===name),d=document.querySelector(`.pp[data-i="${i}"]`);if(d){d.open=true;d.scrollIntoView({block:"start",behavior:"smooth"});}}
+function renderGrid(R){const V=$("#grid-view");if(!V)return;
+  if(!R.length){V.innerHTML='<p class="empty-res">Nessun passeggero nel calcolo.</p>';return;}
+  const avg=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:0,f1=v=>v.toFixed(1).replace(".",","),med=a=>{const b=a.slice().sort((x,y)=>x-y);return !b.length?0:b.length%2?b[(b.length-1)/2]:(b[b.length/2-1]+b[b.length/2])/2;};
+  const lab=(opts,v)=>(opts.find(o=>o[0]===v)||[0,"–"])[1],MV=MOVES.map(m=>[m.k,m.n]);
+  const mode=(opts,key)=>{const c=opts.map(o=>[o[1],R.filter(r=>r[key]===o[0]).length]).sort((a,b)=>b[1]-a[1])[0];return c&&c[1]?`${c[0]}<small>${c[1]} su ${R.length}</small>`:"–";};
+  const ini=s=>esc(s.replace(/[^A-Za-zÀ-ÿ0-9]/g,"").slice(0,3));
+  if(gView==="ans"){
+    const cols=[["name","Passeggero",r=>r.name],["done","Gate",r=>doneCount(r)],["budget","Budget",r=>r.touched.budget?r.budget:-1],["nights","Notti",r=>(r.nights[0]+r.nights[1])/2],["days","Giorni ok",r=>Object.values(r.days).filter(v=>v==="p").length],
+      ["move","Scali",r=>lab(MV,r.move)],["drive","Guida",r=>lab(QQ[0].o,r.drive)],["night","Nottata",r=>lab(QQ[1].o,r.night)],["extOk","Esterni",r=>lab(EXT_OK,r.extOk)],["extBring","Porta qualcuno",r=>r.extBring==="si"?"Sì: "+(r.extWho||"?"):lab(EXT_BRING,r.extBring)],["suit","Seme",r=>{const u=mySuit(r);return u?SUITS[u].n:"–";}],["top","Bagaglio a mano",r=>r.top3.map(c=>ACT_BY[c]?ACT_BY[c].n:"").filter(Boolean).join(", ")]];
+    const sc=cols.find(c=>c[0]===gSort.k)||cols[0],rows=R.slice().sort((a,b)=>{const x=sc[2](a),y=sc[2](b);return (typeof x==="number"?x-y:String(x).localeCompare(String(y)))*gSort.d;});
+    const bs=R.filter(r=>r.touched.budget).map(r=>r.budget),bm=med(bs),yn=v=>v==="Sì"?"y":v==="No"?"n":"";
+    V.innerHTML=`<div class="gwrap"><table class="gt"><thead><tr>${cols.map(c=>`<th data-k="${c[0]}"${gSort.k===c[0]?` data-dir="${gSort.d}"`:""}>${c[1]}</th>`).join("")}</tr></thead><tbody>
+      ${rows.map(r=>`<tr data-n="${esc(r.name)}"><td>${esc(r.name)}</td><td class="num${doneCount(r)===NG?"":" lo"}">${doneCount(r)}/${NG}</td><td class="num${r.touched.budget&&r.budget>bm?" hi":r.touched.budget&&r.budget<REF?" lo":""}">${r.touched.budget?eur(r.budget):"–"}</td><td class="num">${r.nights[0]===r.nights[1]?r.nights[0]:r.nights[0]+"–"+r.nights[1]}</td><td class="num">${cols[4][2](r)||"–"}</td>
+        <td>${esc(cols[5][2](r))}</td>${[6,7].map(i=>{const v=cols[i][2](r);return `<td><span class="pill ${yn(v)}">${esc(v)}</span></td>`;}).join("")}<td>${esc(cols[8][2](r))}</td><td>${esc(cols[9][2](r))}</td><td>${esc(cols[10][2](r))}</td><td>${esc(cols[11][2](r))}</td></tr>`).join("")}</tbody>
+      <tfoot><tr><td>Il gruppo</td><td>${f1(avg(R.map(r=>doneCount(r))))}<small>media gate</small></td><td>${bs.length?eur(avg(bs)):"–"}<small>media · mediana ${bs.length?eur(bm):"–"}<br>da ${bs.length?eur(Math.min(...bs)):"–"} a ${bs.length?eur(Math.max(...bs)):"–"}</small></td>
+        <td>${f1(avg(R.map(r=>r.nights[0])))}–${f1(avg(R.map(r=>r.nights[1])))}<small>media min–max</small></td><td>${f1(avg(R.map(r=>cols[4][2](r))))}<small>media</small></td>
+        <td>${mode(MV,"move")}</td><td>${mode(QQ[0].o,"drive")}</td><td>${mode(QQ[1].o,"night")}</td><td>${mode(EXT_OK,"extOk")}</td><td>${R.filter(r=>r.extBring==="si").length}<small>vorrebbero portare qualcuno</small></td><td></td><td></td></tr></tfoot></table></div>
+      <p class="ghint">Tocca un'intestazione per ordinare, tocca una riga per aprire la scheda del passeggero. In rosso i budget sopra la mediana.</p>`;
+    V.querySelectorAll("thead th").forEach(th=>th.addEventListener("click",()=>{const k=th.dataset.k;gSort=gSort.k===k?{k,d:-gSort.d}:{k,d:k==="name"?1:-1};renderCos();}));
+    V.querySelectorAll("tbody tr").forEach(tr=>tr.addEventListener("click",()=>openPerson(tr.dataset.n)));
+  }else if(gView==="votes"){
+    const P=gCol&&R.some(r=>r.name===gCol)?gCol:null,val=(row,r)=>row.get(r)||0;
+    const mk=(items,get,nm)=>items.map(it=>{const vs=R.map(r=>get(r,it)).filter(Boolean);return{it,n:nm(it),avg:avg(vs),get:r=>get(r,it)};}).sort((a,b)=>P?(b.get(R.find(r=>r.name===P))||0)-(a.get(R.find(r=>r.name===P))||0)||b.avg-a.avg:b.avg-a.avg);
+    const A=mk(ACTS,(r,a)=>r.acts[a.c],a=>a.n),S2=mk(STAYS,(r,s)=>r.stays[s.k],s=>s.n);
+    const head=`<thead><tr><th>${P?"Ordinato per "+esc(P):"Ordinato per media"}</th>${R.map(r=>`<th data-n="${esc(r.name)}" class="${P===r.name?"on":""}" title="${esc(r.name)}">${ini(r.name)}</th>`).join("")}<th>Media</th></tr></thead>`;
+    const row=(x,isAct)=>`<tr><td>${esc(x.n)}</td>${R.map(r=>{const v=x.get(r);return `<td class="gc${isAct&&r.top3.includes(x.it.c)?" t3":""}" data-v="${v||""}" title="${esc(r.name)}: ${v||"nessun voto"}${isAct&&r.top3.includes(x.it.c)?", nel bagaglio a mano":""}">${v||""}</td>`;}).join("")}<td class="avg"><i style="width:${x.avg/5*46}px"></i>${x.avg?f1(x.avg):"–"}</td></tr>`;
+    const cont=CONTS.map(c=>{const y=R.filter(r=>r.continents[c.k]===1).length,no=R.filter(r=>r.continents[c.k]===-1).length;return{c,y,no};}).sort((a,b)=>(b.y-b.no)-(a.y-a.no));
+    V.innerHTML=`<div class="gwrap"><table class="gt gm">${head}<tbody>
+      <tr class="sec"><td colspan="${R.length+2}">Attività, voti da 1 a 5</td></tr>${A.map(x=>row(x,true)).join("")}
+      <tr class="sec"><td colspan="${R.length+2}">Alloggi, voti da 1 a 5</td></tr>${S2.map(x=>row(x,false)).join("")}
+      <tr class="sec"><td colspan="${R.length+2}">Continenti</td></tr>${cont.map(x=>`<tr><td>${esc(x.c.n)}</td>${R.map(r=>{const v=r.continents[x.c.k];return `<td class="gc ${v===1?"yes":v===-1?"no":""}" title="${esc(r.name)}: ${v===1?"ci andrei":v===-1?"anche no":"indifferente"}">${v===1?"✓":v===-1?"✕":""}</td>`;}).join("")}<td class="avg">${x.y} sì · ${x.no} no</td></tr>`).join("")}
+      </tbody></table></div>
+      <div class="glegend"><span><i style="background:var(--hot)"></i>5</span><span><i style="background:rgba(255,43,28,.55)"></i>4</span><span><i style="background:rgba(255,255,255,.22)"></i>3</span><span><i style="background:rgba(255,255,255,.1)"></i>1–2</span><span>★ nel bagaglio a mano</span></div>
+      <p class="ghint">Ogni colonna è un passeggero. Tocca le sue iniziali per ordinare le righe secondo i suoi voti; toccale di nuovo per tornare alla media.</p>`;
+    V.querySelectorAll("thead th[data-n]").forEach(th=>th.addEventListener("click",()=>{gCol=gCol===th.dataset.n?null:th.dataset.n;renderCos();}));
+  }else{
+    const MESI=["gen","feb","mar","apr","mag","giu","lug","ago","set","ott","nov","dic"];
+    const rows=R.slice().sort((a,b)=>a.name.localeCompare(b.name)),m1=(d,i)=>i>0&&DAYS[i-1].m!==d.m?" m1":"";
+    V.innerHTML=`<div class="gwrap"><table class="gt gm gd"><thead><tr><th>Passeggero</th>${DAYS.map((d,i)=>`<th class="${m1(d,i).trim()}" title="${d.d} ${MESI[d.m]}">${d.d===1||i===0||d.d%5===0?d.d:""}</th>`).join("")}<th>Liberi</th></tr></thead><tbody>
+      ${rows.map(r=>`<tr data-n="${esc(r.name)}"><td>${esc(r.name)}</td>${DAYS.map((d,i)=>{const v=r.days[d.k];return `<td class="gc${v==="p"?" p":v==="x"?" x":""}${m1(d,i)}" title="${esc(r.name)}, ${d.d} ${MESI[d.m]}: ${v==="p"?"preferisce":v==="x"?"non può":"indifferente"}"></td>`;}).join("")}<td class="avg">${DAYS.filter(d=>r.days[d.k]!=="x").length}</td></tr>`).join("")}</tbody>
+      <tfoot><tr><td>Non possono</td>${DAYS.map((d,i)=>{const x=R.filter(r=>r.days[d.k]==="x").length;return `<td class="gc${m1(d,i)}" style="${x?`background:rgba(255,255,255,${.15+.5*x/R.length})`:""}" title="${d.d} ${MESI[d.m]}: ${x} non possono">${x||""}</td>`;}).join("")}<td></td></tr>
+      <tr><td>Preferiscono</td>${DAYS.map((d,i)=>{const x=R.filter(r=>r.days[d.k]==="p").length;return `<td class="gc${m1(d,i)}" style="${x?`background:color-mix(in oklab,var(--hot) ${Math.round(20+80*x/R.length)}%,#161616)`:""}" title="${d.d} ${MESI[d.m]}: ${x} preferiscono">${x||""}</td>`;}).join("")}<td></td></tr></tfoot></table></div>
+      <div class="glegend"><span><i style="background:var(--hot)"></i>Preferisce partire</span><span><i style="background:repeating-linear-gradient(45deg,rgba(255,255,255,.6) 0 2px,transparent 2px 5px)"></i>Non può</span><span>Dal 12 luglio al 31 agosto 2027, la riga bianca segna l'inizio di agosto</span></div>`;
+    V.querySelectorAll("tbody tr").forEach(tr=>{tr.style.cursor="pointer";tr.addEventListener("click",()=>openPerson(tr.dataset.n));});
+  }}
 function renderCos(){
-  const R=people.filter(p=>p.payload).map(p=>Object.assign(clean(p.payload),{name:p.name}));
+  const RA=people.filter(p=>p.payload).map(p=>Object.assign(clean(p.payload),{name:p.name}));
+  [...cosEx].forEach(x=>{if(!RA.some(r=>r.name===x))cosEx.delete(x);});
+  const R=RA.filter(r=>!cosEx.has(r.name));
   const reg=people.length,n=R.length;
-  $("#res-sub").textContent=`${n} su ${TOTAL} hanno confermato il check-in${reg>n?`, ${reg-n} registrati senza conferma`:""}.`;
+  {const F=$("#cos-filter");F.hidden=!RA.length||!(cosTab==="sum"||cosTab==="grid");
+   F.innerHTML=`<span>Calcola su</span>${RA.map(r=>`<button type="button" class="cf" data-n="${esc(r.name)}" aria-pressed="${!cosEx.has(r.name)}">${esc(r.name)}</button>`).join("")}${cosEx.size?'<button type="button" class="cf all">Rimetti tutti</button>':""}<em>${n} su ${RA.length} nel calcolo</em>`;
+   F.querySelectorAll(".cf[data-n]").forEach(b=>b.addEventListener("click",()=>{const k=b.dataset.n;cosEx.has(k)?cosEx.delete(k):cosEx.add(k);renderCos();}));
+   const al=F.querySelector(".all");if(al)al.addEventListener("click",()=>{cosEx.clear();renderCos();});}
+  renderGrid(R);
+  $("#res-sub").textContent=`${RA.length} su ${TOTAL} hanno confermato il check-in${reg>n?`, ${reg-n} registrati senza conferma`:""}.`;
   // people tab
   const pb=$("#people-body");
   pb.innerHTML=people.length?`<div class="ppl">${people.map((p,i)=>{const s=p.payload?clean(p.payload):null,dc=s?doneCount(Object.assign(s,{name:p.name})):1;
@@ -2744,7 +2856,7 @@ function renderCos(){
     d.querySelector(".det").innerHTML=detailHTML(Object.assign(clean(r.payload),{name:p.name}));d.querySelectorAll(".revs button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));}));
   // summary tab
   const body=$("#res-body");
-  if(!n){body.innerHTML='<p class="empty-res">Appena qualcuno conferma il check-in, qui compare il tabellone del gruppo.</p>';return;}
+  if(!n){body.innerHTML=`<p class="empty-res">${RA.length?"Hai escluso tutti dal calcolo: rimetti almeno un passeggero.":"Appena qualcuno conferma il check-in, qui compare il tabellone del gruppo."}</p>`;return;}
   const avg=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:0,f1=v=>v.toFixed(1).replace(".",","),ini=s=>esc(s.replace(/[^A-Za-zÀ-ÿ0-9]/g,"").slice(0,2));
   const MESI=["gen","feb","mar","apr","mag","giu","lug","ago","set","ott","nov","dic"],dl=d=>`${d.d} ${MESI[d.m]}`;
   // dati
