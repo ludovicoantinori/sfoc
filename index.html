@@ -1702,12 +1702,12 @@ footer .sig img.mini-card,.nw-f img.mini-card{width:28px}
         <div class="ve26-grid">
           <figure class="donut" aria-label="Spesa media a persona per VE2026">
             <svg viewBox="0 0 220 220" id="donut" role="img"></svg>
-            <figcaption class="donut-c"><span class="k">Costo medio</span><b id="donut-total">€ 676</b><span class="k">a persona</span></figcaption>
+            <figcaption class="donut-c"><span class="k">Costo medio</span><b id="donut-total">€ 675</b><span class="k">a persona</span></figcaption>
           </figure>
           <div class="ve26-split">
             <section class="pay">
-              <div class="pay-h"><span class="sw sw-paid" aria-hidden="true"></span><div><p>Pagati al COS in 3 rate</p><b>€ 401</b></div></div>
-              <div class="rates"><span>1ª rata<b>€ 180</b></span><span>2ª rata<b>€ 80</b></span><span>3ª rata<b>€ 141</b></span></div>
+              <div class="pay-h"><span class="sw sw-paid" aria-hidden="true"></span><div><p>Pagati al COS in 3 rate</p><b>€ 400</b></div></div>
+              <div class="rates"><span>1ª rata<b>€ 180</b></span><span>2ª rata<b>€ 80</b></span><span>3ª rata<b>€ 140</b></span></div>
               <ul class="legend-list" id="legend-paid"></ul>
             </section>
             <section class="pay">
@@ -1745,7 +1745,7 @@ footer .sig img.mini-card,.nw-f img.mini-card{width:28px}
         </div>
         <p class="per-day" id="per-day"></p>
         <div class="range-wrap">
-          <div class="ref-pin" id="ref-pin"><span>Marocco<b>€ 676</b></span></div>
+          <div class="ref-pin" id="ref-pin"><span>Marocco<b>€ 675</b></span></div>
           <input class="range" type="range" id="budget" min="0" max="1000" step="1" value="500" aria-label="Budget a persona in euro">
           <div class="scale" id="b-scale"></div>
         </div>
@@ -1965,7 +1965,7 @@ const PP=[
   {k:"trasporti",n:"Trasporti",v:738.43/15,c:"#8f8f8f",paid:1},
   {k:"altro",n:"Gite, magliette e straforo",v:(225+169.93+167.63)/15,c:"#d6d6d6",paid:1},
   {k:"posto",n:"Spese sul posto (stima)",v:25*11,c:"url(#hatch)",paid:0}];
-const PER_NIGHT=40,PER_DAY=25,REF=Math.round(PP.reduce((a,b)=>a+b.v,0));
+const PER_NIGHT=40,PER_DAY=25,REF=675; /* 400 pagati in 3 rate (180+80+140) + 275 stimati sul posto */
 const GATES=["PASSEGGERO","ROTTA","ATTIVITÀ","BAGAGLIO","SCALI","ALLOGGIO","DATE","NOTTI","BUDGET","DOCUMENTI","ESTERNI","NOTE","IMBARCO","AREA COS","GAZZETTA","INFOPOINT"];
 const NG=12,REV=13,COSN=14,NEWSN=15,WALLN=16;
 const EXT_OK=[["si","Sì, nessun problema"],["dip","Dipende da chi"],["no","Preferirei di no"]],EXT_BRING=[["si","Sì"],["no","No"]];
