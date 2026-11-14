@@ -1965,7 +1965,9 @@ const PP=[
   {k:"trasporti",n:"Trasporti",v:738.43/15,c:"#8f8f8f",paid:1},
   {k:"altro",n:"Gite, magliette e straforo",v:(225+169.93+167.63)/15,c:"#d6d6d6",paid:1},
   {k:"posto",n:"Spese sul posto (stima)",v:25*11,c:"url(#hatch)",paid:0}];
-{const paid=PP.filter(p=>p.paid),k=400/paid.reduce((a,b)=>a+b.v,0);paid.forEach(p=>p.v*=k);} /* le rate versate sono state 400 tonde */
+{const paid=PP.filter(p=>p.paid),k=400/paid.reduce((a,b)=>a+b.v,0);paid.forEach(p=>p.v*=k);
+  /* cifre intere che sommano esattamente a 400 */
+  let rest=400-paid.reduce((a,p)=>a+(p.show=Math.floor(p.v)),0);paid.slice().sort((a,b)=>(b.v%1)-(a.v%1)).forEach(p=>{if(rest-->0)p.show++;});} /* le rate versate sono state 400 tonde */
 const PER_NIGHT=40,PER_DAY=25,REF=675; /* 400 pagati in 3 rate (180+80+140) + 275 stimati sul posto */
 const GATES=["PASSEGGERO","ROTTA","ATTIVITÀ","BAGAGLIO","SCALI","ALLOGGIO","DATE","NOTTI","BUDGET","DOCUMENTI","ESTERNI","NOTE","IMBARCO","AREA COS","GAZZETTA","INFOPOINT"];
 const NG=12,REV=13,COSN=14,NEWSN=15,WALLN=16;
@@ -2217,10 +2219,10 @@ nMin.addEventListener("input",()=>onN(nMin));nMax.addEventListener("input",()=>o
 (function donut(){
   const svg=$("#donut"),tot=PP.reduce((a,b)=>a+b.v,0),R=90,C=2*Math.PI*R,GAP=3;let off=0;
   let h=`<defs><pattern id="hatch" patternUnits="userSpaceOnUse" width="7" height="7" patternTransform="rotate(-45)"><rect width="7" height="7" fill="#ffffff"/><rect width="2.6" height="7" fill="#0a0a0a"/></pattern></defs><g transform="rotate(-90 110 110)">`;
-  PP.forEach(p=>{const len=p.v/tot*C;h+=`<circle class="seg" data-k="${p.k}" cx="110" cy="110" r="${R}" style="stroke:${p.c}" stroke-dasharray="${Math.max(0,len-GAP)} ${C}" stroke-dashoffset="${-off}"><title>${p.n}: ${eur(p.v)}</title></circle>`;off+=len;});
+  PP.forEach(p=>{const len=p.v/tot*C;h+=`<circle class="seg" data-k="${p.k}" cx="110" cy="110" r="${R}" style="stroke:${p.c}" stroke-dasharray="${Math.max(0,len-GAP)} ${C}" stroke-dashoffset="${-off}"><title>${p.n}: ${eur(p.show||p.v)}</title></circle>`;off+=len;});
   svg.innerHTML=h+"</g>";
   $("#donut-total").textContent=eur(tot);
-  $("#legend-paid").innerHTML=PP.filter(p=>p.paid).map(p=>`<li data-k="${p.k}"><i style="background:${p.c}"></i><span>${p.n}</span><span class="v">${eur(p.v)}</span><span class="p">${Math.round(p.v/tot*100)}%</span></li>`).join("");
+  $("#legend-paid").innerHTML=PP.filter(p=>p.paid).map(p=>`<li data-k="${p.k}"><i style="background:${p.c}"></i><span>${p.n}</span><span class="v">${eur(p.show)}</span><span class="p">${Math.round(p.v/tot*100)}%</span></li>`).join("");
   const fig=svg.closest(".donut"),hl=k=>{fig.classList.toggle("hl",!!k);svg.querySelectorAll(".seg").forEach(s=>s.classList.toggle("on",s.dataset.k===k));$$("#legend-paid li").forEach(l=>l.classList.toggle("on",l.dataset.k===k));};
   svg.querySelectorAll(".seg").forEach(s=>{s.addEventListener("pointerenter",()=>hl(s.dataset.k));s.addEventListener("pointerleave",()=>hl(null));});
   $$("#legend-paid li").forEach(l=>{l.addEventListener("pointerenter",()=>hl(l.dataset.k));l.addEventListener("pointerleave",()=>hl(null));});
