@@ -8,7 +8,7 @@
 <meta name="description" content="Il sito del COS per il Viaggio Estivo 2027: check-in, Gazzetta Ufficiale e infopoint.">
 <meta property="og:title" content="COS · VE2027">
 <meta property="og:description" content="Il sito del Comitato Organizzativo dello Sfo per il VE2027: check-in, Gazzetta Ufficiale e infopoint.">
-<meta property="og:image" content="https://sfoc.it/og.png?v=3">
+<meta property="og:image" content="https://sfoc.it/og.png?v=4">
 <meta property="og:url" content="https://sfoc.it/">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
@@ -1483,6 +1483,14 @@ footer .sig img.mini-card,.nw-f img.mini-card{width:28px}
 .gh-box a{color:#fff}
 .gh-box ol{padding-left:20px;display:grid;gap:4px}
 .gh-row{display:flex;gap:8px;flex-wrap:wrap}.gh-row input{flex:1;min-width:200px}
+/* ===== firme ===== */
+.pcard figcaption{display:grid;gap:6px;justify-items:center}
+.pcard .firma{height:clamp(46px,6vw,74px);width:100%;object-fit:contain}
+.pcard figcaption span{font:700 11px/1.2 var(--f-body);font-style:normal;text-transform:uppercase;letter-spacing:.02em;color:rgba(10,10,10,.6)}
+.nw-f{align-items:center}
+.nw-sig{display:grid;gap:2px;justify-items:start}
+.nw-sig .firma{height:54px;width:auto;max-width:220px;object-fit:contain;object-position:left center}
+.nw-sig small{font:700 10.5px/1 var(--f-body);font-style:normal;text-transform:uppercase;letter-spacing:.02em;color:rgba(10,10,10,.55)}
 </style>
 </head>
 <body>
@@ -2034,7 +2042,7 @@ $("#crew").insertAdjacentHTML("beforeend",CREW.map(c=>miniCard(c[0],c[1],c[2],c[
 $("#sig").innerHTML=CREW.map(c=>miniCard(c[0],c[1],c[2],c[3])).join("")+"<span>Seguono le firme</span>";
 async function refreshCount(){try{const r=await rpc("ve_count"),c=r.count||0;$("#b-status").textContent=`CHECK-IN APERTO, ${String(c).padStart(2,"0")}/${TOTAL} A BORDO`;
   $("#ld-n").textContent=c;$("#ld-seats").innerHTML=Array.from({length:TOTAL},(_,i)=>`<i class="${i<c?"on":""}"></i>`).join("");}catch(e){}}
-$("#ld-cards").innerHTML=CREW.map(c=>`<figure class="pcard"><img src="img/card-${CARDIMG[c[0]+c[1]]}-l.png" alt="${c[3]}" loading="lazy" width="496" height="720"><figcaption>${c[3]}</figcaption></figure>`).join("");
+$("#ld-cards").innerHTML=CREW.map(c=>`<figure class="pcard"><img src="img/card-${CARDIMG[c[0]+c[1]]}-l.png" alt="${c[3]}" loading="lazy" width="496" height="720"><figcaption><img class="firma" src="img/firma-${CARDIMG[c[0]+c[1]]}.png" alt="Firma di ${c[3]}" loading="lazy"><span>${c[3]}</span></figcaption></figure>`).join("");
 
 /* ---------- meter ---------- */
 function meter(el,get,set){
@@ -2485,7 +2493,7 @@ function openAtto(id,docId){const x=news.find(n=>n.id===id);if(!x)return;
   const k=(KINDS.find(k=>k[0]===x.kind)||KINDS[0])[1];
   $("#atto-k").textContent=`Gazzetta Ufficiale · N. ${nums[x.id]}`;
   ATB.innerHTML=`<header class="at-h"><div class="nw-h"><span class="nw-k">${esc(k)}</span><span class="nw-d">${fmtDay(x.at)}</span></div><h2>${esc(x.title)}</h2>${x.body?`<div class="nw-b">${esc(x.body)}</div>`:""}
-    <div class="nw-f">${authCard(x.author)}<span>${x.author?"firmato "+esc(crewName(x.author)):"il COS"}</span></div></header>
+    <div class="nw-f">${authCard(x.author)}${x.author&&CARDIMG[x.author]?`<span class="nw-sig"><img class="firma" src="img/firma-${CARDIMG[x.author]}.png" alt=""><small>${esc(crewName(x.author))}</small></span>`:`<span>il COS</span>`}</div></header>
     ${(x.docs||[]).map(dm=>`<section class="at-doc" id="atdoc-${dm.id}"><div class="at-dh"><span class="ext">${esc(fext(dm.name))}</span><b>${esc(dm.name)}</b><small>${fsize(dm.size)}</small><button type="button" class="mini-dl" data-dl="${dm.id}">Scarica</button></div><div class="at-view"><div class="loading"><i></i>Apro il documento…</div></div></section>`).join("")}`;
   ATT.hidden=false;ATT.scrollTop=0;document.documentElement.classList.add("atto-on");
   /* nella barra degli indirizzi va il link che ha l'anteprima su WhatsApp: copiandolo si condivide l'atto */
@@ -2507,7 +2515,7 @@ function renderNews(){
     <div class="nw-h"><span class="nw-k">${esc((KINDS.find(k=>k[0]===x.kind)||KINDS[0])[1])}</span><span class="nw-d">N. ${nums[x.id]} · ${fmtDay(x.at)}</span>${x.pinned?'<span class="nw-p">In evidenza</span>':""}</div>
     <h3>${esc(x.title)}</h3>${x.body?`<div class="nw-b">${esc(x.body)}</div>`:""}
     ${(x.docs||[]).length?`<div class="docs">${x.docs.map(d=>isImg(d)&&d.size<3e6?`<img class="doc-img" data-img="${d.id}" alt="${esc(d.name)}">`:"").join("")}${x.docs.map(d=>`<button type="button" class="doc" data-doc="${d.id}"><span class="ext">${esc(fext(d.name))}</span><span><b>${esc(d.name)}</b><small>${fsize(d.size)}</small></span><span class="go">Apri →</span></button>`).join("")}</div>`:""}
-    <div class="nw-f">${authCard(x.author)}<span>${x.author?"firmato "+esc(crewName(x.author)):"il COS"}</span></div></article>`).join(""):'<p class="empty-res">Nessun atto pubblicato, per ora. Il COS lavora in silenzio.</p>';
+    <div class="nw-f">${authCard(x.author)}${x.author&&CARDIMG[x.author]?`<span class="nw-sig"><img class="firma" src="img/firma-${CARDIMG[x.author]}.png" alt=""><small>${esc(crewName(x.author))}</small></span>`:`<span>il COS</span>`}</div></article>`).join(""):'<p class="empty-res">Nessun atto pubblicato, per ora. Il COS lavora in silenzio.</p>';
   L.querySelectorAll(".nw[data-atto]").forEach(a=>a.addEventListener("keydown",e=>{if(e.key==="Enter"&&e.target===a)openAtto(+a.dataset.atto);}));
   L.querySelectorAll(".nw[data-atto]").forEach(a=>a.addEventListener("click",e=>{const d=e.target.closest("[data-doc]");openAtto(+a.dataset.atto,d?+d.dataset.doc:null);}));
   L.querySelectorAll("[data-img]").forEach(async im=>{try{im.src=(await getDoc(+im.dataset.img)).url;}catch(e){im.remove();}});
