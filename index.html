@@ -1965,6 +1965,7 @@ const PP=[
   {k:"trasporti",n:"Trasporti",v:738.43/15,c:"#8f8f8f",paid:1},
   {k:"altro",n:"Gite, magliette e straforo",v:(225+169.93+167.63)/15,c:"#d6d6d6",paid:1},
   {k:"posto",n:"Spese sul posto (stima)",v:25*11,c:"url(#hatch)",paid:0}];
+{const paid=PP.filter(p=>p.paid),k=400/paid.reduce((a,b)=>a+b.v,0);paid.forEach(p=>p.v*=k);} /* le rate versate sono state 400 tonde */
 const PER_NIGHT=40,PER_DAY=25,REF=675; /* 400 pagati in 3 rate (180+80+140) + 275 stimati sul posto */
 const GATES=["PASSEGGERO","ROTTA","ATTIVITÀ","BAGAGLIO","SCALI","ALLOGGIO","DATE","NOTTI","BUDGET","DOCUMENTI","ESTERNI","NOTE","IMBARCO","AREA COS","GAZZETTA","INFOPOINT"];
 const NG=12,REV=13,COSN=14,NEWSN=15,WALLN=16;
