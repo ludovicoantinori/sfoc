@@ -13,11 +13,11 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0a0a0a">
-<link rel="icon" type="image/png" href="favicon.png">
+<link rel="icon" type="image/png" href="favicon.png?v=2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap">
-<link rel="apple-touch-icon" href="img/apple-touch.png">
+<link rel="apple-touch-icon" href="img/apple-touch.png?v=2">
 <style>
 /* VE2027 su sfoc.it. Layout: un gate per schermata. Il tabellone a palette resta in alto e cambia nome a ogni gate; la barra d'imbarco in basso porta avanti. Mono solo per tabellone e codici, il resto in grotesk. */
 :root{
@@ -1491,6 +1491,7 @@ footer .sig img.mini-card,.nw-f img.mini-card{width:28px}
 .nw-sig{display:grid;gap:2px;justify-items:start}
 .nw-sig .firma{height:54px;width:auto;max-width:220px;object-fit:contain;object-position:left center}
 .nw-sig small{font:700 10.5px/1 var(--f-body);font-style:normal;text-transform:uppercase;letter-spacing:.02em;color:rgba(10,10,10,.55)}
+.board-title .ve-mark{border-radius:50%;box-shadow:0 0 0 2px #fff;width:clamp(36px,3.4vw,48px)}
 </style>
 </head>
 <body>
@@ -1511,7 +1512,7 @@ footer .sig img.mini-card,.nw-f img.mini-card{width:28px}
     <div class="board-zone">
       <div class="board-stack">
         <div class="board" role="img" aria-label="Tabellone partenze: volo VE2027, destinazione segreta, gate COS, check-in aperto">
-          <div class="board-title"><span class="it">Partenze</span><span class="en">Departures</span><img class="ve-mark" src="img/ve2027.png" alt="" aria-hidden="true" width="40" height="40"></div>
+          <div class="board-title"><span class="it">Partenze</span><span class="en">Departures</span><img class="ve-mark" src="img/ve2027.png?v=2" alt="" aria-hidden="true" width="40" height="40"></div>
           <div class="bgrid" id="bgrid">
             <span class="bl">Volo</span><span class="bl">Destinazione</span><span class="bl">Gate</span><span class="bl c-s">Stato</span>
             <div class="flaps" id="b-flight"></div><div class="flaps" id="b-dest"></div><div class="flaps" id="b-gate"></div><span class="state on c-s"><i class="blink"></i>Check-in</span>
