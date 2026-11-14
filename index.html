@@ -2455,11 +2455,12 @@ function closeShare(){if(sharePop){sharePop.remove();sharePop=null;}}
 document.addEventListener("click",e=>{if(sharePop&&!sharePop.contains(e.target)&&!e.target.closest("[data-sharer]"))closeShare();});
 async function copyTxt(t){try{await navigator.clipboard.writeText(t);return true;}catch(e){prompt("Copia qui",t);return false;}}
 const ready={};
+/* ogni atto ha sempre una pagina di anteprima: generica appena pubblicato, poi con il suo titolo */
 async function previewReady(id){if(ready[id])return true;if(location.protocol==="file:")return true;
-  try{const r=await fetch(`/gu/${id}/`,{method:"HEAD",cache:"no-store"});return ready[id]=r.ok;}catch(e){return true;}}
-const NOTREADY="L'anteprima per WhatsApp di questo atto non è ancora pronta: ci vogliono fino a 10 minuti dalla pubblicazione. Se lo mandi adesso, WhatsApp mostrerà un'anteprima generica e se la ricorderà.";
+  try{const r=await fetch(`/gu/${id}/`,{cache:"no-store"});if(!r.ok)return false;const t=await r.text();return ready[id]=!t.includes("gu-segnaposto");}catch(e){return true;}}
+const NOTREADY="Per ora su WhatsApp questo atto esce con l'anteprima generica della Gazzetta: quella con il suo titolo arriva più tardi.";
 async function shareAtto(id,btn){const x=news.find(n=>n.id===id);if(!x)return;const msg=shareMsg(x),ok=await previewReady(id);
-  if(navigator.share&&matchMedia("(pointer:coarse)").matches){if(!ok&&!confirm(NOTREADY+"\n\nCondividere lo stesso?"))return;try{await navigator.share({text:msg});}catch(e){}return;}
+  if(navigator.share&&matchMedia("(pointer:coarse)").matches){try{await navigator.share({text:msg});}catch(e){}return;}
   if(sharePop){closeShare();return;}
   btn.setAttribute("data-sharer","");
   const r=btn.getBoundingClientRect(),pop=document.createElement("div");pop.className="share-pop";

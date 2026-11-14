@@ -64,7 +64,7 @@ def image(x, n, path):
     tw = d.textlength(tag, font=tf)
     d.rectangle((M, 172, M + tw + 28, 210), fill=HOT if x.get("kind") in ("scadenza", "avviso") else BLK)
     d.text((M + 14, 179), tag, font=tf, fill="white")
-    d.text((M + tw + 46, 179), f"N. {n}  ·  {day(x['at']).upper()}", font=F("inter-700.woff", 22), fill=(110, 110, 110))
+    d.text((M + tw + 46, 179), f"N. {n}  ·  {day(x['at']).upper()}" if n else "GAZZETTA UFFICIALE", font=F("inter-700.woff", 22), fill=(110, 110, 110))
     title = x["title"].upper()
     for size in (84, 74, 64, 56, 50):
         tf = F("inter-800.woff", size); lines = wrap(d, title, tf, W - 2 * M, 3)
@@ -133,9 +133,23 @@ def main():
                 + (f"Con {docs} allegat{'o' if docs == 1 else 'i'}. " if docs else "") + "Tocca per leggerlo sul sito del COS.")
         page = PAGE.format(title=html.escape(og_title), desc=html.escape(desc.strip()), url=f"{SITE}/gu/{i}/", img=f"{SITE}/gu/{i}/og.png?v={sig}", id=i)
         open(os.path.join(folder, "index.html"), "w", encoding="utf-8").write(page)
+    # Segnaposto: i prossimi numeri hanno gia' una pagina con un'anteprima generica della Gazzetta,
+    # cosi' un atto appena pubblicato ha subito un'anteprima su WhatsApp anche prima che questo script rigiri.
+    generic = os.path.join(OUT, "og-nuovo.png")
+    if not os.path.exists(generic):
+        image({"title": "Nuovo atto del COS", "kind": "comunicato", "at": "2026-11-14T12:00:00+00:00",
+               "body": "Pubblicato in Gazzetta Ufficiale. Tocca per leggerlo sul sito del COS.", "docs": []}, None, generic)
+    top = max([x["id"] for x in news] + [0]) + 60
+    for i in range(1, top + 1):
+        if str(i) in keep: continue
+        folder = os.path.join(OUT, str(i))
+        if os.path.isdir(folder): shutil.rmtree(folder)
+        os.makedirs(folder)
+        open(os.path.join(folder, "index.html"), "w", encoding="utf-8").write("<!--gu-segnaposto-->\n" + PAGE.format(
+            title="Nuovo atto del COS in Gazzetta Ufficiale", desc="Il Comitato Organizzativo dello Sfo ha pubblicato un nuovo atto. Tocca per leggerlo sul sito del COS.",
+            url=f"{SITE}/gu/{i}/", img=f"{SITE}/gu/og-nuovo.png", id=i))
     for name in os.listdir(OUT):
-        if name not in keep and os.path.isdir(os.path.join(OUT, name)):
-            shutil.rmtree(os.path.join(OUT, name))
+        if name.isdigit() and int(name) > top: shutil.rmtree(os.path.join(OUT, name))
     open(os.path.join(OUT, ".keep"), "w").write("")
     print(f"{len(news)} atti, anteprime aggiornate")
 
